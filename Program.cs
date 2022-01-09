@@ -1,12 +1,16 @@
 ﻿using System;
+using Sarcina.Objects;
 
-namespace sarcina
+namespace Sarcina
 {
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            GameObject gameObject = new Player();
+            Console.WriteLine(gameObject);
         }
     }
 }
