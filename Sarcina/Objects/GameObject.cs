@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Sarcina.Objects
 {
@@ -12,9 +13,17 @@ namespace Sarcina.Objects
 
         public bool IsControlledByPlayer { set; get; } = false;
 
-        public GameObject(int spriteId)
+        public GameObject(int spriteId = -1)
         {
             SpriteId = spriteId;
+        }
+
+        public bool TryMove(Vector2 vector)
+        {
+
+
+
+            return true;
         }
     }
 }

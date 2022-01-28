@@ -11,6 +11,8 @@ namespace Sarcina
 
             GameObject gameObject = new Player();
             Console.WriteLine(gameObject);
+
+            Map map = new Map(5, 5);
         }
     }
 }
