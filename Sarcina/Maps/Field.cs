@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sarcina.Map
+using Sarcina.Objects;
+
+
+namespace Sarcina.Maps
 {
     [Serializable]
     public class Field : List<GameObject>

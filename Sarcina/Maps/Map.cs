@@ -33,6 +33,11 @@ namespace Sarcina.Maps
             }
         }
 
+        public void TestSet(int x, int y, GameObject newObject)
+        {
+            Grid[x, y].Add(newObject);
+        }
+
         public void Update(Vector2 move)
         {
             int maxField = Width * Height;
