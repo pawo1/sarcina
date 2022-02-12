@@ -7,23 +7,36 @@ using System.Threading.Tasks;
 
 using Sarcina.Objects;
 
+using System.Text.Json.Serialization;
 
 namespace Sarcina.Maps
 {
     [Serializable]
-    public class Field : IEnumerable
+    public class Field //: IEnumerable
     {
-        public List<GameObject> GameObjects = new List<GameObject>();
+
+        public List<GameObject> GameObjects { private set; get; }
 
         public int Count { get => GameObjects.Count; }
+
+        public Field()
+        {
+             GameObjects = new List<GameObject>();
+        }
+
+        [JsonConstructorAttribute]
+        public Field(List<GameObject> gameObjects)
+        {
+            GameObjects = gameObjects;
+        }
 
 
         public bool CanEnter()
         {
-            foreach(GameObject gameObject in this)
+           foreach(GameObject gameObject in GameObjects)
             {
                 if (gameObject.IsWall) return false;
-            }
+            } 
             return true;
         }
 
@@ -41,7 +54,7 @@ namespace Sarcina.Maps
         {
             List<GameObject> moveableObjects = new List<GameObject>();
 
-            foreach (GameObject gameObject in this)
+            foreach (GameObject gameObject in GameObjects)
             {
                 if (gameObject.IsMoveable) moveableObjects.Add(gameObject);
             }

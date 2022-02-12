@@ -7,35 +7,45 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Sarcina.Objects;
+using System.Text.Json.Serialization;
 
 namespace Sarcina.Maps
 {
     [Serializable]
     public class Map
     {
-        public Field[,] Grid { get; private set; }
 
-        public int Width { get; private set; }
         public int Height { get; private set; }
+        public int Width { get; private set; }
+        public List<List<Field>> Grid { get; private set; }
 
         public Map(int height, int width) {
             Width = width;
             Height = height;
 
-            Grid = new Field[Height, Width];
+            Grid = new List<List<Field>>();
 
             for(int i = 0; i < Height; ++i)
             {
+                Grid.Add(new List<Field>());
                 for(int j = 0; j < Width; ++j)
                 {
-                    Grid[i, j] = new Field();
+                    Grid[i].Add( new Field() );
                 }
             }
         }
 
+        [JsonConstructorAttribute]
+        public Map(int height, int width, List<List<Field>> grid)
+        {
+            Height = height;
+            Width = width;
+            Grid = grid;
+        }
+
         public void TestSet(int x, int y, GameObject newObject)
         {
-            Grid[x, y].Add(newObject);
+            Grid[x][y].Add(newObject);
         }
 
         public void Update(Vector2 move)
@@ -74,12 +84,12 @@ namespace Sarcina.Maps
 
         private Field GetAt(Vector2 position)
         {
-            return Grid[(int)position.X, (int)position.Y];
+            return Grid[(int)position.X][(int)position.Y];
         }
 
         private void SetAt(Vector2 position, Field objects) 
         {
-            Grid[(int)position.X, (int)position.Y] = objects;
+            Grid[(int)position.X][(int)position.Y] = objects;
         }
 
         private Vector2 GetPosition(int k, Vector2 move)
