@@ -56,7 +56,7 @@ namespace Sarcina.Managers
             GameObject.UpdateDictionary(CopyDict(dictBuffer));
         }
 
-        public Map CopyMap(Map original)
+        private  Map CopyMap(Map original)
         {
             int height = original.Height;
             int width = original.Width;
@@ -77,7 +77,7 @@ namespace Sarcina.Managers
             return copy;
         }
 
-        public Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
+        private  Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
         {
             Dictionary<string, GameObjectProps> copy = new Dictionary<string, GameObjectProps>();
             copy = original.ToDictionary(entry => entry.Key, entry => (GameObjectProps)entry.Value.Clone()); // deep copy
