@@ -11,7 +11,7 @@ namespace Sarcina.Objects
     [Serializable]
     public class Map
     {
-        public List<GameObject>[,] Grid { get; private set; }
+        public Field[,] Grid { get; private set; }
 
         public int Width { get; private set; }
         public int Height { get; private set; }
@@ -20,13 +20,13 @@ namespace Sarcina.Objects
             Width = width;
             Height = height;
 
-            Grid = new List<GameObject>[Height, Width];
+            Grid = new Field[Height, Width];
 
             for(int i = 0; i < Height; ++i)
             {
                 for(int j = 0; j < Width; ++j)
                 {
-                    Grid[i, j] = new List<GameObject>();
+                    Grid[i, j] = new Field();
                 }
             }
         }
@@ -38,7 +38,41 @@ namespace Sarcina.Objects
             {
                 Vector2 position = GetPosition(i, move);
                 Debug.WriteLine("({0}, {1})", position.X, position.Y);
+
+                MoveObject(position, position + move);
             }
+        }
+
+        private bool MoveObject(Vector2 position, Vector2 newPosition)
+        {
+            if (!IsValid(position) || !IsValid(newPosition)) return false; // invalid position
+
+            Field sourceObjects = GetAt(position);
+            if (sourceObjects.Count == 0) return true; // nothing to move
+
+            Field destinationObjects = GetAt(newPosition);
+            /*if (destinationObjects.Count == 0) // anything can be moved
+            {
+
+            }*/
+
+            return true;
+        }
+
+        private bool IsValid(Vector2 position)
+        {
+            return position.X < 0 || position.X >= Width
+                || position.Y < 0 || position.Y >= Height;
+        }
+
+        private Field GetAt(Vector2 position)
+        {
+            return Grid[(int)position.X, (int)position.Y];
+        }
+
+        private void SetAt(Vector2 position, Field objects) 
+        {
+            Grid[(int)position.X, (int)position.Y] = objects;
         }
 
         private Vector2 GetPosition(int k, Vector2 move)
