@@ -16,6 +16,16 @@ namespace Sarcina.Objects
         private static Dictionary<string, GameObjectProps> propDict = new Dictionary<string, GameObjectProps>();
 
 
+        public static Dictionary<string, GameObjectProps> GetDictionary()
+        {
+            return propDict;
+        }
+
+        public static void UpdateDictionary(Dictionary<string, GameObjectProps> dict)
+        {
+            propDict = dict;
+        }
+
         public int SpriteId
         {
             get
@@ -89,17 +99,22 @@ namespace Sarcina.Objects
             }
         }
 
-
         public GameObject(int spriteId = -1)
         {
             SpriteId = spriteId;
         }
+
 
         [JsonConstructorAttribute]
         public GameObject(int spriteId, bool isControlledByPlayer)
         {
             SpriteId = spriteId;
             IsControlledByPlayer = isControlledByPlayer;
+        }
+
+        public virtual GameObject ShallowCopy()
+        {
+            return (GameObject)this.MemberwiseClone();
         }
     }
 }

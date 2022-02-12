@@ -23,5 +23,10 @@ namespace Sarcina.Objects
         {
             //this.connectedPortal = connectedPortal;
         }
+
+        public override Portal ShallowCopy()
+        {
+            return (Portal)this.MemberwiseClone();
+        }
     }
 }
