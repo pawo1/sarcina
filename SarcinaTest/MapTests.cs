@@ -68,8 +68,13 @@ namespace SarcinaTest
 
             map.Grid[2][2] = new Field();
             Player p = new Player();
+            p.Field = 3;
+
             map.Grid[2][2].Add(p);
             Box b = new Box(123, false);
+
+            b.Field = 5;
+
             map.Grid[2][1].Add(b);
 
 

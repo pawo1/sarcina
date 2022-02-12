@@ -51,7 +51,9 @@ namespace SarcinaTest
                 for(int j=0; j<y; ++j)
                 {
                     Player player = new Player();
+                    player.Field = i;
                     Portal portal = new Portal();
+                    portal.Field = j;
 
                     map.TestSet(i, j, player);
                     if (j % 2 == 0)

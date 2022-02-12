@@ -8,6 +8,7 @@ namespace Sarcina.Objects
 {
     public class Player : GameObject
     {
+
         public Player(int spriteId = 0) : base(spriteId)
         {
             IsControlledByPlayer = true;
