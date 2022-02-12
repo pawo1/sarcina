@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sarcina.Objects
+namespace Sarcina.Map
 {
+    [Serializable]
     public class Field : List<GameObject>
     {
         public bool CanEnter()

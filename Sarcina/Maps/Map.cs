@@ -6,7 +6,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sarcina.Objects
+using Sarcina.Objects;
+
+namespace Sarcina.Maps
 {
     [Serializable]
     public class Map
