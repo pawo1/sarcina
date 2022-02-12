@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sarcina.Objects
 {
-    class GameObjectProps
+    public class GameObjectProps
     {
         public int SpriteId { set; get; } = -1;
 

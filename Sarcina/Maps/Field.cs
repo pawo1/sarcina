@@ -41,7 +41,7 @@ namespace Sarcina.Maps
         {
             foreach (GameObject gameObject in this)
             {
-                if (gameObject.IsMoveable) return true;
+                if (gameObject.IsMoveable && !gameObject.IsWall) return true;
             }
 
             return false;
@@ -63,7 +63,7 @@ namespace Sarcina.Maps
 
             foreach (GameObject gameObject in GameObjects)
             {
-                if (gameObject.IsMoveable) moveableObjects.Add(gameObject);
+                if (gameObject.IsMoveable && !gameObject.IsWall) moveableObjects.Add(gameObject);
             }
 
             return moveableObjects;
@@ -89,8 +89,11 @@ namespace Sarcina.Maps
             foreach (GameObject gameObject in this)
             {
                 if (gameObject is Player) stringBuilder.Append('P');
-                else if (gameObject is Portal) stringBuilder.Append('O');
+                else if (gameObject is Portal) stringBuilder.Append('X');
                 else if (gameObject is Box) stringBuilder.Append('B');
+                else if (gameObject is Wall) stringBuilder.Append('W');
+                else if (gameObject is Grass) stringBuilder.Append('G');
+                else if (gameObject is Objective) stringBuilder.Append('O');
             }
 
             return stringBuilder.ToString();

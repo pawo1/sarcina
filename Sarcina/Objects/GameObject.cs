@@ -11,10 +11,7 @@ namespace Sarcina.Objects
     [Serializable]
     public abstract class GameObject
     {
-
-
         private static Dictionary<string, GameObjectProps> propDict = new Dictionary<string, GameObjectProps>();
-
 
         public int SpriteId
         {
@@ -96,10 +93,11 @@ namespace Sarcina.Objects
         }
 
         [JsonConstructorAttribute]
-        public GameObject(int spriteId, bool isControlledByPlayer)
+        public GameObject(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) : this(spriteId)
         {
-            SpriteId = spriteId;
             IsControlledByPlayer = isControlledByPlayer;
+            IsWall = isWall;
+            IsMoveable = isMoveable;
         }
     }
 }

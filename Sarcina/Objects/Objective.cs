@@ -8,5 +8,17 @@ namespace Sarcina.Objects
 {
     public class Objective : GameObject 
     {
+        public Objective() : this(-1) { }
+
+        public Objective(int spriteId) : base(spriteId)
+        {
+            IsControlledByPlayer = false;
+            IsWall = false;
+            IsMoveable = false;
+        }
+
+        public Objective(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
+            base(spriteId, isControlledByPlayer, isWall, isMoveable)
+        { }
     }
 }

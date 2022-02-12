@@ -10,18 +10,19 @@ namespace Sarcina.Objects
 {
     public class Portal : GameObject
     {
-
         //public Vector2 connectedPortal;
 
-        public Portal(int spriteId) : base(spriteId)
-        {}
-        public Portal() : base()
-        { }
+        public Portal() : this(-1) { }
 
-        [JsonConstructorAttribute]
-        public Portal(int spriteId, bool isControlledByPlayer) : base(spriteId, isControlledByPlayer)
+        public Portal(int spriteId) : base(spriteId)
         {
-            //this.connectedPortal = connectedPortal;
+            IsControlledByPlayer = false;
+            IsWall = false;
+            IsMoveable = false;
         }
+
+        public Portal(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
+            base(spriteId, isControlledByPlayer, isWall, isMoveable)
+        { }
     }
 }
