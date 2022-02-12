@@ -21,11 +21,11 @@ namespace SarcinaTest
         {
             GameManager manager = new GameManager();
             manager.LoadMap("MapSerial.json");
+            Player player = new Player();
             foreach(GameObject obj in manager.map.Grid[0][0])
             {
                 obj.IsWall = true;
             }
-            Player player = new Player();
             Assert.AreEqual(player.IsWall, true);
             manager.RestoreMap();
             Assert.AreEqual(player.IsWall, false);
