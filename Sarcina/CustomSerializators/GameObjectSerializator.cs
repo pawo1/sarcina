@@ -40,7 +40,7 @@ namespace Sarcina.CustomSerializators
                 throw new JsonException();
             }
 
-            string? propertyName = reader.GetString();
+            var propertyName = reader.GetString();
             if (propertyName != "TypeDiscriminator")
             {
                 throw new JsonException();
