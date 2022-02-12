@@ -95,11 +95,11 @@ namespace SarcinaTest
             settings.Converters.Add(new GameObjectSerializator());
 
             string json = JsonSerializer.Serialize(field, settings);
-            
-            
-            File.WriteAllText("MapSerial.json", json);
 
-            var fieldDes = JsonSerializer.Deserialize<Field>(json, settings);
+            File.WriteAllText("MapSerial.json", json);
+            string jsonRead = File.ReadAllText("MapSerial.json");
+
+            var fieldDes = JsonSerializer.Deserialize<Field>(jsonRead, settings);
             
             Assert.AreEqual(field.Count, fieldDes.Count);
 
