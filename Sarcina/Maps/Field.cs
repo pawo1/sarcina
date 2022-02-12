@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Sarcina.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sarcina.Map
+namespace Sarcina.Maps
 {
     [Serializable]
     public class Field : List<GameObject>

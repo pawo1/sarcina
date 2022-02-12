@@ -1,5 +1,6 @@
 ﻿using System;
 using Sarcina.Objects;
+using Sarcina.Maps;
 using System.Diagnostics;
 
 namespace Sarcina
@@ -14,15 +15,6 @@ namespace Sarcina
             Console.WriteLine(gameObject);
 
             Map map = new Map(3, 4);
-
-            Debug.WriteLine("Down:");
-            map.Update(new System.Numerics.Vector2(0, -1));
-            Debug.WriteLine("Up:");
-            map.Update(new System.Numerics.Vector2(0, 1));
-            Debug.WriteLine("Right:");
-            map.Update(new System.Numerics.Vector2(1, 0));
-            Debug.WriteLine("Down:");
-            map.Update(new System.Numerics.Vector2(-1, 0));
         }
     }
 }

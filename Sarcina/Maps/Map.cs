@@ -5,7 +5,6 @@ using System.Numerics;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-
 using Sarcina.Objects;
 
 namespace Sarcina.Maps
