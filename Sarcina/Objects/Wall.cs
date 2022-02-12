@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sarcina.Objects
 {
-    class Wall : GameObject 
+    public class Wall : GameObject 
     {
     }
 }

@@ -90,6 +90,7 @@ namespace Sarcina.Maps
             {
                 if (gameObject is Player) stringBuilder.Append('P');
                 else if (gameObject is Portal) stringBuilder.Append('O');
+                else if (gameObject is Box) stringBuilder.Append('B');
             }
 
             return stringBuilder.ToString();

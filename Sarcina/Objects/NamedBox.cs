@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Sarcina.Objects
 {
-    class NamedBox : Box
+    public class NamedBox : Box
     {
+        public NamedBox(int spriteId, bool isControlledByPlayer) : base(spriteId, isControlledByPlayer)
+        {
+
+        }
     }
 }

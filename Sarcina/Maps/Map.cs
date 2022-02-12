@@ -53,19 +53,20 @@ namespace Sarcina.Maps
             for (int i = 0; i < maxField; i++)
             {
                 Vector2 position = GetPosition(i, move);
-                Debug.WriteLine("({0}, {1})", position.X, position.Y);
-
+                //Debug.WriteLine(String.Format("({0},{1})", position.X, position.Y));
                 MoveObject(position, move);
             }
         }
 
         public void Display()
         {
+            Debug.WriteLine("Map:");
             for (int i = 0; i < Height; ++i)
             {
                 for (int j = 0; j < Width; ++j)
                 {
-                    Debug.Write("{0}\t", Grid[i, j].ToString());
+                    //Debug.Write(String.Format("{0}:({1},{2})\t", Grid[i][j].ToString(), j, i));
+                    Debug.Write(String.Format("{0}\t", Grid[i][j].ToString()));
                 }
                 Debug.WriteLine("");
             }
@@ -103,8 +104,8 @@ namespace Sarcina.Maps
                     movedToField.AddRange(moveableObjects);
                     destinationField.RemoveAll((gameObject) => { return gameObject.IsMoveable; });
 
-                    movedToField.AddRange(playerObjects);
-                    destinationField.RemoveAll((gameObject) => { return gameObject.IsControlledByPlayer; });
+                    destinationField.AddRange(playerObjects);
+                    sourceField.RemoveAll((gameObject) => { return gameObject.IsControlledByPlayer; });
                 }
             }
 
@@ -120,31 +121,33 @@ namespace Sarcina.Maps
 
         private bool IsValid(Vector2 position)
         {
-            return position.X > 0 && position.X < Width
-                && position.Y > 0 && position.Y < Height;
+            return position.X >= 0 && position.X < Width
+                && position.Y >= 0 && position.Y < Height;
         }
 
         private Field GetAt(Vector2 position)
         {
-            return Grid[(int)position.X][(int)position.Y];
+            return Grid[(int)position.Y][(int)position.X];
         }
 
         private void SetAt(Vector2 position, Field objects) 
         {
-            Grid[(int)position.X][(int)position.Y] = objects;
+            Grid[(int)position.Y][(int)position.X] = objects;
         }
 
         private Vector2 GetPosition(int k, Vector2 move)
         {
             switch (move){
-                case { X: 0,  Y: -1 }: // down
-                    return new Vector2(k / Width, k % Width);
-                case { X: 0,  Y: 1 }:  // up
-                    return new Vector2(Height - 1 - k / Width, k % Width);
-                case { X: 1,  Y: 0 }:  // right
-                    return new Vector2(k % Height, k / Height);
-                case { X: -1, Y: 0 }: // left
-                    return new Vector2( k % Height, Width - 1 - k / Height);
+                case { X: 0,  Y: 1 }: // moving up, check up->down
+                    return new Vector2(k / Height, k % Height);
+                case { X: 0,  Y: -1 }:  // moving down, check down->up
+                    return new Vector2(Width - 1 - k / Height, k % Height);
+
+
+                case { X: -1,  Y: 0 }:  // moving left, checking right->left
+                    return new Vector2(k % Width, k / Width);
+                case { X: 1, Y: 0 }: // moving right, checking left->right
+                    return new Vector2( k % Width, Height - 1 - k / Width);
             }
             return new Vector2(0, 0);
         }
