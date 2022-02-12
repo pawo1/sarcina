@@ -43,6 +43,18 @@ namespace Sarcina.Objects
             }
         }
 
+        public void Display()
+        {
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    Debug.Write("{0}\t", Grid[i, j].ToString());
+                }
+                Debug.WriteLine("");
+            }
+        }
+
         private bool MoveObject(Vector2 position, Vector2 newPosition)
         {
             if (!IsValid(position) || !IsValid(newPosition)) return false; // invalid position
@@ -51,12 +63,15 @@ namespace Sarcina.Objects
             if (sourceObjects.Count == 0) return true; // nothing to move
 
             Field destinationObjects = GetAt(newPosition);
-            /*if (destinationObjects.Count == 0) // anything can be moved
+            if (destinationObjects.Count == 0) // anything can be moved
             {
+                var playerObjects = sourceObjects.GetPlayers();
+                destinationObjects.AddRange(playerObjects);
+                sourceObjects.RemoveAll((gameObject) => { return gameObject.IsControlledByPlayer; });
+                return true;
+            }
 
-            }*/
-
-            return true;
+            return false;
         }
 
         private bool IsValid(Vector2 position)

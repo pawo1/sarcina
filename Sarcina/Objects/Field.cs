@@ -28,5 +28,31 @@ namespace Sarcina.Objects
 
             return moveableObjects;
         }
+
+        public List<GameObject> GetPlayers()
+        {
+            List<GameObject> moveableObjects = new List<GameObject>();
+
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject.IsControlledByPlayer) moveableObjects.Add(gameObject);
+            }
+
+            return moveableObjects;
+        }
+
+        public override string ToString()
+        {
+            if (Count == 0) return ".";
+
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Player) stringBuilder.Append('P');
+                else if (gameObject is Portal) stringBuilder.Append('O');
+            }
+
+            return stringBuilder.ToString();
+        }
     }
 }
