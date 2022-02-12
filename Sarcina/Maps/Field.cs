@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Sarcina.Objects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
-using Sarcina.Objects;
 
 using System.Text.Json.Serialization;
 
@@ -40,6 +37,16 @@ namespace Sarcina.Maps
             return true;
         }
 
+        public bool HasMoveableObjects()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject.IsMoveable) return true;
+            }
+
+            return false;
+        }
+
         public IEnumerator GetEnumerator()
         {
             return GameObjects.GetEnumerator();
@@ -60,6 +67,43 @@ namespace Sarcina.Maps
             }
 
             return moveableObjects;
+        }
+
+        public List<GameObject> GetPlayers()
+        {
+            List<GameObject> moveableObjects = new List<GameObject>();
+
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject.IsControlledByPlayer) moveableObjects.Add(gameObject);
+            }
+
+            return moveableObjects;
+        }
+
+        public override string ToString()
+        {
+            if (Count == 0) return ".";
+
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Player) stringBuilder.Append('P');
+                else if (gameObject is Portal) stringBuilder.Append('O');
+                else if (gameObject is Box) stringBuilder.Append('B');
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        internal void AddRange(List<GameObject> playerObjects)
+        {
+            GameObjects.AddRange(playerObjects);
+        }
+
+        internal void RemoveAll(Predicate<GameObject> predicate)
+        {
+            GameObjects.RemoveAll(predicate);
         }
     }
 }
