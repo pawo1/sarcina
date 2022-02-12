@@ -15,6 +15,10 @@ namespace Sarcina.Objects
 
         public bool IsControlledByPlayer { set; get; } = false;
 
+        public bool IsWall { set; get; }
+
+        public bool IsMoveable { set; get; }
+
         public GameObject(int spriteId = -1)
         {
             SpriteId = spriteId;
@@ -25,14 +29,6 @@ namespace Sarcina.Objects
         {
             SpriteId = spriteId;
             IsControlledByPlayer = isControlledByPlayer;
-        }
-
-        public bool TryMove(Vector2 vector)
-        {
-
-
-
-            return true;
         }
     }
 }
