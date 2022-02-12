@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sarcina.Objects
 {
-    public class GameObjectProps
+    public class GameObjectProps : ICloneable
     {
         public int SpriteId { set; get; } = -1;
 
@@ -15,6 +15,13 @@ namespace Sarcina.Objects
         public bool IsWall { set; get; }
 
         public bool IsMoveable { set; get; }
+
+        public object Clone()
+        {
+            GameObjectProps clone = new GameObjectProps();
+            clone = (GameObjectProps)this.MemberwiseClone();
+            return clone;
+        }
 
     }
 }

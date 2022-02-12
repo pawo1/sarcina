@@ -24,5 +24,10 @@ namespace Sarcina.Objects
         public Portal(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
             base(spriteId, isControlledByPlayer, isWall, isMoveable)
         { }
+
+        public override Portal ShallowCopy()
+        {
+            return (Portal)this.MemberwiseClone();
+        }
     }
 }
