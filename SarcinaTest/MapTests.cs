@@ -7,7 +7,6 @@ using Sarcina.Maps;
 using System.Diagnostics;
 
 using Sarcina.Objects;
-using Sarcina.Maps;
 using System;
 using System.Numerics;
 
@@ -68,8 +67,13 @@ namespace SarcinaTest
 
             map.Grid[2][2] = new Field();
             Player p = new Player();
+            p.SpriteId = 3;
+
             map.Grid[2][2].Add(p);
             Box b = new Box(123, false);
+
+            b.SpriteId = 5;
+
             map.Grid[2][1].Add(b);
 
 

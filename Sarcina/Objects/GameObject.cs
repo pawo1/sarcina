@@ -11,13 +11,84 @@ namespace Sarcina.Objects
     [Serializable]
     public abstract class GameObject
     {
-        public int SpriteId { private set; get; } = -1;
 
-        public bool IsControlledByPlayer { set; get; } = false;
 
-        public bool IsWall { set; get; }
+        private static Dictionary<string, GameObjectProps> propDict = new Dictionary<string, GameObjectProps>();
 
-        public bool IsMoveable { set; get; }
+
+        public int SpriteId
+        {
+            get
+            {
+                return propDict.ContainsKey(this.GetType().Name)
+                   ? propDict[this.GetType().Name].SpriteId : default(int);
+            }
+            set
+            {
+                if (!propDict.ContainsKey(this.GetType().Name))
+                {
+                    propDict[this.GetType().Name] = new GameObjectProps();
+                }
+
+                propDict[this.GetType().Name].SpriteId = value;
+            }
+        }
+
+        public bool IsControlledByPlayer
+        {
+            get
+            {
+                return propDict.ContainsKey(this.GetType().Name)
+                   ? propDict[this.GetType().Name].IsControlledByPlayer : default(bool);
+            }
+            set
+            {
+                if (!propDict.ContainsKey(this.GetType().Name))
+                {
+                    propDict[this.GetType().Name] = new GameObjectProps();
+                }
+
+                propDict[this.GetType().Name].IsControlledByPlayer = value;
+                
+            }
+        }
+
+        public bool IsWall 
+        {
+            get
+            {
+                return propDict.ContainsKey(this.GetType().Name)
+                   ? propDict[this.GetType().Name].IsWall : default(bool);
+            }
+            set
+            {
+                if (!propDict.ContainsKey(this.GetType().Name))
+                {
+                    propDict[this.GetType().Name] = new GameObjectProps();
+                }
+
+                propDict[this.GetType().Name].IsWall = value;
+            }
+        }
+
+        public bool IsMoveable
+        {
+            get
+            {
+                return propDict.ContainsKey(this.GetType().Name)
+                   ? propDict[this.GetType().Name].IsMoveable : default(bool);
+            }
+            set
+            {
+                if (!propDict.ContainsKey(this.GetType().Name))
+                {
+                    propDict[this.GetType().Name] = new GameObjectProps();
+                }
+
+                propDict[this.GetType().Name].IsMoveable = value;
+            }
+        }
+
 
         public GameObject(int spriteId = -1)
         {

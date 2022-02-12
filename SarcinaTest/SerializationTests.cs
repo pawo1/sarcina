@@ -51,7 +51,9 @@ namespace SarcinaTest
                 for(int j=0; j<y; ++j)
                 {
                     Player player = new Player();
+                    player.IsMoveable = true;
                     Portal portal = new Portal();
+                    portal.IsMoveable = false;
 
                     map.TestSet(i, j, player);
                     if (j % 2 == 0)
