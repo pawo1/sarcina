@@ -1,10 +1,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sarcina.Objects;
+
 using System.Runtime.Serialization;
 using System.Text.Json;
 using System.IO;
 using Sarcina.Maps;
 using System.Diagnostics;
+
+using Sarcina.Objects;
+using Sarcina.Maps;
 
 namespace SarcinaTest
 {

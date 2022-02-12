@@ -11,6 +11,12 @@ namespace Sarcina.Managers
     class GameManager
     {
         private Map map;
+        private GraphicManager graphicManager;
+
+        public GameManager()
+        {
+
+        }
 
 
     }
