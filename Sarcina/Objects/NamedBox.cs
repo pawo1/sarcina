@@ -8,9 +8,13 @@ namespace Sarcina.Objects
 {
     public class NamedBox : Box
     {
-        public NamedBox(int spriteId, bool isControlledByPlayer) : base(spriteId, isControlledByPlayer)
-        {
+        public NamedBox() : this(-1) { }
 
-        }
+        public NamedBox(int spriteId) : base(spriteId)
+        { }
+
+        public NamedBox(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
+            base(spriteId, isControlledByPlayer, isWall, isMoveable)
+        { }
     }
 }

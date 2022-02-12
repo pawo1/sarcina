@@ -10,18 +10,24 @@ namespace Sarcina.Objects
 {
     public class Portal : GameObject
     {
-
         //public Vector2 connectedPortal;
 
+        public Portal() : this(-1) { }
+
         public Portal(int spriteId) : base(spriteId)
-        {}
-        public Portal() : base()
+        {
+            IsControlledByPlayer = false;
+            IsWall = false;
+            IsMoveable = false;
+        }
+
+        public Portal(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
+            base(spriteId, isControlledByPlayer, isWall, isMoveable)
         { }
 
-        [JsonConstructorAttribute]
-        public Portal(int spriteId, bool isControlledByPlayer) : base(spriteId, isControlledByPlayer)
+        public override Portal ShallowCopy()
         {
-            //this.connectedPortal = connectedPortal;
+            return (Portal)this.MemberwiseClone();
         }
     }
 }

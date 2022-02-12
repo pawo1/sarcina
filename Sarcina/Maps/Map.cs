@@ -47,14 +47,20 @@ namespace Sarcina.Maps
             Grid[x][y].Add(newObject);
         }
 
+        /// <summary>
+        /// Aktualizuje pozycje wszystkich elementów na planszy
+        /// </summary>
+        /// <param name="move">Wektor ruchu w kartezjańskim układzie współrzędnych</param>
         public void Update(Vector2 move)
         {
+            move.Y *= -1; // TODO: usunąć przy mapowaniu klawisz -> wektor
             int maxField = Width * Height;
             for (int i = 0; i < maxField; i++)
             {
                 Vector2 position = GetPosition(i, move);
                 //Debug.WriteLine(String.Format("({0},{1})", position.X, position.Y));
                 MoveObject(position, move);
+                //Display();
             }
         }
 
@@ -72,6 +78,12 @@ namespace Sarcina.Maps
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="position">Obecna pozycja</param>
+        /// <param name="move">Wektor ruchu w układzie z odwróconą osią Y</param>
+        /// <returns></returns>
         private bool MoveObject(Vector2 position, Vector2 move)
         {
             Vector2 newPosition = position + move;
@@ -135,18 +147,23 @@ namespace Sarcina.Maps
             Grid[(int)position.Y][(int)position.X] = objects;
         }
 
+        /// <summary>
+        /// Zwraca pozycję w tabeli według iteracji
+        /// </summary>
+        /// <param name="k">Iteracja</param>
+        /// <param name="move">Wektor ruchu z odwróconą osią Y</param>
+        /// <returns></returns>
         private Vector2 GetPosition(int k, Vector2 move)
         {
             switch (move){
-                case { X: 0,  Y: 1 }: // moving up, check up->down
+                case { X: -1,  Y: 0 }:  // moving left, checking right->left
                     return new Vector2(k / Height, k % Height);
-                case { X: 0,  Y: -1 }:  // moving down, check down->up
+                case { X: 1,  Y: 0 }:   // moving right, checking left->right
                     return new Vector2(Width - 1 - k / Height, k % Height);
 
-
-                case { X: -1,  Y: 0 }:  // moving left, checking right->left
+                case { X: 0,  Y: -1 }:  // moving up, check up->down
                     return new Vector2(k % Width, k / Width);
-                case { X: 1, Y: 0 }: // moving right, checking left->right
+                case { X: 0, Y: 1 }:   // moving down, check down->up
                     return new Vector2( k % Width, Height - 1 - k / Width);
             }
             return new Vector2(0, 0);

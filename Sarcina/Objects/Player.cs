@@ -9,10 +9,18 @@ namespace Sarcina.Objects
     public class Player : GameObject
     {
 
-        public Player(int spriteId = 0) : base(spriteId)
+        public Player() : this(-1) { }
+
+        public Player(int spriteId) : base(spriteId)
         {
             IsControlledByPlayer = true;
+            IsWall = false;
+            IsMoveable = false;
         }
+
+        public Player(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
+            base(spriteId, isControlledByPlayer, isWall, isMoveable)
+        { }
 
         public override string ToString()
         {
