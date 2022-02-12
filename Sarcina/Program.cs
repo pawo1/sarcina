@@ -11,11 +11,6 @@ namespace Sarcina
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-            GameObject gameObject = new Player();
-            Console.WriteLine(gameObject);
-
-            Map map = new Map(3, 4);
         }
     }
 }

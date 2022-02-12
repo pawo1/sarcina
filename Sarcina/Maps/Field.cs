@@ -2,11 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
-using Sarcina.Objects;
 
 
 namespace Sarcina.Maps
@@ -26,6 +22,16 @@ namespace Sarcina.Maps
                 if (gameObject.IsWall) return false;
             }
             return true;
+        }
+
+        public bool HasMoveableObjects()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject.IsMoveable) return true;
+            }
+
+            return false;
         }
 
         public IEnumerator GetEnumerator()
@@ -74,6 +80,16 @@ namespace Sarcina.Maps
             }
 
             return stringBuilder.ToString();
+        }
+
+        internal void AddRange(List<GameObject> playerObjects)
+        {
+            GameObjects.AddRange(playerObjects);
+        }
+
+        internal void RemoveAll(Predicate<GameObject> predicate)
+        {
+            GameObjects.RemoveAll(predicate);
         }
     }
 }
