@@ -9,7 +9,7 @@ using SFML.Graphics;
 using SFML.Window;
 
 using System.Threading;
-
+using SFML.System;
 
 namespace Sarcina.Managers
 {
@@ -17,10 +17,11 @@ namespace Sarcina.Managers
     {
 
         private RenderWindow window;
+        private List<Sprite> sprites = new List<Sprite>();
 
         public GraphicManager()
         {
-
+            
         }
 
         public GraphicManager(RenderWindow window)
@@ -33,6 +34,72 @@ namespace Sarcina.Managers
             this.window = window;
         }
 
+        public void LoadSprites()
+        {
+            List<string> resources = new List<string>()
+            {
+                "background.png",
+                "box_invalid.png",
+                "box_sarcina.png",
+                "box_valid.png",
+                "button_off.png",
+                "button_on.png",
+                "grass.png",
+                "objective.png",
+                "player_down.png",
+                "player_left.png",
+                "player_right.png",
+                "player_up.png",
+                "portal_a.png",
+                "portal_b.png",
+                "portal_c.png",
+                "portal_d.png",
+                "portal_e.png",
+                "portal_f.png",
+                "terminal.png",
+                "wall_a.png",
+                "wall_b.png"  
+            };
+
+            foreach (var res in resources)
+            {
+
+                Image image = new Image("resources/" + res);
+               // image.CreateMaskFromColor(Color.White);
+
+
+                Texture texture = new Texture(image);
+                Sprite sprite = new Sprite(texture);
+                
+                sprites.Add(sprite);
+
+            }
+        }
+
+        public void LoadIcon()
+        {
+            Image image = new Image("resources/sarcina.png");
+
+            Byte[] icon = new Byte[40 * 40 * 4];
+
+            for (uint i = 0; i < 40; ++i)
+            {
+                for (uint j = 0; j < 40; ++j)
+                {
+                    Color tmp = image.GetPixel( i, j);
+                    icon[(i + j * 40) * 4] = tmp.R;
+                    icon[(i + j * 40) * 4 + 1] = tmp.G;
+                    icon[(i + j * 40) * 4 + 2] = tmp.B;
+                    icon[(i + j * 40) * 4 + 3] = tmp.A;
+                }
+            }
+
+            window.SetIcon(40, 40, icon);
+
+            image.Dispose();
+
+        }
+
         public void Demo()
         {
             
@@ -41,21 +108,19 @@ namespace Sarcina.Managers
             cs.FillColor = Color.Green;
             window.SetActive();
             window.Closed += new EventHandler(OnClose);
-            float i=0, j=0;
             while (window.IsOpen)
             {
                 
-                j += 10;
-
                 window.DispatchEvents();
 
                 window.Clear();
-              /*  for (int k = 0; k < 5; ++k)
-                {
-                    i += test * 8;
-                    cs.Position = new SFML.System.Vector2f(i % VideoMode.DesktopMode.Width, j % VideoMode.DesktopMode.Height);
-                    window.Draw(cs);
-                } */
+                int k = 0;
+                for (int i = 0; i < 12; ++i)
+                    for (int j = 0; j < 18; ++j) {
+                        sprites[k%sprites.Count].Position = new Vector2f(40 * j, 40 * i);
+                        window.Draw( sprites[k%sprites.Count]);
+                        k++;
+                    }
                 
                 window.Display();
                // Thread.Sleep(300);

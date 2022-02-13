@@ -36,6 +36,11 @@ namespace Sarcina.Managers
             secretCodes = new List<Keyboard.Key>();
         }
 
+        public void Run()
+        {
+
+        }
+
 
         public void OnKeyPressed(object sender, KeyEventArgs e)
         {
