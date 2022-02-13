@@ -14,23 +14,8 @@ namespace Sarcina.Objects
         [JsonInclude]
         public List<Box> SavedBoxes { get; set; } = new List<Box>();
 
-        [JsonIgnore]
+        [JsonInclude]
         public int Count { get => SavedBoxes.Count; }
-
-        [JsonIgnore]
-        public Box LastBox { 
-            get
-            {
-                if (Count > 0)
-                {
-                    Box box = SavedBoxes[^1];
-                    SavedBoxes.Remove(box);
-                    return box;
-                }
-                return null;
-            }
-            set => SavedBoxes.Add(value); 
-        }
 
         public Terminal() : this(-1) { }
 
@@ -54,6 +39,8 @@ namespace Sarcina.Objects
 
         public override Terminal ShallowCopy()
         {
+            Terminal copy = (Terminal)this.MemberwiseClone();
+            copy.SavedBoxes = this.SavedBoxes.ConvertAll(box => (Box)box.Clone());
             return (Terminal)this.MemberwiseClone();
         }
     }
