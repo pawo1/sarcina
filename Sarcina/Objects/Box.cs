@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sarcina.Objects
 {
-    public class Box : GameObject
+    public class Box : GameObject, ICloneable
     {
         public Box() : this(-1) { }
 
@@ -20,5 +20,10 @@ namespace Sarcina.Objects
         public Box(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable) :
             base(spriteId, isControlledByPlayer, isWall, isMoveable)
         { }
+
+        public object Clone()
+        {
+            return (Box)this.MemberwiseClone();
+        }
     }
 }

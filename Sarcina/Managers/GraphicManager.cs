@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
-
-using System.Threading;
 using SFML.System;
+
+using Sarcina.Maps;
+
 
 namespace Sarcina.Managers
 {
@@ -18,15 +19,37 @@ namespace Sarcina.Managers
 
         private RenderWindow window;
         private List<Sprite> sprites = new List<Sprite>();
-
-        public GraphicManager()
-        {
-            
-        }
+        private Font font;
 
         public GraphicManager(RenderWindow window)
         {
             this.window = window;
+            LoadIcon();
+            LoadSprites();
+            LoadFont();
+        }
+
+
+
+
+        public void DrawMap(Map map)
+        {
+            int height = map.Height;
+            int width = map.Width;
+
+            for(int i = 0; i<width; ++i)
+            {
+                for(int j = 0; j<height; ++j)
+                {
+                    List<int> idList = map.getSpritesId(i, j);
+                    foreach (var id in idList)
+                    {
+                        int _id = (id < sprites.Count ? id : 0);
+                        sprites[_id].Position = new Vector2f(i * 40, j * 40);
+                        window.Draw(sprites[_id]);
+                    }
+                }
+            }
         }
 
         public void AttachWindow(RenderWindow window)
@@ -39,17 +62,15 @@ namespace Sarcina.Managers
             List<string> resources = new List<string>()
             {
                 "background.png",
-                "box_invalid.png",
-                "box_sarcina.png",
-                "box_valid.png",
-                "button_off.png",
-                "button_on.png",
+                "wall_a.png",
+                "wall_b.png",
                 "grass.png",
                 "objective.png",
-                "player_down.png",
-                "player_left.png",
-                "player_right.png",
-                "player_up.png",
+                "button_off.png",
+                "button_on.png",
+                "box_invalid.png",
+                "box_valid.png",
+                "box_sarcina.png",
                 "portal_a.png",
                 "portal_b.png",
                 "portal_c.png",
@@ -57,18 +78,17 @@ namespace Sarcina.Managers
                 "portal_e.png",
                 "portal_f.png",
                 "terminal.png",
-                "wall_a.png",
-                "wall_b.png"  
+                "player_down.png",
+                "player_left.png",
+                "player_right.png",
+                "player_up.png"
+
             };
 
             foreach (var res in resources)
             {
 
-                Image image = new Image("resources/" + res);
-               // image.CreateMaskFromColor(Color.White);
-
-
-                Texture texture = new Texture(image);
+                Texture texture = new Texture("resources/" + res);
                 Sprite sprite = new Sprite(texture);
                 
                 sprites.Add(sprite);
@@ -100,6 +120,11 @@ namespace Sarcina.Managers
 
         }
 
+        public void LoadFont()
+        {
+            font = new Font("resources/VT323-regular.ttf");
+        }
+
         public void Demo()
         {
             
@@ -115,15 +140,13 @@ namespace Sarcina.Managers
 
                 window.Clear();
                 int k = 0;
-                for (int i = 0; i < 12; ++i)
-                    for (int j = 0; j < 18; ++j) {
+                for (int i = 0; i < 18; ++i)
+                    for (int j = 0; j < 12; ++j) {
                         sprites[k%sprites.Count].Position = new Vector2f(40 * j, 40 * i);
                         window.Draw( sprites[k%sprites.Count]);
                         k++;
                     }
-                
                 window.Display();
-               // Thread.Sleep(300);
             }
         }
 

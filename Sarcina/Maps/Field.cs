@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace Sarcina.Maps
 {
     [Serializable]
-    public class Field //: IEnumerable
+    public class Field
     {
 
         public List<GameObject> GameObjects { private set; get; }
@@ -18,7 +19,7 @@ namespace Sarcina.Maps
 
         public Field()
         {
-             GameObjects = new List<GameObject>();
+            GameObjects = new List<GameObject>();
         }
 
         [JsonConstructorAttribute]
@@ -27,13 +28,17 @@ namespace Sarcina.Maps
             GameObjects = gameObjects;
         }
 
+        public List<GameObject> getSorted()
+        {
+            return GameObjects.OrderBy(i => i.SpriteId).ToList();
+        }
 
         public bool CanEnter()
         {
-           foreach(GameObject gameObject in GameObjects)
+            foreach (GameObject gameObject in GameObjects)
             {
                 if (gameObject.IsWall) return false;
-            } 
+            }
             return true;
         }
 
@@ -64,6 +69,33 @@ namespace Sarcina.Maps
                 if (gameObject is Portal portal) return portal;
             }
 
+            return null;
+        }
+
+        public Terminal GetTerminal()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Terminal terminal) return terminal;
+            }
+
+            return null;
+        }
+
+        public Box GetBox()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Box box) return box;
+            }
+            return null;
+        }
+        public Button GetButton()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Button button) return button;
+            }
             return null;
         }
 
@@ -114,9 +146,24 @@ namespace Sarcina.Maps
                 else if (gameObject is Wall) stringBuilder.Append('W');
                 else if (gameObject is Grass) stringBuilder.Append('G');
                 else if (gameObject is Objective) stringBuilder.Append('O');
+                else if (gameObject is Terminal) stringBuilder.Append('T');
+                else if (gameObject is Button) stringBuilder.Append('_');
             }
 
             return stringBuilder.ToString();
+        }
+
+        public bool IsWinCondition()
+        {
+            int objectives = 0;
+            int boxes = 0;
+            foreach (GameObject gameObject in GameObjects)
+            {
+                if (gameObject is Box) boxes++;
+                else if (gameObject is Objective) objectives++;
+            }
+
+            return objectives == 0 || boxes >= 1;
         }
 
         internal void AddRange(List<GameObject> playerObjects)
@@ -127,6 +174,11 @@ namespace Sarcina.Maps
         internal void RemoveAll(Predicate<GameObject> predicate)
         {
             GameObjects.RemoveAll(predicate);
+        }
+
+        public void Remove(GameObject gameObject)
+        {
+            GameObjects.Remove(gameObject);
         }
     }
 }

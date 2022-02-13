@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sarcina.Objects;
 using System.Text.Json.Serialization;
+using System.Text.Json;
+using Sarcina.CustomSerializators;
 
 namespace Sarcina.Maps
 {
@@ -44,15 +46,53 @@ namespace Sarcina.Maps
 
         public void TestSet(int x, int y, GameObject newObject)
         {
-            Grid[x][y].Add(newObject);
+            Grid[y][x].Add(newObject);
+        }
+
+
+        public List<int> getSpritesId(int x, int y)
+        {
+            List<int> list = new List<int>();
+            foreach(var obj in Grid[y][x].getSorted())
+            {
+                list.Add(obj.SpriteId);
+            }
+            return list;
+        }
+
+
+        public string GetJson()
+        {
+            var settings = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            settings.Converters.Add(new GameObjectSerializator());
+
+            string json = JsonSerializer.Serialize(this, settings);
+            return json;
+        }
+
+        public bool IsWon()
+        {
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    if (!Grid[i][j].IsWinCondition())
+                        return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
         /// Aktualizuje pozycje wszystkich elementów na planszy
         /// </summary>
         /// <param name="move">Wektor ruchu w kartezjańskim układzie współrzędnych</param>
-        public void Update(Vector2 move)
+        public int Update(Vector2 move)
         {
+            int moved = 0;
             move.Y *= -1; // TODO: usunąć przy mapowaniu klawisz -> wektor
 
             Queue<Vector2> queue = new Queue<Vector2>();
@@ -68,8 +108,11 @@ namespace Sarcina.Maps
 
             while (queue.Count > 0)
             {
-                MoveObject(queue.Dequeue(), move, queue);
+                if (MoveObject(queue.Dequeue(), move, queue))
+                    moved++;
             }
+
+            return moved;
         }
 
         private bool IsFieldMoveable(Vector2 position, Vector2 move)
@@ -114,7 +157,23 @@ namespace Sarcina.Maps
             // moving boxes failed, cannot move
             if (!MoveBoxes(newPosition, move, queue)) return false;
 
-            // -> field you try to enter is now empty
+            // -> field you try to enter is now "empty"
+
+            Button button = destinationField.GetButton();
+            // there is button on the field
+            if (button != null)
+            {
+                Field terminalField = GetAt(button.ConnectedTerminal);
+                if(terminalField.CanEnter() && !terminalField.HasMoveableObjects())
+                {
+                    Box box = terminalField.GetTerminal().PopBox();
+                    terminalField.Add(box);
+                    MovePlayerObjects(sourceField, destinationField);
+                    return true;
+                }
+            }
+
+            // -> there is no button
 
             Portal portal = destinationField.GetPortal();
             // there is no portal
@@ -128,7 +187,7 @@ namespace Sarcina.Maps
             // -> there is a portal
 
             // portal is invalid
-            if (!IsValid(portal.connectedPortal))
+            if (!IsValid(portal.ConnectedPortal))
             {
                 MovePlayerObjects(sourceField, destinationField);
                 return true;
@@ -136,10 +195,10 @@ namespace Sarcina.Maps
 
             // -> there is valid portal
 
-            Field portalField = GetAt(portal.connectedPortal);
+            Field portalField = GetAt(portal.ConnectedPortal);
             // you can neither enter portal
             //  nor move the boxes there, stay on top
-            if (!portalField.CanEnter() || !MoveBoxes(portal.connectedPortal, move, queue))
+            if (!portalField.CanEnter() || !MoveBoxes(portal.ConnectedPortal, move, queue))
             {
                 MovePlayerObjects(sourceField, destinationField);
                 return true;
@@ -172,6 +231,20 @@ namespace Sarcina.Maps
 
             // -> there is place to move the boxes
 
+            Box box = boxesField.GetBox();
+            Terminal terminal = moveToField.GetTerminal();
+            // there is terminal and box to pass
+            if(terminal != null && box != null)
+            {
+                terminal.AddBox(box);
+                boxesField.Remove(box);
+
+                // there is nothing left to move
+                if (boxesField.Count == 0) return true;
+            }
+
+            // -> there is no terminal
+
             Portal portal = moveToField.GetPortal();
             // there is no portal, can move
             // or they just passed through the portal
@@ -184,13 +257,13 @@ namespace Sarcina.Maps
             // -> there is a portal
 
             // portal is invalid
-            if (!IsValid(portal.connectedPortal))
+            if (!IsValid(portal.ConnectedPortal))
             {
                 MoveBoxObjects(boxesField, moveToField);
                 return true;
             }
 
-            Field portalField = GetAt(portal.connectedPortal);
+            Field portalField = GetAt(portal.ConnectedPortal);
             // you can neither enter portal
             //  nor move the boxes there, stay on top
             if (!portalField.CanEnter() || portalField.HasMoveableObjects())
@@ -199,7 +272,7 @@ namespace Sarcina.Maps
                 return true;
             }
 
-            move = portal.connectedPortal - position;
+            move = portal.ConnectedPortal - position;
             // check new move to the connected portal
             return MoveBoxes(position, move, queue, true);
         }
@@ -262,6 +335,21 @@ namespace Sarcina.Maps
                 }
                 Debug.WriteLine("");
             }
+        }
+
+        public string GetDisplay()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    //Debug.Write(String.Format("{0}:({1},{2})\t", Grid[i][j].ToString(), j, i));
+                    sb.Append(String.Format("{0}\t", Grid[i][j].ToString()));
+                }
+                sb.Append("\n");
+            }
+            return sb.ToString();
         }
     }
 

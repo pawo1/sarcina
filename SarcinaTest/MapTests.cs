@@ -44,10 +44,8 @@ namespace SarcinaTest
             Player p = new Player();
             map.Grid[1][1].Add(p);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 2);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 2));
+            Portal x2 = new Portal(new Vector2(2, 1));
             
             map.Grid[1][2].Add(x1);
             map.Grid[2][1].Add(x2);
@@ -86,10 +84,8 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[3][1].Add(b);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 3);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 3));
+            Portal x2 = new Portal(new Vector2(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -103,6 +99,31 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void MoveTerminalButton()
+        {
+            Map map = new Map(4, 4);
+
+            Player p = new Player();
+            map.Grid[1][1].Add(p);
+
+
+            Terminal t = new Terminal();
+            Box b = new Box();
+            t.AddBox(b);
+            map.Grid[3][1].Add(t);
+
+            Button bt = new Button(new Vector2(1, 3));
+            map.Grid[1][2].Add(bt);
+
+            map.Display();
+            map.Update(new Vector2(1, 0));
+            map.Display();
+
+            Assert.AreEqual(map.Grid[1][2].GameObjects[1], p);
+            Assert.AreEqual(map.Grid[3][1].GameObjects[1], b);
+        }
+
+        [TestMethod]
         public void MovePortalBoxThrough()
         {
             Map map = new Map(4, 4);
@@ -113,10 +134,8 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[1][1].Add(b);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 3);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 3));
+            Portal x2 = new Portal(new Vector2(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -144,10 +163,8 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[1][2].Add(b);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 3);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 3));
+            Portal x2 = new Portal(new Vector2(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -171,10 +188,8 @@ namespace SarcinaTest
             Wall w = new Wall();
             map.Grid[1][2].Add(w);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 3);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 3));
+            Portal x2 = new Portal(new Vector2(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -197,10 +212,8 @@ namespace SarcinaTest
             Wall w = new Wall();
             map.Grid[3][1].Add(w);
 
-            Portal x1 = new Portal();
-            Portal x2 = new Portal();
-            x1.connectedPortal = new Vector2(1, 3);
-            x2.connectedPortal = new Vector2(2, 1);
+            Portal x1 = new Portal(new Vector2(1, 3));
+            Portal x2 = new Portal(new Vector2(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -213,34 +226,53 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void MoveTerminalBox()
+        {
+            Map map = new Map(4, 4);
+
+            Player p = new Player();
+            map.Grid[1][1].Add(p);
+
+            Box b = new Box();
+            map.Grid[1][2].Add(b);
+
+            Terminal t = new Terminal();
+            map.Grid[1][3].Add(t);
+
+
+            map.Display();
+            map.Update(new Vector2(1, 0));
+            map.Display();
+
+            //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
+            Terminal t2 = (Terminal)map.Grid[1][3].GameObjects[0];
+            Assert.AreEqual(t, t2);
+            Assert.AreEqual(b, t2.SavedBoxes[0]);
+        }
+
+        [TestMethod]
         public void MovePortalBoxPortalBlock()
         {
             Map map = new Map(5, 5);
 
-            Portal x1a = new Portal();
-            Portal x1b = new Portal();
             var x1apos = new Vector2(1, 1);
             var x1bpos = new Vector2(1, 3);
-            x1a.connectedPortal = x1bpos;
-            x1b.connectedPortal = x1apos;
+            Portal x1a = new Portal(x1bpos);
+            Portal x1b = new Portal(x1apos);
             map.Grid[(int)x1apos.Y][(int)x1apos.X].Add(x1a);
             map.Grid[(int)x1bpos.Y][(int)x1bpos.X].Add(x1b);
 
-            Portal x2a = new Portal();
-            Portal x2b = new Portal();
             var x2apos = new Vector2(2, 1);
             var x2bpos = new Vector2(2, 2);
-            x2a.connectedPortal = x2bpos;
-            x2b.connectedPortal = x2apos;
+            Portal x2a = new Portal(x2bpos);
+            Portal x2b = new Portal(x2apos);
             map.Grid[(int)x2apos.Y][(int)x2apos.X].Add(x2a);
             map.Grid[(int)x2bpos.Y][(int)x2bpos.X].Add(x2b);
 
-            Portal x3a = new Portal();
-            Portal x3b = new Portal();
             var x3apos = new Vector2(2, 3);
             var x3bpos = new Vector2(2, 4);
-            x3a.connectedPortal = x3bpos;
-            x3b.connectedPortal = x3apos;
+            Portal x3a = new Portal(x3bpos);
+            Portal x3b = new Portal(x3apos);
             map.Grid[(int)x3apos.Y][(int)x3apos.X].Add(x3a);
             map.Grid[(int)x3bpos.Y][(int)x3bpos.X].Add(x3b);
 
