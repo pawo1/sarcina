@@ -36,9 +36,14 @@ namespace Sarcina.Managers
         {
             MainMenu = 1,
             About,
-
+            Progress,
+            Save,
+            Pause,
+            Continue,
             LoadLevel,
             Level,
+            NextLevel,
+            Restart,
             Exit
         }
 
@@ -54,7 +59,7 @@ namespace Sarcina.Managers
             
             window = new RenderWindow(new VideoMode(720, 480, 64), "Sarcina The Game", Styles.Default, new ContextSettings(24, 8, 16));
             window.SetFramerateLimit(60);
-            window.KeyPressed += new EventHandler<KeyEventArgs>(this.OnKeyPressed); // register key handler 
+            window.KeyPressed += new EventHandler<KeyEventArgs>(this.OnKeyPressedMenu); // register key handler 
 
             graphicManager = new GraphicManager(window);
 
@@ -78,13 +83,37 @@ namespace Sarcina.Managers
                 switch(State)
                 {
                     case gameState.MainMenu:
-                       // graphicManager.DrawMainMenu();
+                        graphicManager.DrawMainMenu();
                         break;
-                    
+
+                    case gameState.About:
+                        graphicManager.DrawAbout();
+                        break;
+
+
+
+                    case gameState.LoadLevel:
+                        LoadMap("levels/level" + playerInfo.CurrentLevel + ".json");
+                        State = gameState.Level;
+                        break;
+
                     case gameState.Level:
                         graphicManager.DrawMap(map);
-                       // graphicManager.DrawScore(playerInfo);
+                       graphicManager.DrawScore(playerInfo);
                         break;
+
+                    case gameState.NextLevel:
+                        playerInfo.NextLevel();
+                        State = gameState.LoadLevel;
+                        break;
+
+                    case gameState.Restart:
+                        RestoreMap();
+                        playerInfo.ResetLevel();
+                        State = gameState.Level;
+                        break;
+
+
                     case gameState.Exit:
                         window.Close();
                         break;
@@ -96,8 +125,13 @@ namespace Sarcina.Managers
             SaveMap("continue.json");
         }
 
+        public void OnKeyPressedMenu(object sender, KeyEventArgs e)
+        {
 
-        public void OnKeyPressed(object sender, KeyEventArgs e)
+        }
+
+
+        public void OnKeyPressedLevel(object sender, KeyEventArgs e)
         {
             RenderWindow window = (RenderWindow)sender;
 
