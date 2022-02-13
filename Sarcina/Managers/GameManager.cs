@@ -25,6 +25,8 @@ namespace Sarcina.Managers
         private Dictionary<string, GameObjectProps> dictBuffer;
         private GraphicManager graphicManager;
         private RenderWindow window;
+        private EventHandler<KeyEventArgs> keyLevelHandler;
+        private EventHandler<KeyEventArgs> keyMenuHandler;
 
         private PlayerInfo playerInfo;
 
@@ -59,14 +61,18 @@ namespace Sarcina.Managers
             
             window = new RenderWindow(new VideoMode(720, 480, 64), "Sarcina The Game", Styles.Default, new ContextSettings(24, 8, 16));
             window.SetFramerateLimit(60);
-            window.KeyPressed += new EventHandler<KeyEventArgs>(this.OnKeyPressedMenu); // register key handler 
 
+            keyLevelHandler = new EventHandler<KeyEventArgs>(this.OnKeyPressedLevel); // register key handler 
+            keyMenuHandler = new EventHandler<KeyEventArgs>(this.OnKeyPressedMenu); // register key handler 
+
+            window.Closed += new EventHandler(GraphicManager.OnClose);
             graphicManager = new GraphicManager(window);
 
             LoadPlayerInfo();
 
 
             State = gameState.MainMenu;
+            window.KeyPressed += keyMenuHandler;
         }
 
 
@@ -93,13 +99,18 @@ namespace Sarcina.Managers
 
 
                     case gameState.LoadLevel:
-                        LoadMap("levels/level" + playerInfo.CurrentLevel + ".json");
-                        State = gameState.Level;
+                        if (playerInfo.CurrentLevel > playerInfo.TotalLevels)
+                            State = gameState.About;
+                        else
+                        {
+                            LoadMap("levels/level" + playerInfo.CurrentLevel + ".json");
+                            State = gameState.Level;
+                        }
                         break;
 
                     case gameState.Level:
                         graphicManager.DrawMap(map);
-                       graphicManager.DrawScore(playerInfo);
+                       graphicManager.DrawScore(playerInfo.Score, playerInfo.CurrentLevel);
                         break;
 
                     case gameState.NextLevel:
@@ -118,11 +129,11 @@ namespace Sarcina.Managers
                         window.Close();
                         break;
                 }
-                graphicManager.DrawMap(map);
                 window.Display();
             }
             SavePlayerInfo();
-            SaveMap("continue.json");
+            if(map is not null)
+                SaveMap("continue.json");
         }
 
         public void OnKeyPressedMenu(object sender, KeyEventArgs e)
@@ -134,9 +145,12 @@ namespace Sarcina.Managers
         public void OnKeyPressedLevel(object sender, KeyEventArgs e)
         {
             RenderWindow window = (RenderWindow)sender;
+            VectorObject vector = new VectorObject(0, 0);
+            int moves;
 
             if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
             {
+                
                 Console.WriteLine(e.Code);
                 switch (e.Code)
                 {
@@ -145,25 +159,90 @@ namespace Sarcina.Managers
                         break;
 
                     case Keyboard.Key.Up:
+                        
+
+
+                        // stuff for secrets
                         if(secretClock.ElapsedTime > Time.FromSeconds(3))
                         {
                             secretClock.Restart();
                             secretCodes.Clear();
                         }
                         secretCodes.Add(Keyboard.Key.Up);
+
+                        // move stuff
+                        vector.X = 0;
+                        vector.Y = 1;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
                         break;
                     case Keyboard.Key.Down:
                         secretCodes.Add(Keyboard.Key.Down);
+
+                        // move stuff
+                        vector.X = 0;
+                        vector.Y = -1;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
                         break;
                     case Keyboard.Key.Left:
                         secretCodes.Add(Keyboard.Key.Left);
+
+                        // move stuff
+                        vector.X = -1;
+                        vector.Y = 0;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
                         break;
                     case Keyboard.Key.Right:
                         secretCodes.Add(Keyboard.Key.Right);
+
+                        // move stuff
+                        vector.X = 1;
+                        vector.Y = 0;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if(map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
                         break;
+
+                    case Keyboard.Key.R:
+                        secretCodes.Clear(); // key not from secret
+                        State = gameState.Restart;
+                        break;
+
                     case Keyboard.Key.B:
                         secretCodes.Add(Keyboard.Key.B);
                         break;
+
                     case Keyboard.Key.A:
                         secretCodes.Add(Keyboard.Key.A);
                         if(secretClock.ElapsedTime <= Time.FromSeconds(6))

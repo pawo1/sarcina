@@ -30,7 +30,7 @@ namespace SarcinaTest
             Player p = new Player();
             map.Grid[2][2].Add(p);
             map.Display();
-            map.Update(new Vector2(-1, 0));
+            map.Update(new VectorObject(-1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[2][1].GameObjects[0], p);
@@ -44,30 +44,30 @@ namespace SarcinaTest
             Player p = new Player();
             map.Grid[1][1].Add(p);
 
-            Portal x1 = new Portal(new Vector2(1, 2));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 2));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             
             map.Grid[1][2].Add(x1);
             map.Grid[2][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[2][1].GameObjects[1], p);
 
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
-            map.Update(new Vector2(0, 1));
+            map.Update(new VectorObject(0, 1));
             map.Display();
 
             Assert.AreEqual(map.Grid[2][1].GameObjects[1], p);
 
-            map.Update(new Vector2(0, 1));
+            map.Update(new VectorObject(0, 1));
             map.Display();
-            map.Update(new Vector2(0, -1));
+            map.Update(new VectorObject(0, -1));
             map.Display();
 
             Assert.AreEqual(map.Grid[1][2].GameObjects[1], p);
@@ -84,13 +84,13 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[3][1].Add(b);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -112,11 +112,11 @@ namespace SarcinaTest
             t.AddBox(b);
             map.Grid[3][1].Add(t);
 
-            Button bt = new Button(new Vector2(1, 3));
+            Button bt = new Button(new VectorObject(1, 3));
             map.Grid[1][2].Add(bt);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[1][2].GameObjects[1], p);
@@ -134,17 +134,17 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[1][1].Add(b);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
             Assert.AreEqual(map.Grid[3][1].GameObjects[1], b);
 
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -163,13 +163,13 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[1][2].Add(b);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -188,13 +188,13 @@ namespace SarcinaTest
             Wall w = new Wall();
             map.Grid[1][2].Add(w);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -212,13 +212,13 @@ namespace SarcinaTest
             Wall w = new Wall();
             map.Grid[3][1].Add(w);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -241,7 +241,7 @@ namespace SarcinaTest
 
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
@@ -255,22 +255,22 @@ namespace SarcinaTest
         {
             Map map = new Map(5, 5);
 
-            var x1apos = new Vector2(1, 1);
-            var x1bpos = new Vector2(1, 3);
+            var x1apos = new VectorObject(1, 1);
+            var x1bpos = new VectorObject(1, 3);
             Portal x1a = new Portal(x1bpos);
             Portal x1b = new Portal(x1apos);
             map.Grid[(int)x1apos.Y][(int)x1apos.X].Add(x1a);
             map.Grid[(int)x1bpos.Y][(int)x1bpos.X].Add(x1b);
 
-            var x2apos = new Vector2(2, 1);
-            var x2bpos = new Vector2(2, 2);
+            var x2apos = new VectorObject(2, 1);
+            var x2bpos = new VectorObject(2, 2);
             Portal x2a = new Portal(x2bpos);
             Portal x2b = new Portal(x2apos);
             map.Grid[(int)x2apos.Y][(int)x2apos.X].Add(x2a);
             map.Grid[(int)x2bpos.Y][(int)x2bpos.X].Add(x2b);
 
-            var x3apos = new Vector2(2, 3);
-            var x3bpos = new Vector2(2, 4);
+            var x3apos = new VectorObject(2, 3);
+            var x3bpos = new VectorObject(2, 4);
             Portal x3a = new Portal(x3bpos);
             Portal x3b = new Portal(x3apos);
             map.Grid[(int)x3apos.Y][(int)x3apos.X].Add(x3a);
@@ -289,7 +289,7 @@ namespace SarcinaTest
             map.Grid[3][1].Add(b3);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[3][1].GameObjects[1], p);
@@ -314,7 +314,7 @@ namespace SarcinaTest
             map.Grid[2][3].Add(p3);
 
             map.Display();
-            map.Update(new Vector2(-1, 0));
+            map.Update(new VectorObject(-1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[2][1].GameObjects[0], p);
@@ -342,9 +342,9 @@ namespace SarcinaTest
             map.Grid[0][0].Add(p2);
 
             map.Display();
-            map.Update(new Vector2(-1, 0));
+            map.Update(new VectorObject(-1, 0));
             map.Display();
-            map.Update(new Vector2(-1, 0));
+            map.Update(new VectorObject(-1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[2][1].GameObjects[0], p);
@@ -361,19 +361,19 @@ namespace SarcinaTest
             map.Grid[1][1].Add(p);
 
             map.Display();
-            map.Update(new Vector2(0, -1)); // v  [2][1]
+            map.Update(new VectorObject(0, -1)); // v  [2][1]
             map.Display();
             Assert.AreEqual(map.Grid[2][1].GameObjects[0], p);
 
-            map.Update(new Vector2(1, 0)); // >  [2][2]
+            map.Update(new VectorObject(1, 0)); // >  [2][2]
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
-            map.Update(new Vector2(0,  1)); // ^  [1][2]
+            map.Update(new VectorObject(0,  1)); // ^  [1][2]
             map.Display();
             Assert.AreEqual(map.Grid[1][2].GameObjects[0], p);
 
-            map.Update(new Vector2(-1, 0)); // <  [1][1]
+            map.Update(new VectorObject(-1, 0)); // <  [1][1]
             map.Display();
             Assert.AreEqual(map.Grid[1][1].GameObjects[0], p);
         }
@@ -393,13 +393,13 @@ namespace SarcinaTest
             map.Grid[1][4].Add(w);
 
             map.Display();
-            map.Update(new Vector2(0, -1)); // v  [1][0]
+            map.Update(new VectorObject(0, -1)); // v  [1][0]
             map.Display();
-            map.Update(new Vector2(1,  0)); // >  [1][1]
+            map.Update(new VectorObject(1,  0)); // >  [1][1]
             map.Display();
-            map.Update(new Vector2(1,  0)); // >  [1][2]
+            map.Update(new VectorObject(1,  0)); // >  [1][2]
             map.Display();
-            map.Update(new Vector2(1,  0)); // >  [1][2]
+            map.Update(new VectorObject(1,  0)); // >  [1][2]
             map.Display();
 
             Assert.AreEqual(map.Grid[1][2].GameObjects[0], p);
@@ -427,35 +427,35 @@ namespace SarcinaTest
             map.Grid[3][2].Add(w5);
 
             map.Display();
-            map.Update(new Vector2(0, -1)); // v
+            map.Update(new VectorObject(0, -1)); // v
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
-            map.Update(new Vector2(1, 0)); // >
+            map.Update(new VectorObject(1, 0)); // >
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
-            map.Update(new Vector2(0, 1)); // ^
+            map.Update(new VectorObject(0, 1)); // ^
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
-            map.Update(new Vector2(-1, 0)); // <  
+            map.Update(new VectorObject(-1, 0)); // <  
             map.Display();
             Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
 
             w1.IsWall = false;
 
-            map.Update(new Vector2(0, 1)); // ^  
+            map.Update(new VectorObject(0, 1)); // ^  
             map.Display();
             Assert.AreEqual(map.Grid[1][2].GameObjects[1], p);
 
             w5.IsWall = true;
 
-            map.Update(new Vector2(0, 1)); // ^  
+            map.Update(new VectorObject(0, 1)); // ^  
             map.Display();
             Assert.AreEqual(map.Grid[0][2].GameObjects[0], p);
 
-            map.Update(new Vector2(0, -1)); // v  
+            map.Update(new VectorObject(0, -1)); // v  
             map.Display();
             Assert.AreEqual(map.Grid[0][2].GameObjects[0], p);
         }

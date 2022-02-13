@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +72,7 @@ namespace Sarcina.Maps
             return json;
         }
 
+
         public bool IsWon()
         {
             for (int i = 0; i < Height; ++i)
@@ -90,16 +90,16 @@ namespace Sarcina.Maps
         /// Aktualizuje pozycje wszystkich elementów na planszy
         /// </summary>
         /// <param name="move">Wektor ruchu w kartezjańskim układzie współrzędnych</param>
-        public int Update(Vector2 move)
+        public int Update(VectorObject move)
         {
             int moved = 0;
             move.Y *= -1; // TODO: usunąć przy mapowaniu klawisz -> wektor
 
-            Queue<Vector2> queue = new Queue<Vector2>();
+            Queue<VectorObject> queue = new Queue<VectorObject>();
             int maxField = Width * Height;
             for (int i = 0; i < maxField; i++)
             {
-                Vector2 position = GetPosition(i, move);
+                VectorObject position = GetPosition(i, move);
                 //Debug.WriteLine(String.Format("({0},{1})", position.X, position.Y));
                 if (IsFieldMoveable(position, move))
                     queue.Enqueue(position);
@@ -115,9 +115,9 @@ namespace Sarcina.Maps
             return moved;
         }
 
-        private bool IsFieldMoveable(Vector2 position, Vector2 move)
+        private bool IsFieldMoveable(VectorObject position, VectorObject move)
         {
-            Vector2 newPosition = position + move;
+            VectorObject newPosition = position + move;
             if (!IsValid(position) || !IsValid(newPosition))
                 return false; // invalid position
 
@@ -140,9 +140,9 @@ namespace Sarcina.Maps
         /// <param name="position">Obecna pozycja</param>
         /// <param name="move">Wektor ruchu w układzie z odwróconą osią Y</param>
         /// <returns>Czy ruch wykonany pomyślnie</returns>
-        private bool MoveObject(Vector2 position, Vector2 move, Queue<Vector2> queue, bool exitingPortal = false)
+        private bool MoveObject(VectorObject position, VectorObject move, Queue<VectorObject> queue, bool exitingPortal = false)
         {
-            Vector2 newPosition = position + move;
+            VectorObject newPosition = position + move;
 
             if (!IsValid(position) || !IsValid(newPosition))
                 return false; // invalid position
@@ -210,7 +210,7 @@ namespace Sarcina.Maps
             return true;
         }
 
-        private bool MoveBoxes(Vector2 position, Vector2 move, Queue<Vector2> queue, bool exitingPortal = false)
+        private bool MoveBoxes(VectorObject position, VectorObject move, Queue<VectorObject> queue, bool exitingPortal = false)
         {
             Field boxesField = GetAt(position);
             // no boxes, nothing to move, move completed
@@ -219,7 +219,7 @@ namespace Sarcina.Maps
             // -> there are boxes to move
 
             // position has been validated before
-            Vector2 moveToPosition = position + move;
+            VectorObject moveToPosition = position + move;
             // invalid position, cannot move
             if (!IsValid(moveToPosition)) return false;
 
@@ -291,13 +291,13 @@ namespace Sarcina.Maps
             source.RemoveAll((gameObject) => { return gameObject.IsMoveable; });
         }
 
-        private bool IsValid(Vector2 position)
+        private bool IsValid(VectorObject position)
         {
             return position.X >= 0 && position.X < Width
                 && position.Y >= 0 && position.Y < Height;
         }
 
-        private Field GetAt(Vector2 position)
+        private Field GetAt(VectorObject position)
         {
             return Grid[(int)position.Y][(int)position.X];
         }
@@ -308,20 +308,20 @@ namespace Sarcina.Maps
         /// <param name="k">Iteracja</param>
         /// <param name="move">Wektor ruchu z odwróconą osią Y</param>
         /// <returns></returns>
-        private Vector2 GetPosition(int k, Vector2 move)
+        private VectorObject GetPosition(int k, VectorObject move)
         {
             switch (move){
                 case { X: -1,  Y: 0 }:  // moving left, checking right->left
-                    return new Vector2(k / Height, k % Height);
+                    return new VectorObject(k / Height, k % Height);
                 case { X: 1,  Y: 0 }:   // moving right, checking left->right
-                    return new Vector2(Width - 1 - k / Height, k % Height);
+                    return new VectorObject(Width - 1 - k / Height, k % Height);
 
                 case { X: 0,  Y: -1 }:  // moving up, check up->down
-                    return new Vector2(k % Width, k / Width);
+                    return new VectorObject(k % Width, k / Width);
                 case { X: 0, Y: 1 }:   // moving down, check down->up
-                    return new Vector2( k % Width, Height - 1 - k / Width);
+                    return new VectorObject( k % Width, Height - 1 - k / Width);
             }
-            return new Vector2(0, 0);
+            return new VectorObject(0, 0);
         }
         public void Display()
         {

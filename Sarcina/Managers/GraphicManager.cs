@@ -21,6 +21,13 @@ namespace Sarcina.Managers
         private List<Sprite> sprites = new List<Sprite>();
         private Font font;
 
+        public static void OnClose(object sender, EventArgs e)
+        {
+            RenderWindow window = (RenderWindow)sender;
+            window.Close();
+        }
+
+
         public GraphicManager(RenderWindow window)
         {
             this.window = window;
@@ -29,8 +36,51 @@ namespace Sarcina.Managers
             LoadFont();
         }
 
+        public void Demo()
+        {
+
+            float test = VideoMode.DesktopMode.Height / 40;
+            CircleShape cs = new CircleShape(test * 2);
+            cs.FillColor = Color.Green;
+            window.SetActive();
+            window.Closed += new EventHandler(OnClose);
+            while (window.IsOpen)
+            {
+
+                window.DispatchEvents();
+
+                window.Clear();
+                int k = 0;
+                for (int i = 0; i < 18; ++i)
+                    for (int j = 0; j < 12; ++j)
+                    {
+                        sprites[k % sprites.Count].Position = new Vector2f(40 * j, 40 * i);
+                        window.Draw(sprites[k % sprites.Count]);
+                        k++;
+                    }
+                window.Display();
+            }
+        }
 
 
+        public void DrawMainMenu()
+        {
+            Text text = new Text("", font);
+
+            for(int i = 0; i<18; ++i)
+            {
+                for(int j = 0; j<12; ++j)
+                {
+                    sprites[1].Position = new Vector2f(i * 40, j * 40);
+                    window.Draw(sprites[1]);
+                }
+            }
+        }
+
+        public void DrawAbout()
+        {
+
+        }
 
         public void DrawMap(Map map)
         {
@@ -52,12 +102,17 @@ namespace Sarcina.Managers
             }
         }
 
+        public void DrawScore(int score, int level)
+        {
+
+        }
+
         public void AttachWindow(RenderWindow window)
         {
             this.window = window;
         }
 
-        public void LoadSprites()
+        private void LoadSprites()
         {
             List<string> resources = new List<string>()
             {
@@ -96,7 +151,7 @@ namespace Sarcina.Managers
             }
         }
 
-        public void LoadIcon()
+        private void LoadIcon()
         {
             Image image = new Image("resources/sarcina.png");
 
@@ -120,40 +175,9 @@ namespace Sarcina.Managers
 
         }
 
-        public void LoadFont()
+        private void LoadFont()
         {
             font = new Font("resources/VT323-regular.ttf");
-        }
-
-        public void Demo()
-        {
-            
-            float test = VideoMode.DesktopMode.Height / 40;
-            CircleShape cs = new CircleShape(test*2);
-            cs.FillColor = Color.Green;
-            window.SetActive();
-            window.Closed += new EventHandler(OnClose);
-            while (window.IsOpen)
-            {
-                
-                window.DispatchEvents();
-
-                window.Clear();
-                int k = 0;
-                for (int i = 0; i < 18; ++i)
-                    for (int j = 0; j < 12; ++j) {
-                        sprites[k%sprites.Count].Position = new Vector2f(40 * j, 40 * i);
-                        window.Draw( sprites[k%sprites.Count]);
-                        k++;
-                    }
-                window.Display();
-            }
-        }
-
-        public static void OnClose(object sender, EventArgs e)
-        {
-            RenderWindow window = (RenderWindow)sender;
-            window.Close();
         }
 
     }
