@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sarcina": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}
