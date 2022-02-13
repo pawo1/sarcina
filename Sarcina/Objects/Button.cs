@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +8,11 @@ namespace Sarcina.Objects
 {
     public class Button : GameObject
     {
-        public Vector2 ConnectedTerminal { get; set; } = new Vector2(-1, -1);
+        public VectorObject ConnectedTerminal { get; set; } = new VectorObject(-1, -1);
 
         public Button() : this(-1) { }
 
-        public Button(Vector2 connectedTerminal) : this(-1) 
+        public Button(VectorObject connectedTerminal) : this(-1) 
         {
             ConnectedTerminal = connectedTerminal;
         }

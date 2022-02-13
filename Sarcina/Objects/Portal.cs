@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -10,11 +9,11 @@ namespace Sarcina.Objects
 {
     public class Portal : GameObject
     {
-        public Vector2 ConnectedPortal { get; set; } = new Vector2(-1, -1);
+        public VectorObject ConnectedPortal { get; set; } = new VectorObject(-1, -1);
 
         public Portal() : this(-1) { }
 
-        public Portal(Vector2 connectedPortal) : this(-1)
+        public Portal(VectorObject connectedPortal) : this(-1)
         {
             ConnectedPortal = connectedPortal;
         }
@@ -27,7 +26,7 @@ namespace Sarcina.Objects
         }
 
         public Portal(int spriteId, bool isControlledByPlayer, bool isWall, bool isMoveable,
-            Vector2 connectedPortal) :
+            VectorObject connectedPortal) :
             base(spriteId, isControlledByPlayer, isWall, isMoveable)
         {
             ConnectedPortal = connectedPortal;
