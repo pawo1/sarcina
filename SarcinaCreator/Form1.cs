@@ -22,6 +22,13 @@ namespace SarcinaCreator
         Dictionary<string, GameObject> dictGo = new Dictionary<string, GameObject>();
 
         Map map;
+        Map Map { 
+            set
+            {
+                map = value;
+                OnMapChanged();
+            }
+            get => map; }
 
         List<Portal> portals = new List<Portal>();
         List<Vector2> portalsStr = new List<Vector2>();
@@ -102,7 +109,7 @@ namespace SarcinaCreator
             try
             {
                 GameObject.UpdateDictionary(dict);
-                string json = map.GetJson();
+                string json = Map.GetJson();
                 File.WriteAllText(tbPath.Text, json);
 
                 MessageBox.Show("Zapisano!");
@@ -113,12 +120,8 @@ namespace SarcinaCreator
             }
         }
 
-
-        private void BtnPreview_Click(object sender, EventArgs e)
+        private void OnMapChanged()
         {
-            rtbPreview.Clear();
-            map = GenerateMap();
-
             portals.Clear();
             portalsStr.Clear();
             terminals.Clear();
@@ -136,15 +139,15 @@ namespace SarcinaCreator
             cbTerminal.Items.Add("--- (-1,-1)");
             terminalsStr.Add(new Vector2(-1, -1));
 
-            if (map != null)
+            if (Map != null)
             {
-                rtbPreview.AppendText(map.GetDisplay());
+                rtbPreview.AppendText(Map.GetDisplay());
 
-                for (int i = 0; i < map.Height; ++i)
+                for (int i = 0; i < Map.Height; ++i)
                 {
-                    for (int j = 0; j < map.Width; ++j)
+                    for (int j = 0; j < Map.Width; ++j)
                     {
-                        Portal p = map.Grid[i][j].GetPortal();
+                        Portal p = Map.Grid[i][j].GetPortal();
                         if (p != null)
                         {
                             portals.Add(p);
@@ -153,7 +156,7 @@ namespace SarcinaCreator
                             cbPortalConn.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Terminal t = map.Grid[i][j].GetTerminal();
+                        Terminal t = Map.Grid[i][j].GetTerminal();
                         if (t != null)
                         {
                             terminals.Add(t);
@@ -161,7 +164,7 @@ namespace SarcinaCreator
                             cbTerminal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Sarcina.Objects.Button b = map.Grid[i][j].GetButton();
+                        Sarcina.Objects.Button b = Map.Grid[i][j].GetButton();
                         if (b != null)
                         {
                             buttons.Add(b);
@@ -175,6 +178,12 @@ namespace SarcinaCreator
                 cbPortal.SelectedIndex = 0;
             if (cbButton.Items.Count > 0)
                 cbButton.SelectedIndex = 0;
+        }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            rtbPreview.Clear();
+            Map = GenerateMap();
         }
 
         private Map GenerateMap()
@@ -339,6 +348,27 @@ namespace SarcinaCreator
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     tbPath.Text = fbd.SelectedPath + "\\map.json";
+                }
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                ofd.Filter = "json files (*.json)|";
+                ofd.Multiselect = false;
+                DialogResult result = ofd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(ofd.FileName))
+                {
+                    tbPath.Text = ofd.FileName;
+
+                    string json = File.ReadAllText(ofd.FileName);
+                    Map = Map.GetFromJson(json);
+                    rtbMap.Clear();
+                    rtbMap.Text = Map.GetDisplay();
                 }
             }
         }

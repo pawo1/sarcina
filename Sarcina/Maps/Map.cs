@@ -60,6 +60,16 @@ namespace Sarcina.Maps
             return list;
         }
 
+        public static Map GetFromJson(string json)
+        {
+            var settings = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            settings.Converters.Add(new GameObjectSerializator());
+
+            return JsonSerializer.Deserialize<Map>(json, settings);
+        }
 
         public string GetJson()
         {
