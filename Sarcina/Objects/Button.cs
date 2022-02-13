@@ -9,7 +9,7 @@ namespace Sarcina.Objects
 {
     public class Button : GameObject
     {
-        public Vector2 ConnectedTerminal { get; private set; }
+        public Vector2 ConnectedTerminal { get; set; } = new Vector2(-1, -1);
 
         public Button() : this(-1) { }
 

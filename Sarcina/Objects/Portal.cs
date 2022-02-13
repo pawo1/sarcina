@@ -10,7 +10,7 @@ namespace Sarcina.Objects
 {
     public class Portal : GameObject
     {
-        public Vector2 ConnectedPortal { get; private set; }
+        public Vector2 ConnectedPortal { get; set; } = new Vector2(-1, -1);
 
         public Portal() : this(-1) { }
 

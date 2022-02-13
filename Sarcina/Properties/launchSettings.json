@@ -3,6 +3,9 @@
     "Sarcina": {
       "commandName": "Project",
       "remoteDebugEnabled": false
+    },
+    "SarcinaCreator": {
+      "commandName": "Project"
     }
   }
 }

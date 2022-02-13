@@ -306,6 +306,21 @@ namespace Sarcina.Maps
                 Debug.WriteLine("");
             }
         }
+
+        public string GetDisplay()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    //Debug.Write(String.Format("{0}:({1},{2})\t", Grid[i][j].ToString(), j, i));
+                    sb.Append(String.Format("{0}\t", Grid[i][j].ToString()));
+                }
+                sb.Append("\n");
+            }
+            return sb.ToString();
+        }
     }
 
 }
