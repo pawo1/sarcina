@@ -37,6 +37,19 @@ namespace Sarcina.Objects
             SavedBoxes = savedBoxes;
         }
 
+        public void AddBox(Box box)
+        {
+            SavedBoxes.Add(box);
+        }
+
+        public Box PopBox()
+        {
+            if (SavedBoxes.Count == 0) return null;
+            Box box = SavedBoxes[^1];
+            SavedBoxes.Remove(box);
+            return box;
+        }
+
         public override Terminal ShallowCopy()
         {
             Terminal copy = (Terminal)this.MemberwiseClone();

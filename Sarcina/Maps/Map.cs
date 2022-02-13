@@ -44,7 +44,7 @@ namespace Sarcina.Maps
 
         public void TestSet(int x, int y, GameObject newObject)
         {
-            Grid[x][y].Add(newObject);
+            Grid[y][x].Add(newObject);
         }
 
         public bool IsWon()
@@ -127,7 +127,23 @@ namespace Sarcina.Maps
             // moving boxes failed, cannot move
             if (!MoveBoxes(newPosition, move, queue)) return false;
 
-            // -> field you try to enter is now empty
+            // -> field you try to enter is now "empty"
+
+            Button button = destinationField.GetButton();
+            // there is button on the field
+            if (button != null)
+            {
+                Field terminalField = GetAt(button.ConnectedTerminal);
+                if(terminalField.CanEnter() && !terminalField.HasMoveableObjects())
+                {
+                    Box box = terminalField.GetTerminal().PopBox();
+                    terminalField.Add(box);
+                    MovePlayerObjects(sourceField, destinationField);
+                    return true;
+                }
+            }
+
+            // -> there is no button
 
             Portal portal = destinationField.GetPortal();
             // there is no portal
@@ -141,7 +157,7 @@ namespace Sarcina.Maps
             // -> there is a portal
 
             // portal is invalid
-            if (!IsValid(portal.connectedPortal))
+            if (!IsValid(portal.ConnectedPortal))
             {
                 MovePlayerObjects(sourceField, destinationField);
                 return true;
@@ -149,10 +165,10 @@ namespace Sarcina.Maps
 
             // -> there is valid portal
 
-            Field portalField = GetAt(portal.connectedPortal);
+            Field portalField = GetAt(portal.ConnectedPortal);
             // you can neither enter portal
             //  nor move the boxes there, stay on top
-            if (!portalField.CanEnter() || !MoveBoxes(portal.connectedPortal, move, queue))
+            if (!portalField.CanEnter() || !MoveBoxes(portal.ConnectedPortal, move, queue))
             {
                 MovePlayerObjects(sourceField, destinationField);
                 return true;
@@ -190,7 +206,7 @@ namespace Sarcina.Maps
             // there is terminal and box to pass
             if(terminal != null && box != null)
             {
-                terminal.SavedBoxes.Add(box);
+                terminal.AddBox(box);
                 boxesField.Remove(box);
 
                 // there is nothing left to move
@@ -211,13 +227,13 @@ namespace Sarcina.Maps
             // -> there is a portal
 
             // portal is invalid
-            if (!IsValid(portal.connectedPortal))
+            if (!IsValid(portal.ConnectedPortal))
             {
                 MoveBoxObjects(boxesField, moveToField);
                 return true;
             }
 
-            Field portalField = GetAt(portal.connectedPortal);
+            Field portalField = GetAt(portal.ConnectedPortal);
             // you can neither enter portal
             //  nor move the boxes there, stay on top
             if (!portalField.CanEnter() || portalField.HasMoveableObjects())
@@ -226,7 +242,7 @@ namespace Sarcina.Maps
                 return true;
             }
 
-            move = portal.connectedPortal - position;
+            move = portal.ConnectedPortal - position;
             // check new move to the connected portal
             return MoveBoxes(position, move, queue, true);
         }

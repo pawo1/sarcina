@@ -85,6 +85,14 @@ namespace Sarcina.Maps
             }
             return null;
         }
+        public Button GetButton()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Button button) return button;
+            }
+            return null;
+        }
 
         public IEnumerator GetEnumerator()
         {
@@ -134,6 +142,7 @@ namespace Sarcina.Maps
                 else if (gameObject is Grass) stringBuilder.Append('G');
                 else if (gameObject is Objective) stringBuilder.Append('O');
                 else if (gameObject is Terminal) stringBuilder.Append('T');
+                else if (gameObject is Button) stringBuilder.Append('_');
             }
 
             return stringBuilder.ToString();
