@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -34,6 +35,8 @@ namespace SarcinaCreator
         public Form1()
         {
             InitializeComponent();
+
+            tbPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\map.json";
 
             GameObject o = new Player();
             dict.Add(o.GetType().Name,
@@ -96,8 +99,18 @@ namespace SarcinaCreator
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            GameObject.UpdateDictionary(dict);
-            // map.GetJson();
+            try
+            {
+                GameObject.UpdateDictionary(dict);
+                string json = map.GetJson();
+                File.WriteAllText(tbPath.Text, json);
+
+                MessageBox.Show("Zapisano!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -314,6 +327,19 @@ namespace SarcinaCreator
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    tbPath.Text = fbd.SelectedPath + "\\map.json";
+                }
             }
         }
     }

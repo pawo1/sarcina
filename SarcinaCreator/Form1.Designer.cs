@@ -57,6 +57,8 @@ namespace SarcinaCreator
             this.label10 = new System.Windows.Forms.Label();
             this.cbTerminal = new System.Windows.Forms.ComboBox();
             this.btnSaveButton = new System.Windows.Forms.Button();
+            this.tbPath = new System.Windows.Forms.TextBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nuWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuSpriteId)).BeginInit();
@@ -99,7 +101,7 @@ namespace SarcinaCreator
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(567, 73);
+            this.btnStart.Location = new System.Drawing.Point(567, 420);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(94, 29);
             this.btnStart.TabIndex = 6;
@@ -141,7 +143,7 @@ namespace SarcinaCreator
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(467, 73);
+            this.btnPreview.Location = new System.Drawing.Point(467, 420);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(94, 29);
             this.btnPreview.TabIndex = 11;
@@ -318,11 +320,30 @@ namespace SarcinaCreator
             this.btnSaveButton.UseVisualStyleBackColor = true;
             this.btnSaveButton.Click += new System.EventHandler(this.btnSaveButton_Click);
             // 
+            // tbPath
+            // 
+            this.tbPath.Location = new System.Drawing.Point(467, 455);
+            this.tbPath.Name = "tbPath";
+            this.tbPath.Size = new System.Drawing.Size(409, 27);
+            this.tbPath.TabIndex = 29;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(881, 455);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(94, 29);
+            this.btnBrowse.TabIndex = 30;
+            this.btnBrowse.Text = "browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 546);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.tbPath);
             this.Controls.Add(this.btnSaveButton);
             this.Controls.Add(this.cbTerminal);
             this.Controls.Add(this.label10);
@@ -391,6 +412,8 @@ namespace SarcinaCreator
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbTerminal;
         private System.Windows.Forms.Button btnSaveButton;
+        private System.Windows.Forms.TextBox tbPath;
+        private System.Windows.Forms.Button btnBrowse;
     }
 }
 

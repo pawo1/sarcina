@@ -67,9 +67,9 @@ namespace SarcinaTest
             int y = 3;
             Map map = new Map(x, y);
 
-            for (int i = 0; i < x; ++i)
+            for (int i = 0; i < y; ++i)
             {
-                for (int j = 0; j < y; ++j)
+                for (int j = 0; j < x; ++j)
                 {
                     Player player = new Player();
                     player.IsMoveable = true;
@@ -135,9 +135,9 @@ namespace SarcinaTest
             int y = 3;
             Map map = new Map(x, y);
 
-            for (int i = 0; i < x; ++i)
+            for (int i = 0; i < y; ++i)
             {
-                for (int j = 0; j < y; ++j)
+                for (int j = 0; j < x; ++j)
                 {
                     Box box = new Box(i + j);
                     map.TestSet(i, j, box);

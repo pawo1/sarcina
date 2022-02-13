@@ -61,7 +61,7 @@ namespace Sarcina.Maps
         }
 
 
-        public string getJson()
+        public string GetJson()
         {
             var settings = new JsonSerializerOptions()
             {

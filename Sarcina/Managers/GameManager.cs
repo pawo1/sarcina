@@ -161,7 +161,7 @@ namespace Sarcina.Managers
 
         public void SaveMap(string path)
         {
-            File.WriteAllText(path, map.getJson());
+            File.WriteAllText(path, map.GetJson());
         }
 
         public void RestoreMap()
