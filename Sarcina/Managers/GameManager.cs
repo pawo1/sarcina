@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 using Sarcina.CustomSerializators;
+using Sarcina.Progress;
 using Sarcina.Maps;
 using Sarcina.Objects;
 
@@ -25,10 +26,23 @@ namespace Sarcina.Managers
         private GraphicManager graphicManager;
         private RenderWindow window;
 
+        private PlayerInfo playerInfo;
 
         private List<Keyboard.Key> secretCodes;
         private Clock secretClock;
         private Clock keyClock;
+
+        enum gameState
+        {
+            MainMenu = 1,
+            About,
+
+            LoadLevel,
+            Level,
+            Exit
+        }
+
+        gameState State;
 
 
         public GameManager()
@@ -37,14 +51,17 @@ namespace Sarcina.Managers
             secretClock = new Clock();
             secretCodes = new List<Keyboard.Key>();
 
-            graphicManager = new GraphicManager();
+            
             window = new RenderWindow(new VideoMode(720, 480, 64), "Sarcina The Game", Styles.Default, new ContextSettings(24, 8, 16));
             window.SetFramerateLimit(60);
             window.KeyPressed += new EventHandler<KeyEventArgs>(this.OnKeyPressed); // register key handler 
-            
-            graphicManager.AttachWindow(window);
-            graphicManager.LoadIcon();
-            graphicManager.LoadSprites();
+
+            graphicManager = new GraphicManager(window);
+
+            LoadPlayerInfo();
+
+
+            State = gameState.MainMenu;
         }
 
 
@@ -52,21 +69,31 @@ namespace Sarcina.Managers
 
         public void Run()
         {
-            Map map = new Map(12, 18);
-            for (int i = 0; i < 18; ++i)
-                for (int j = 0; j < 12; ++j)
-                {
-                    map.TestSet(i, j, new Player(8));
-                    map.TestSet(i, j, new Wall(0));
-                }
 
             while (window.IsOpen)
             {
-                window.Clear();
                 window.DispatchEvents();
+
+                window.Clear();
+                switch(State)
+                {
+                    case gameState.MainMenu:
+                        graphicManager.DrawMainMenu();
+                        break;
+                    
+                    case gameState.Level:
+                        graphicManager.DrawMap(map);
+                        graphicManager.DrawScore(playerInfo);
+                        break;
+                    case gameState.Exit:
+                        window.Close();
+                        break;
+                }
                 graphicManager.DrawMap(map);
                 window.Display();
             }
+            SavePlayerInfo();
+            SaveMap("continue.json");
         }
 
 
@@ -134,14 +161,8 @@ namespace Sarcina.Managers
 
         public void SaveMap(string path)
         {
-            var settings = new JsonSerializerOptions()
-            {
-                WriteIndented = true
-            };
-            settings.Converters.Add(new GameObjectSerializator());
-
-            string json = JsonSerializer.Serialize(map, settings);
-            File.WriteAllText(path, json);
+           
+            File.WriteAllText(path, map.getJson());
         }
 
         public void RestoreMap()
@@ -150,6 +171,27 @@ namespace Sarcina.Managers
             GameObject.UpdateDictionary(CopyDict(dictBuffer));
         }
 
+
+        private void LoadPlayerInfo()
+        {
+            try
+            {
+                string jsonRead = File.ReadAllText("PlayerInfo.json");
+                playerInfo = JsonSerializer.Deserialize<PlayerInfo>(jsonRead);
+            }
+            catch (Exception)
+            {
+                playerInfo = new PlayerInfo();
+            }
+
+        }
+
+        private void SavePlayerInfo()
+        {
+                string json = JsonSerializer.Serialize<PlayerInfo>(playerInfo);
+                File.WriteAllText("PlayerInfo.json", json);
+            
+        }
 
         private void CheckKonami(List<Keyboard.Key> secretCodes)
         {
