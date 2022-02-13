@@ -18,8 +18,7 @@ namespace Sarcina.Objects
 
         public object Clone()
         {
-            GameObjectProps clone = new GameObjectProps();
-            clone = (GameObjectProps)this.MemberwiseClone();
+            GameObjectProps clone = (GameObjectProps)this.MemberwiseClone();
             return clone;
         }
 

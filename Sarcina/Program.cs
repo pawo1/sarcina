@@ -22,8 +22,11 @@ namespace Sarcina
             window.SetFramerateLimit(60);
             window.KeyPressed += new EventHandler<KeyEventArgs>(gameManager.OnKeyPressed); // register key handler 
             graphicManager.AttachWindow(window);
+            graphicManager.LoadIcon();
+            graphicManager.LoadSprites();
 
             graphicManager.Demo();
+            
 
         }
 
