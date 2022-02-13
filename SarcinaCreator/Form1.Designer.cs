@@ -60,6 +60,7 @@ namespace SarcinaCreator
             this.tbPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nuWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuSpriteId)).BeginInit();
@@ -348,11 +349,22 @@ namespace SarcinaCreator
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(881, 505);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(94, 29);
+            this.btnHelp.TabIndex = 32;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 546);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.tbPath);
@@ -427,6 +439,7 @@ namespace SarcinaCreator
         private System.Windows.Forms.TextBox tbPath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
 

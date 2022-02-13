@@ -142,6 +142,7 @@ namespace Sarcina.Maps
             {
                 if (gameObject is Player) stringBuilder.Append('P');
                 else if (gameObject is Portal) stringBuilder.Append('X');
+                else if (gameObject is NamedBox) stringBuilder.Append('N');
                 else if (gameObject is Box) stringBuilder.Append('B');
                 else if (gameObject is Wall) stringBuilder.Append('W');
                 else if (gameObject is Grass) stringBuilder.Append('G');

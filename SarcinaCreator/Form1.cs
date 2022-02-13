@@ -31,13 +31,13 @@ namespace SarcinaCreator
             get => map; }
 
         List<Portal> portals = new List<Portal>();
-        List<Vector2> portalsStr = new List<Vector2>();
+        List<VectorObject> portalsStr = new List<VectorObject>();
 
         List<Sarcina.Objects.Button> buttons = new List<Sarcina.Objects.Button>();
-        List<Vector2> buttonsStr = new List<Vector2>();
+        List<VectorObject> buttonsStr = new List<VectorObject>();
 
         List<Terminal> terminals = new List<Terminal>();
-        List<Vector2> terminalsStr = new List<Vector2>();
+        List<VectorObject> terminalsStr = new List<VectorObject>();
 
         public Form1()
         {
@@ -132,12 +132,12 @@ namespace SarcinaCreator
             cbPortal.Items.Clear();
             cbPortalConn.Items.Clear();
             cbPortalConn.Items.Add("--- (-1,-1)");
-            portalsStr.Add(new Vector2(-1, -1));
+            portalsStr.Add(new VectorObject(-1, -1));
 
             cbButton.Items.Clear();
             cbTerminal.Items.Clear();
             cbTerminal.Items.Add("--- (-1,-1)");
-            terminalsStr.Add(new Vector2(-1, -1));
+            terminalsStr.Add(new VectorObject(-1, -1));
 
             if (Map != null)
             {
@@ -151,7 +151,7 @@ namespace SarcinaCreator
                         if (p != null)
                         {
                             portals.Add(p);
-                            portalsStr.Add(new Vector2(j, i));
+                            portalsStr.Add(new VectorObject(j, i));
                             cbPortal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                             cbPortalConn.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
@@ -160,7 +160,7 @@ namespace SarcinaCreator
                         if (t != null)
                         {
                             terminals.Add(t);
-                            terminalsStr.Add(new Vector2(j, i));
+                            terminalsStr.Add(new VectorObject(j, i));
                             cbTerminal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
@@ -168,7 +168,7 @@ namespace SarcinaCreator
                         if (b != null)
                         {
                             buttons.Add(b);
-                            buttonsStr.Add(new Vector2(j, i));
+                            buttonsStr.Add(new VectorObject(j, i));
                             cbButton.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
                     }
@@ -284,7 +284,7 @@ namespace SarcinaCreator
 
             Portal p = portals[index];
 
-            Vector2 connp = p.ConnectedPortal;
+            VectorObject connp = p.ConnectedPortal;
 
             int connix = portalsStr.FindIndex(e => e.X == connp.X && e.Y == connp.Y);
 
@@ -300,7 +300,7 @@ namespace SarcinaCreator
                 int connix = cbPortalConn.SelectedIndex;
 
                 Portal p = portals[ix];
-                Vector2 vec = portalsStr[connix];
+                VectorObject vec = portalsStr[connix];
                 p.ConnectedPortal = vec;
             }
             catch (Exception ex)
@@ -315,7 +315,7 @@ namespace SarcinaCreator
 
             Sarcina.Objects.Button b = buttons[index];
 
-            Vector2 connp = b.ConnectedTerminal;
+            VectorObject connp = b.ConnectedTerminal;
 
             int connix = terminalsStr.FindIndex(e => e.X == connp.X && e.Y == connp.Y);
 
@@ -330,7 +330,7 @@ namespace SarcinaCreator
                 int connix = cbTerminal.SelectedIndex;
 
                 Sarcina.Objects.Button b = buttons[ix];
-                Vector2 vec = terminalsStr[connix];
+                VectorObject vec = terminalsStr[connix];
                 b.ConnectedTerminal = vec;
             }
             catch (Exception ex)
@@ -367,10 +367,27 @@ namespace SarcinaCreator
 
                     string json = File.ReadAllText(ofd.FileName);
                     Map = Map.GetFromJson(json);
+                    nuHeight.Value = map.Height;
+                    nuWidth.Value = map.Width;
                     rtbMap.Clear();
                     rtbMap.Text = Map.GetDisplay();
                 }
             }
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                    "Player    \t\tP\n"+
+                    "Portal    \t\tX\n" +
+                    "NamedBox\t\tN\n" +
+                    "Box       \t\tB\n" +
+                    "Wall      \t\tW\n" +
+                    "Grass     \t\tG\n" +
+                    "Objective \t\tO\n" +
+                    "Terminal  \t\tT\n" +
+                    "Button    \t\t_\n"
+                );
         }
     }
 }
