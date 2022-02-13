@@ -23,7 +23,8 @@ namespace Sarcina.CustomSerializators
             Player = 5,
             Portal = 6,
             Wall = 7,
-            Terminal = 8
+            Terminal = 8,
+            Button = 9
         }
 
         public override bool CanConvert(Type typeToConvert) => typeof(GameObject).IsAssignableFrom(typeToConvert);
@@ -181,7 +182,17 @@ namespace Sarcina.CustomSerializators
                     gameObject = (Terminal)JsonSerializer.Deserialize(ref reader, typeof(Terminal), settings);*/
                     gameObject = (Terminal)JsonSerializer.Deserialize(ref reader, typeof(Terminal));
                     break;
-
+                case TypeDiscriminator.Button:
+                    if (!reader.Read() || reader.GetString() != "TypeValue")
+                    {
+                        throw new JsonException();
+                    }
+                    if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
+                    {
+                        throw new JsonException();
+                    }
+                    gameObject = (Button)JsonSerializer.Deserialize(ref reader, typeof(Button));
+                    break;
                 default:
                     throw new NotSupportedException();
             }
@@ -275,6 +286,12 @@ namespace Sarcina.CustomSerializators
                 writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.Terminal);
                 writer.WritePropertyName("TypeValue");
                 JsonSerializer.Serialize(writer, terminal);
+            }
+            else if (gameObject is Button button)
+            {
+                writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.Button);
+                writer.WritePropertyName("TypeValue");
+                JsonSerializer.Serialize(writer, button);
             }
             else
             {
