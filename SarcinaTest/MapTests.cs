@@ -213,6 +213,31 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void MoveTerminalBox()
+        {
+            Map map = new Map(4, 4);
+
+            Player p = new Player();
+            map.Grid[1][1].Add(p);
+
+            Box b = new Box();
+            map.Grid[1][2].Add(b);
+
+            Terminal t = new Terminal();
+            map.Grid[1][3].Add(t);
+
+
+            map.Display();
+            map.Update(new Vector2(1, 0));
+            map.Display();
+
+            //Assert.AreEqual(map.Grid[3][1].GameObjects[0], x2);
+            Terminal t2 = (Terminal)map.Grid[1][3].GameObjects[0];
+            Assert.AreEqual(t, t2);
+            Assert.AreEqual(b, t2.SavedBoxes[0]);
+        }
+
+        [TestMethod]
         public void MovePortalBoxPortalBlock()
         {
             Map map = new Map(5, 5);

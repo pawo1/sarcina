@@ -185,6 +185,20 @@ namespace Sarcina.Maps
 
             // -> there is place to move the boxes
 
+            Box box = boxesField.GetBox();
+            Terminal terminal = moveToField.GetTerminal();
+            // there is terminal and box to pass
+            if(terminal != null && box != null)
+            {
+                terminal.SavedBoxes.Add(box);
+                boxesField.Remove(box);
+
+                // there is nothing left to move
+                if (boxesField.Count == 0) return true;
+            }
+
+            // -> there is no terminal
+
             Portal portal = moveToField.GetPortal();
             // there is no portal, can move
             // or they just passed through the portal
