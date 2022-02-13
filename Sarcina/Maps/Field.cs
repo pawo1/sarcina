@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace Sarcina.Maps
 {
     [Serializable]
-    public class Field //: IEnumerable
+    public class Field
     {
 
         public List<GameObject> GameObjects { private set; get; }
@@ -27,6 +28,10 @@ namespace Sarcina.Maps
             GameObjects = gameObjects;
         }
 
+        public List<GameObject> getSorted()
+        {
+            return GameObjects.OrderBy(i => i.SpriteId).ToList();
+        }
 
         public bool CanEnter()
         {

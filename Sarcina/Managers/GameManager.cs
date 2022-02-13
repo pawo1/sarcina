@@ -23,6 +23,8 @@ namespace Sarcina.Managers
         private Map mapRestorationBuffer;
         private Dictionary<string, GameObjectProps> dictBuffer;
         private GraphicManager graphicManager;
+        private RenderWindow window;
+
 
         private List<Keyboard.Key> secretCodes;
         private Clock secretClock;
@@ -34,11 +36,37 @@ namespace Sarcina.Managers
             keyClock = new Clock();
             secretClock = new Clock();
             secretCodes = new List<Keyboard.Key>();
+
+            graphicManager = new GraphicManager();
+            window = new RenderWindow(new VideoMode(720, 480, 64), "Sarcina The Game", Styles.Default, new ContextSettings(24, 8, 16));
+            window.SetFramerateLimit(60);
+            window.KeyPressed += new EventHandler<KeyEventArgs>(this.OnKeyPressed); // register key handler 
+            
+            graphicManager.AttachWindow(window);
+            graphicManager.LoadIcon();
+            graphicManager.LoadSprites();
         }
+
+
+
 
         public void Run()
         {
+            Map map = new Map(12, 18);
+            for (int i = 0; i < 18; ++i)
+                for (int j = 0; j < 12; ++j)
+                {
+                    map.TestSet(i, j, new Player(8));
+                    map.TestSet(i, j, new Wall(0));
+                }
 
+            while (window.IsOpen)
+            {
+                window.Clear();
+                window.DispatchEvents();
+                graphicManager.DrawMap(map);
+                window.Display();
+            }
         }
 
 

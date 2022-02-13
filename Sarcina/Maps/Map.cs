@@ -44,7 +44,18 @@ namespace Sarcina.Maps
 
         public void TestSet(int x, int y, GameObject newObject)
         {
-            Grid[x][y].Add(newObject);
+            Grid[y][x].Add(newObject);
+        }
+
+
+        public List<int> getSpritesId(int x, int y)
+        {
+            List<int> list = new List<int>();
+            foreach(var obj in Grid[y][x].getSorted())
+            {
+                list.Add(obj.SpriteId);
+            }
+            return list;
         }
 
         /// <summary>
