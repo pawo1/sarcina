@@ -67,6 +67,16 @@ namespace Sarcina.Maps
             return null;
         }
 
+        public Terminal GetTerminal()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Terminal terminal) return terminal;
+            }
+
+            return null;
+        }
+
         public IEnumerator GetEnumerator()
         {
             return GameObjects.GetEnumerator();
@@ -117,6 +127,19 @@ namespace Sarcina.Maps
             }
 
             return stringBuilder.ToString();
+        }
+
+        public bool IsWinCondition()
+        {
+            int objectives = 0;
+            int boxes = 0;
+            foreach (GameObject gameObject in GameObjects)
+            {
+                if (gameObject is Box) boxes++;
+                else if (gameObject is Objective) objectives++;
+            }
+
+            return objectives == 0 || boxes >= 1;
         }
 
         internal void AddRange(List<GameObject> playerObjects)

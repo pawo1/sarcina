@@ -22,7 +22,8 @@ namespace Sarcina.CustomSerializators
             Objective = 4,
             Player = 5,
             Portal = 6,
-            Wall = 7
+            Wall = 7,
+            Terminal = 8
         }
 
         public override bool CanConvert(Type typeToConvert) => typeof(GameObject).IsAssignableFrom(typeToConvert);
@@ -163,6 +164,23 @@ namespace Sarcina.CustomSerializators
                     }
                     gameObject = (Wall)JsonSerializer.Deserialize(ref reader, typeof(Wall));
                     break;
+                case TypeDiscriminator.Terminal:
+                    if (!reader.Read() || reader.GetString() != "TypeValue")
+                    {
+                        throw new JsonException();
+                    }
+                    if (!reader.Read() || reader.TokenType != JsonTokenType.StartObject)
+                    {
+                        throw new JsonException();
+                    }
+                    /*var settings = new JsonSerializerOptions()
+                    {
+                        WriteIndented = true
+                    };
+                    settings.Converters.Add(new GameObjectSerializator());
+                    gameObject = (Terminal)JsonSerializer.Deserialize(ref reader, typeof(Terminal), settings);*/
+                    gameObject = (Terminal)JsonSerializer.Deserialize(ref reader, typeof(Terminal));
+                    break;
 
                 default:
                     throw new NotSupportedException();
@@ -251,6 +269,12 @@ namespace Sarcina.CustomSerializators
                 writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.Wall);
                 writer.WritePropertyName("TypeValue");
                 JsonSerializer.Serialize(writer, wall);
+            }
+            else if (gameObject is Terminal terminal)
+            {
+                writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.Terminal);
+                writer.WritePropertyName("TypeValue");
+                JsonSerializer.Serialize(writer, terminal);
             }
             else
             {

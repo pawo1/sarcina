@@ -47,6 +47,19 @@ namespace Sarcina.Maps
             Grid[x][y].Add(newObject);
         }
 
+        public bool IsWon()
+        {
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    if (!Grid[i][j].IsWinCondition())
+                        return false;
+                }
+            }
+            return true;
+        }
+
         /// <summary>
         /// Aktualizuje pozycje wszystkich elementów na planszy
         /// </summary>

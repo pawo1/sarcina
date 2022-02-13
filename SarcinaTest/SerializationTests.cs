@@ -39,6 +39,26 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void SerializeTerminal()
+        {
+            Terminal terminal = new Terminal();
+            terminal.SavedBoxes.Add(new Box(123));
+
+            var settings = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            settings.Converters.Add(new GameObjectSerializator());
+
+            string json = JsonSerializer.Serialize(terminal, settings);
+            File.WriteAllText("GameObjectSerial.json", json);
+
+            Terminal terminal2 = JsonSerializer.Deserialize<Terminal>(json, settings);
+
+            Assert.AreEqual(terminal.SpriteId, terminal2.SpriteId);
+        }
+
+        [TestMethod]
         public void SerializeMap()
         {
 
