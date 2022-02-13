@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject>Sarcina.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -70,6 +72,7 @@
     <None Update="resources\wall_b.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <PackageReference Include="SFML.Net" Version="2.5.0" />
   </ItemGroup>
 
 </Project>
