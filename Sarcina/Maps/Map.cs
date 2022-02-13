@@ -54,50 +54,61 @@ namespace Sarcina.Maps
         public void Update(Vector2 move)
         {
             move.Y *= -1; // TODO: usunąć przy mapowaniu klawisz -> wektor
+
+            Queue<Vector2> queue = new Queue<Vector2>();
             int maxField = Width * Height;
             for (int i = 0; i < maxField; i++)
             {
                 Vector2 position = GetPosition(i, move);
                 //Debug.WriteLine(String.Format("({0},{1})", position.X, position.Y));
-                MoveObject(position, move);
+                if (IsFieldMoveable(position, move))
+                    queue.Enqueue(position);
                 //Display();
+            }
+
+            while (queue.Count > 0)
+            {
+                MoveObject(queue.Dequeue(), move, queue);
             }
         }
 
-        public void Display()
+        private bool IsFieldMoveable(Vector2 position, Vector2 move)
         {
-            Debug.WriteLine("Map:");
-            for (int i = 0; i < Height; ++i)
+            Vector2 newPosition = position + move;
+            if (!IsValid(position) || !IsValid(newPosition))
+                return false; // invalid position
+
+            Field sourceField = GetAt(position);
+            if (sourceField.HasPlayers())
             {
-                for (int j = 0; j < Width; ++j)
+                Field destinationField = GetAt(newPosition);
+                if(destinationField.CanEnter() || destinationField.HasMoveableObjects())
                 {
-                    //Debug.Write(String.Format("{0}:({1},{2})\t", Grid[i][j].ToString(), j, i));
-                    Debug.Write(String.Format("{0}\t", Grid[i][j].ToString()));
+                    return true;
                 }
-                Debug.WriteLine("");
             }
+
+            return false;
         }
 
         /// <summary>
-        /// 
+        /// Porusza obiekty z pozycji position o ruch move. Może aktualizować kolejkę queue
         /// </summary>
         /// <param name="position">Obecna pozycja</param>
         /// <param name="move">Wektor ruchu w układzie z odwróconą osią Y</param>
-        /// <returns></returns>
-        private bool MoveObject(Vector2 position, Vector2 move)
+        /// <returns>Czy ruch wykonany pomyślnie</returns>
+        private bool MoveObject(Vector2 position, Vector2 move, Queue<Vector2> queue)
         {
             Vector2 newPosition = position + move;
-            if (!IsValid(position) || !IsValid(newPosition)) return false; // invalid position
-
             Field sourceField = GetAt(position);
-            if (sourceField.Count == 0) return true; // nothing to move
-
             Field destinationField = GetAt(newPosition);
-            if (destinationField.Count == 0) // anything can be moved
+            Portal portal = destinationField.GetPortal();
+            if(portal != null)
             {
-                MovePlayers(sourceField, destinationField);
-                return true;
+                newPosition = portal.connectedPortal;
+                destinationField = GetAt(newPosition);
             }
+
             if (destinationField.CanEnter()) // no immoveable objects
             {
                 List<GameObject> moveableObjects = destinationField.GetMoveable();
@@ -168,5 +179,19 @@ namespace Sarcina.Maps
             }
             return new Vector2(0, 0);
         }
+        public void Display()
+        {
+            Debug.WriteLine("Map:");
+            for (int i = 0; i < Height; ++i)
+            {
+                for (int j = 0; j < Width; ++j)
+                {
+                    //Debug.Write(String.Format("{0}:({1},{2})\t", Grid[i][j].ToString(), j, i));
+                    Debug.Write(String.Format("{0}\t", Grid[i][j].ToString()));
+                }
+                Debug.WriteLine("");
+            }
+        }
     }
+
 }

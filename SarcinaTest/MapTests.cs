@@ -37,6 +37,45 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void MoveThroughPortalBasic()
+        {
+            Map map = new Map(3, 4);
+
+            Player p = new Player();
+            map.Grid[1][1].Add(p);
+
+            Portal x1 = new Portal();
+            Portal x2 = new Portal();
+            x1.connectedPortal = new Vector2(1, 2);
+            x2.connectedPortal = new Vector2(2, 1);
+            
+            map.Grid[1][2].Add(x1);
+            map.Grid[2][1].Add(x2);
+
+            map.Display();
+            map.Update(new Vector2(1, 0));
+            map.Display();
+
+            Assert.AreEqual(map.Grid[2][1].GameObjects[1], p);
+
+            map.Update(new Vector2(1, 0));
+            map.Display();
+            Assert.AreEqual(map.Grid[2][2].GameObjects[0], p);
+
+            map.Update(new Vector2(0, 1));
+            map.Display();
+
+            Assert.AreEqual(map.Grid[2][1].GameObjects[1], p);
+
+            map.Update(new Vector2(0, 1));
+            map.Display();
+            map.Update(new Vector2(0, -1));
+            map.Display();
+
+            Assert.AreEqual(map.Grid[1][2].GameObjects[1], p);
+        }
+
+        [TestMethod]
         public void MovePlayers()
         {
             Map map = new Map(3, 4);

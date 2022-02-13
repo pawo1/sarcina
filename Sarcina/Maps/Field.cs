@@ -47,6 +47,26 @@ namespace Sarcina.Maps
             return false;
         }
 
+        public bool HasPlayers()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject.IsControlledByPlayer) return true;
+            }
+
+            return false;
+        }
+
+        public Portal GetPortal()
+        {
+            foreach (GameObject gameObject in this)
+            {
+                if (gameObject is Portal portal) return portal;
+            }
+
+            return null;
+        }
+
         public IEnumerator GetEnumerator()
         {
             return GameObjects.GetEnumerator();
