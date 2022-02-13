@@ -15,11 +15,6 @@ namespace Sarcina
         {
             GameManager gameManager = new GameManager();
             gameManager.Run();
-            
-
         }
-
-
-
     }
 }

@@ -78,12 +78,12 @@ namespace Sarcina.Managers
                 switch(State)
                 {
                     case gameState.MainMenu:
-                        graphicManager.DrawMainMenu();
+                       // graphicManager.DrawMainMenu();
                         break;
                     
                     case gameState.Level:
                         graphicManager.DrawMap(map);
-                        graphicManager.DrawScore(playerInfo);
+                       // graphicManager.DrawScore(playerInfo);
                         break;
                     case gameState.Exit:
                         window.Close();
@@ -161,7 +161,6 @@ namespace Sarcina.Managers
 
         public void SaveMap(string path)
         {
-           
             File.WriteAllText(path, map.getJson());
         }
 
