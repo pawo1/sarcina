@@ -97,49 +97,125 @@ namespace Sarcina.Maps
         /// <param name="position">Obecna pozycja</param>
         /// <param name="move">Wektor ruchu w układzie z odwróconą osią Y</param>
         /// <returns>Czy ruch wykonany pomyślnie</returns>
-        private bool MoveObject(Vector2 position, Vector2 move, Queue<Vector2> queue)
+        private bool MoveObject(Vector2 position, Vector2 move, Queue<Vector2> queue, bool exitingPortal = false)
         {
             Vector2 newPosition = position + move;
+
+            if (!IsValid(position) || !IsValid(newPosition))
+                return false; // invalid position
+
             Field sourceField = GetAt(position);
             Field destinationField = GetAt(newPosition);
+            // cannot enter field, cannot move
+            if (!destinationField.CanEnter()) return false;
+
+            // -> you can enter next field
+
+            // moving boxes failed, cannot move
+            if (!MoveBoxes(newPosition, move, queue)) return false;
+
+            // -> field you try to enter is now empty
+
             Portal portal = destinationField.GetPortal();
-            if(portal != null)
+            // there is no portal
+            // or they just passed through the portal
+            if (portal == null || exitingPortal)
             {
-                newPosition = portal.connectedPortal;
-                destinationField = GetAt(newPosition);
+                MovePlayerObjects(sourceField, destinationField);
+                return true;
             }
 
-            if (destinationField.CanEnter()) // no immoveable objects
+            // -> there is a portal
+
+            // portal is invalid
+            if (!IsValid(portal.connectedPortal))
             {
-                List<GameObject> moveableObjects = destinationField.GetMoveable();
-                if(moveableObjects.Count == 0) // nothing to push
-                {
-                    MovePlayers(sourceField, destinationField);
-                    return true;
-                }
-                Vector2 movedToPosition = newPosition + move;
-                if (!IsValid(movedToPosition)) return false; // cannot push items
-                Field movedToField = GetAt(movedToPosition);
-
-                if(movedToField.CanEnter() && !movedToField.HasMoveableObjects()) // field is empty
-                {
-                    var playerObjects = sourceField.GetPlayers();
-                    movedToField.AddRange(moveableObjects);
-                    destinationField.RemoveAll((gameObject) => { return gameObject.IsMoveable; });
-
-                    destinationField.AddRange(playerObjects);
-                    sourceField.RemoveAll((gameObject) => { return gameObject.IsControlledByPlayer; });
-                }
+                MovePlayerObjects(sourceField, destinationField);
+                return true;
             }
 
-            return false;
+            // -> there is valid portal
+
+            Field portalField = GetAt(portal.connectedPortal);
+            // you can neither enter portal
+            //  nor move the boxes there, stay on top
+            if (!portalField.CanEnter() || !MoveBoxes(portal.connectedPortal, move, queue))
+            {
+                MovePlayerObjects(sourceField, destinationField);
+                return true;
+            }
+
+            // -> portal is available to enter and boxes have been moved
+
+            MovePlayerObjects(sourceField, portalField);
+            return true;
         }
 
-        private void MovePlayers(Field source, Field destination)
+        private bool MoveBoxes(Vector2 position, Vector2 move, Queue<Vector2> queue, bool exitingPortal = false)
+        {
+            Field boxesField = GetAt(position);
+            // no boxes, nothing to move, move completed
+            if (!boxesField.HasMoveableObjects()) return true;
+
+            // -> there are boxes to move
+
+            // position has been validated before
+            Vector2 moveToPosition = position + move;
+            // invalid position, cannot move
+            if (!IsValid(moveToPosition)) return false;
+
+            // -> now moveToPosition is valid
+
+            Field moveToField = GetAt(moveToPosition);
+            // cannot enter or has other moveable, cannot move
+            if (!moveToField.CanEnter() || moveToField.HasMoveableObjects()) return false;
+
+            // -> there is place to move the boxes
+
+            Portal portal = moveToField.GetPortal();
+            // there is no portal, can move
+            // or they just passed through the portal
+            if (portal == null || exitingPortal)
+            {
+                MoveBoxObjects(boxesField, moveToField);
+                return true;
+            }
+
+            // -> there is a portal
+
+            // portal is invalid
+            if (!IsValid(portal.connectedPortal))
+            {
+                MoveBoxObjects(boxesField, moveToField);
+                return true;
+            }
+
+            Field portalField = GetAt(portal.connectedPortal);
+            // you can neither enter portal
+            //  nor move the boxes there, stay on top
+            if (!portalField.CanEnter() || portalField.HasMoveableObjects())
+            {
+                MoveBoxObjects(boxesField, moveToField);
+                return true;
+            }
+
+            move = portal.connectedPortal - position;
+            // check new move to the connected portal
+            return MoveBoxes(position, move, queue, true);
+        }
+
+        private void MovePlayerObjects(Field source, Field destination)
         {
             var playerObjects = source.GetPlayers();
             destination.AddRange(playerObjects);
             source.RemoveAll((gameObject) => { return gameObject.IsControlledByPlayer; });
+        }
+
+        private void MoveBoxObjects(Field source, Field destination)
+        {
+            var boxes = source.GetMoveable();
+            destination.AddRange(boxes);
+            source.RemoveAll((gameObject) => { return gameObject.IsMoveable; });
         }
 
         private bool IsValid(Vector2 position)
@@ -151,11 +227,6 @@ namespace Sarcina.Maps
         private Field GetAt(Vector2 position)
         {
             return Grid[(int)position.Y][(int)position.X];
-        }
-
-        private void SetAt(Vector2 position, Field objects) 
-        {
-            Grid[(int)position.Y][(int)position.X] = objects;
         }
 
         /// <summary>
