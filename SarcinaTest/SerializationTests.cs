@@ -56,6 +56,7 @@ namespace SarcinaTest
             Terminal terminal2 = JsonSerializer.Deserialize<Terminal>(json, settings);
 
             Assert.AreEqual(terminal.SpriteId, terminal2.SpriteId);
+            Assert.AreEqual(terminal.SavedBoxes[0].SpriteId, terminal2.SavedBoxes[0].SpriteId);
         }
 
         [TestMethod]
@@ -65,10 +66,10 @@ namespace SarcinaTest
             int x = 2;
             int y = 3;
             Map map = new Map(x, y);
-            
-            for(int i=0; i<x; ++i)
+
+            for (int i = 0; i < x; ++i)
             {
-                for(int j=0; j<y; ++j)
+                for (int j = 0; j < y; ++j)
                 {
                     Player player = new Player();
                     player.IsMoveable = true;
@@ -122,10 +123,49 @@ namespace SarcinaTest
             string jsonRead = File.ReadAllText("MapSerial.json");
 
             var fieldDes = JsonSerializer.Deserialize<Field>(jsonRead, settings);
-            
+
             Assert.AreEqual(field.Count, fieldDes.Count);
 
         }
 
+        [TestMethod]
+        public void SerializeBox()
+        {
+            int x = 2;
+            int y = 3;
+            Map map = new Map(x, y);
+
+            for (int i = 0; i < x; ++i)
+            {
+                for (int j = 0; j < y; ++j)
+                {
+                    Box box = new Box(i + j);
+                    map.TestSet(i, j, box);
+                }
+            }
+
+            var settings = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            settings.Converters.Add(new GameObjectSerializator());
+
+            string json = JsonSerializer.Serialize(map, settings);
+
+            File.WriteAllText("MapSerial.json", json);
+            string jsonRead = File.ReadAllText("MapSerial.json");
+
+            var mapDes = JsonSerializer.Deserialize<Map>(jsonRead, settings);
+
+            for (int i = 0; i < x; ++i)
+            {
+                for (int j = 0; j < y; ++j)
+                {
+                    Assert.AreEqual(map.Grid[i][j].Count, mapDes.Grid[i][j].Count);
+                    Assert.AreNotEqual(mapDes.Grid[i][j].Count, 0);
+                }
+            }
+
+        }
     }
 }
