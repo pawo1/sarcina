@@ -19,15 +19,14 @@ namespace Sarcina.Managers
 
         private RenderWindow window;
         private List<Sprite> sprites = new List<Sprite>();
-
-        public GraphicManager()
-        {
-            
-        }
+        private Font font;
 
         public GraphicManager(RenderWindow window)
         {
             this.window = window;
+            LoadIcon();
+            LoadSprites();
+            LoadFont();
         }
 
 
@@ -119,6 +118,11 @@ namespace Sarcina.Managers
 
             image.Dispose();
 
+        }
+
+        public void LoadFont()
+        {
+            font = new Font("resources/VT323-regular.ttf");
         }
 
         public void Demo()
