@@ -167,7 +167,15 @@ namespace Sarcina.Maps
                 if(terminalField.CanEnter() && !terminalField.HasMoveableObjects())
                 {
                     Box box = terminalField.GetTerminal().PopBox();
-                    terminalField.Add(box);
+                    if(box != null)
+                    {
+                        terminalField.Add(box);
+                        if (box is NamedBox)
+                        {
+                            Grass g = new Grass();
+                            g.IsWall = true;
+                        }
+                    }       
                     MovePlayerObjects(sourceField, destinationField);
                     return true;
                 }
@@ -236,6 +244,11 @@ namespace Sarcina.Maps
             // there is terminal and box to pass
             if(terminal != null && box != null)
             {
+                if(box is NamedBox)
+                {
+                    Grass g = new Grass();
+                    g.IsWall = false;
+                }
                 terminal.AddBox(box);
                 boxesField.Remove(box);
 
