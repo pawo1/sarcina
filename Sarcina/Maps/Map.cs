@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sarcina.Objects;
 using System.Text.Json.Serialization;
+using System.Text.Json;
+using Sarcina.CustomSerializators;
 
 namespace Sarcina.Maps
 {
@@ -47,6 +49,30 @@ namespace Sarcina.Maps
             Grid[y][x].Add(newObject);
         }
 
+
+        public List<int> getSpritesId(int x, int y)
+        {
+            List<int> list = new List<int>();
+            foreach(var obj in Grid[y][x].getSorted())
+            {
+                list.Add(obj.SpriteId);
+            }
+            return list;
+        }
+
+
+        public string getJson()
+        {
+            var settings = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            settings.Converters.Add(new GameObjectSerializator());
+
+            string json = JsonSerializer.Serialize(this, settings);
+            return json;
+        }
+
         public bool IsWon()
         {
             for (int i = 0; i < Height; ++i)
@@ -64,8 +90,9 @@ namespace Sarcina.Maps
         /// Aktualizuje pozycje wszystkich elementów na planszy
         /// </summary>
         /// <param name="move">Wektor ruchu w kartezjańskim układzie współrzędnych</param>
-        public void Update(Vector2 move)
+        public int Update(Vector2 move)
         {
+            int moved = 0;
             move.Y *= -1; // TODO: usunąć przy mapowaniu klawisz -> wektor
 
             Queue<Vector2> queue = new Queue<Vector2>();
@@ -81,8 +108,11 @@ namespace Sarcina.Maps
 
             while (queue.Count > 0)
             {
-                MoveObject(queue.Dequeue(), move, queue);
+                if (MoveObject(queue.Dequeue(), move, queue))
+                    moved++;
             }
+
+            return moved;
         }
 
         private bool IsFieldMoveable(Vector2 position, Vector2 move)
