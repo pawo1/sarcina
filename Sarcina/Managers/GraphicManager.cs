@@ -63,18 +63,55 @@ namespace Sarcina.Managers
         }
 
 
-        public void DrawMainMenu()
+        public void DrawTitle()
         {
+            Text title = new Text("SARCINA", font, 150);
+            title.Style = Text.Styles.Underlined | Text.Styles.Bold;
+            title.Position = new Vector2f(8 * 20 - 9, -2 *20 );
+            title.FillColor = new Color(222, 47, 62, 150);
+            window.Draw(title);
+
+        }
+
+        public void DrawMainMenu(int active)
+        {
+
+           
             Text text = new Text("", font);
+            text.CharacterSize = 50;
+            text.Style = Text.Styles.Bold;
+            List<string> gui = new List<string>() { "Play", "About", "Progress", "Exit" };
+            List<string> help = new List<string>() { "ESC - pasue game", "Enter - accept option", "R - restart level", "WSAD, Arrows - move", "Controls:" };
 
             for(int i = 0; i<18; ++i)
             {
                 for(int j = 0; j<12; ++j)
                 {
-                    sprites[1].Position = new Vector2f(i * 40, j * 40);
-                    window.Draw(sprites[1]);
+                    sprites[2].Position = new Vector2f(i * 40, j * 40);
+                    window.Draw(sprites[2]);
                 }
             }
+
+            text.FillColor = Color.Black;
+            for (int i = 0; i < gui.Count; ++i)
+            {
+                if (active == i)
+                    text.FillColor = new Color(0, 149, 179);
+
+                text.DisplayedString = gui[i];
+                text.Position = new Vector2f(720 / 2, 7 * 20 + i * 40);
+                window.Draw(text);
+                text.FillColor = Color.Black;
+            }
+
+            text.FillColor = new Color(47, 79, 79);
+            for (int i = 0; i < help.Count; ++i) {
+                text.DisplayedString = help[i];
+                text.Position = new Vector2f(5, 21 * 20 - 7 - 38 * i);
+                window.Draw(text);
+            }
+            text.FillColor = Color.Black;
+            DrawTitle();
         }
 
         public void DrawAbout()
