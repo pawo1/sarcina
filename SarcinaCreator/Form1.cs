@@ -19,7 +19,6 @@ namespace SarcinaCreator
     public partial class Form1 : Form
     {
         Dictionary<string, GameObjectProps> dict = new Dictionary<string, GameObjectProps>();
-        Dictionary<string, GameObject> dictGo = new Dictionary<string, GameObject>();
 
         Map map;
         Map Map { 
@@ -45,63 +44,7 @@ namespace SarcinaCreator
 
             tbPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\map.json";
 
-            GameObject o = new Player();
-            dict.Add(o.GetType().Name,
-                new GameObjectProps()
-                {
-                    IsControlledByPlayer = o.IsControlledByPlayer,
-                    IsMoveable = o.IsMoveable,
-                    IsWall = o.IsWall,
-                    SpriteId = o.SpriteId
-                });
-            dictGo.Add(o.GetType().Name, o);
-            o = new Wall();
-            dict.Add(o.GetType().Name,
-                new GameObjectProps()
-                {
-                    IsControlledByPlayer = o.IsControlledByPlayer,
-                    IsMoveable = o.IsMoveable,
-                    IsWall = o.IsWall,
-                    SpriteId = o.SpriteId
-                });
-            dictGo.Add(o.GetType().Name, o);
-            o = new Box();
-            dict.Add(o.GetType().Name,
-                new GameObjectProps()
-                {
-                    IsControlledByPlayer = o.IsControlledByPlayer,
-                    IsMoveable = o.IsMoveable,
-                    IsWall = o.IsWall,
-                    SpriteId = o.SpriteId
-                });
-            dictGo.Add(o.GetType().Name, o);
-            o = new Grass();
-            dict.Add(o.GetType().Name,
-                new GameObjectProps()
-                {
-                    IsControlledByPlayer = o.IsControlledByPlayer,
-                    IsMoveable = o.IsMoveable,
-                    IsWall = o.IsWall,
-                    SpriteId = o.SpriteId
-                });
-            dictGo.Add(o.GetType().Name, o);
-
-            o = new Objective();
-            dict.Add(o.GetType().Name,
-                new GameObjectProps()
-                {
-                    IsControlledByPlayer = o.IsControlledByPlayer,
-                    IsMoveable = o.IsMoveable,
-                    IsWall = o.IsWall,
-                    SpriteId = o.SpriteId
-                });
-
-            foreach (var kv in dict)
-            {
-                cbObj.Items.Add(kv.Key);
-            }
-
-            cbObj.SelectedIndex = 0;
+            ClearDict();
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -120,6 +63,64 @@ namespace SarcinaCreator
             }
         }
 
+        private void ClearDict()
+        {
+            dict.Clear();
+            GameObject o = new Player();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            o = new Wall();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            o = new Box();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            o = new Grass();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+
+            o = new Objective();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+
+            cbObj.Items.Clear();
+            foreach (var kv in dict)
+            {
+                cbObj.Items.Add(kv.Key);
+            }
+
+            cbObj.SelectedIndex = 0;
+        }
         private void OnMapChanged()
         {
             portals.Clear();
@@ -176,8 +177,32 @@ namespace SarcinaCreator
             }
             if (cbPortal.Items.Count > 0)
                 cbPortal.SelectedIndex = 0;
+            else
+            {
+                cbPortal.Text = "";
+                cbPortal.SelectedIndex = -1;
+            }
+            if (cbPortalConn.Items.Count <= 1)
+            {
+                cbPortalConn.Text = "";
+                cbPortalConn.SelectedIndex = -1;
+            }
+
             if (cbButton.Items.Count > 0)
                 cbButton.SelectedIndex = 0;
+            else
+            {
+                cbButton.Text = "";
+                cbButton.SelectedIndex = -1;
+            }
+            if (cbTerminal.Items.Count <= 1)
+            {
+                cbTerminal.Text = "";
+                cbTerminal.SelectedIndex = -1;
+            }
+
+            cbObj.SelectedIndex = 0;
+            cbObj_SelectedIndexChanged(null, null);
         }
 
         private void BtnPreview_Click(object sender, EventArgs e)
@@ -248,6 +273,8 @@ namespace SarcinaCreator
                     }
                     i++;
                 }
+
+                GameObject.UpdateDictionary(CopyDict(dict));
             }
             catch (Exception e)
             {
@@ -276,6 +303,7 @@ namespace SarcinaCreator
             dict[key].IsWall = cbIsWall.Checked;
             dict[key].SpriteId = (int)nuSpriteId.Value;
 
+            GameObject.UpdateDictionary(CopyDict(dict));
         }
 
         private void cbPortal_SelectedIndexChanged(object sender, EventArgs e)
@@ -367,12 +395,23 @@ namespace SarcinaCreator
 
                     string json = File.ReadAllText(ofd.FileName);
                     Map = Map.GetFromJson(json);
+                    dict.Clear();
+                    dict = CopyDict(GameObject.GetDictionary());
                     nuHeight.Value = map.Height;
                     nuWidth.Value = map.Width;
                     rtbMap.Clear();
                     rtbMap.Text = Map.GetDisplay();
+
+                    cbObj.SelectedIndex = 0;
                 }
             }
+        }
+
+        private Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
+        {
+            Dictionary<string, GameObjectProps> copy = new Dictionary<string, GameObjectProps>();
+            copy = original.ToDictionary(entry => entry.Key, entry => (GameObjectProps)entry.Value.Clone()); // deep copy
+            return copy;
         }
 
         private void BtnHelp_Click(object sender, EventArgs e)
