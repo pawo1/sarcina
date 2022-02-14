@@ -95,7 +95,7 @@ namespace Sarcina.Managers
                 window.DispatchEvents();
 
                 window.Clear();
-                switch(State)
+                switch (State)
                 {
                     case gameState.MainMenu:
                         graphicManager.DrawMainMenu(menuOption);
@@ -128,7 +128,7 @@ namespace Sarcina.Managers
                             State = gameState.Level;
                             ConnectLevel();
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             State = gameState.NoSave;
                         }
@@ -139,8 +139,14 @@ namespace Sarcina.Managers
                         break;
 
                     case gameState.LoadLevel:
-                        if (playerInfo.CurrentLevel > playerInfo.TotalLevels)
-                            State = gameState.About;
+                        if (playerInfo.CurrentLevel > playerInfo.TotalLevels) 
+                        {
+                            State = gameState.Progress;
+                            ConnectMenu();
+                            menuOption = 1;
+                            maxOption = 1;
+                        }
+
                         else
                         {
                             LoadMap("levels/level" + playerInfo.CurrentLevel + ".json");

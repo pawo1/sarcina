@@ -152,11 +152,14 @@ namespace Sarcina.Managers
             
             if(currentLevel > totalLevel)
             {
-                text.DisplayedString = "Congratulations! You've finished the game!";
+                text.DisplayedString = "Congratulations!";
+                text.Position = new Vector2f(45, 4 * 40 - 5);
+                window.Draw(text);
+                text.DisplayedString = "You've finished the game!";
                 text.Position = new Vector2f(45, 5 * 40);
                 window.Draw(text);
                 text.DisplayedString = "The movements you made: " + score;
-                text.Position = new Vector2f(45, 7 * 40);
+                text.Position = new Vector2f(45, 6 * 40);
                 window.Draw(text);
             } 
             else
