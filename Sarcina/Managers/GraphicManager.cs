@@ -173,7 +173,7 @@ namespace Sarcina.Managers
         {
 
             List<string> gui = new List<string>() { "Play", "Continue", "Tutorial", "About", "Progress", "Exit" };
-            List<string> help = new List<string>() { "ESC - pasue game", "Enter - accept option", "R - restart level", "WSAD, Arrows - move", "Controls:" };
+            List<string> help = new List<string>() { "ESC - pause game", "Enter - accept option", "R - restart level", "WSAD, Arrows - move", "Controls:" };
 
             DrawBackground();
             DrawTitle();
