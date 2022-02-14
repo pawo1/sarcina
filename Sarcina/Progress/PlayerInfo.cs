@@ -26,11 +26,12 @@ namespace Sarcina.Progress
         }
 
         [JsonConstructorAttribute]
-        public PlayerInfo(int totalLevels, int currentLevel, int score)
+        public PlayerInfo(int totalLevels, int currentLevel, int totalScore, int score)
         {
             TotalLevels = totalLevels;
             CurrentLevel = currentLevel;
-            TotalScore = score;
+            TotalScore = totalScore;
+            Score = score;
         }
 
         public int NextLevel()
@@ -50,6 +51,12 @@ namespace Sarcina.Progress
         {
             Score += moved;
         }
-
+        
+        public void HardReset()
+        {
+            CurrentLevel = 1;
+            TotalScore = 0;
+            Score = 0;
+        }
     }
 }

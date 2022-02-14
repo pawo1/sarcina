@@ -43,9 +43,12 @@ namespace Sarcina.Managers
             MainMenu = 1,
             About,
             Progress,
+            HardReset,
+            Complete,
             Save,
             Pause,
             Continue,
+            NoSave,
             LoadLevel,
             Level,
             NextLevel,
@@ -103,11 +106,36 @@ namespace Sarcina.Managers
                         break;
 
                     case gameState.Progress:
-                        graphicManager.DrawProgressMenu(menuOption, playerInfo.Score, playerInfo.CurrentLevel, playerInfo.TotalLevels);
+                        graphicManager.DrawProgressMenu(menuOption, playerInfo.TotalScore, playerInfo.CurrentLevel, playerInfo.TotalLevels);
+                        break;
+
+                    case gameState.HardReset:
+                        graphicManager.DrawHardResetMenu(menuOption);
+                        break;
+
+                    case gameState.Complete:
+                        graphicManager.DrawCompleteMenu();
                         break;
 
                     case gameState.Pause:
                         graphicManager.DrawPauseMenu(menuOption);
+                        break;
+
+                    case gameState.Continue:
+                        try
+                        {
+                            LoadMap("continue.json");
+                            State = gameState.Level;
+                            ConnectLevel();
+                        }
+                        catch(Exception)
+                        {
+                            State = gameState.NoSave;
+                        }
+                        break;
+
+                    case gameState.NoSave:
+                        graphicManager.DrawNoSaveInfo();
                         break;
 
                     case gameState.LoadLevel:
@@ -168,7 +196,9 @@ namespace Sarcina.Managers
                             case gameState.MainMenu:
                                 OnConfirmMainMenu();
                                 break;
+                            case gameState.Complete:
                             case gameState.About:
+                            case gameState.NoSave:
                                 State = gameState.MainMenu;
                                 maxOption = 4;
                                 break;
@@ -177,6 +207,9 @@ namespace Sarcina.Managers
                                 break;
                             case gameState.Pause:
                                 OnConfirmPause();
+                                break;
+                            case gameState.HardReset:
+                                OnConfirmHardReset();
                                 break;
                         }
                         break;
@@ -192,12 +225,14 @@ namespace Sarcina.Managers
             switch(menuOption)
             {
                 case 0: // play
+                    playerInfo.ResetLevel();
                     State = gameState.LoadLevel;
                     ConnectLevel();
                     break;
                 case 1: // continue
                     State = gameState.Continue;
-                    ConnectLevel();
+                    maxOption = 0;
+                    menuOption = 0;
                     break;
                 case 2: // about
                     State = gameState.About;
@@ -215,15 +250,14 @@ namespace Sarcina.Managers
             }
         }
         
-        public void OnConfirmAbout()
-        {
-
-        }
         public void OnConfirmProgress()
         {
             switch(menuOption)
             {
                 case 0: //reset
+                    State = gameState.HardReset;
+                    menuOption = 1;
+                    maxOption = 1;
                     break;
                 case 1:
                     State = gameState.MainMenu;
@@ -232,9 +266,52 @@ namespace Sarcina.Managers
                     break;
             }
         }
+
+        public void OnConfirmHardReset()
+        {
+            switch (menuOption)
+            {
+                case 0: // yes
+                    playerInfo.HardReset();
+                    State = gameState.Complete;
+                    menuOption = 0;
+                    maxOption = 0;
+                    break;
+                case 1:
+                    State = gameState.MainMenu;
+                    menuOption = 0;
+                    maxOption = 4;
+                    break;
+            }
+        }
+
         public void OnConfirmPause()
         {
-
+            switch (menuOption)
+            {
+                case 0: // resume
+                    State = gameState.Level;
+                    ConnectLevel();
+                    break;
+                case 1: // restart
+                    State = gameState.Restart;
+                    ConnectLevel();
+                    break;
+                case 2: // save and exit
+                    SaveMap("continue.json");
+                    SavePlayerInfo();
+                    State = gameState.Complete;
+                    maxOption = 0;
+                    menuOption = 0;
+                    break;
+                case 3: // exit
+                    State = gameState.MainMenu;
+                    RestoreMap();
+                    playerInfo.ResetLevel();
+                    menuOption = 0;
+                    maxOption = 4;
+                    break;
+            }
         }
         
         private void ConnectLevel()
@@ -255,12 +332,15 @@ namespace Sarcina.Managers
             VectorObject vector = new VectorObject(0, 0);
             int moves;
 
-            if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
+            if (keyClock.ElapsedTime >= Time.FromMilliseconds(70))
             {
                 switch (e.Code)
                 {
                     case Keyboard.Key.Escape:
-                        window.Close();
+                        State = gameState.Pause;
+                        maxOption = 3;
+                        menuOption = 0;
+                        ConnectMenu();
                         break;
 
                     case Keyboard.Key.Up:

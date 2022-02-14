@@ -189,8 +189,92 @@ namespace Sarcina.Managers
             text.CharacterSize = 50;
         }
 
+        public void DrawHardResetMenu(int active)
+        {
+            DrawBackground();
+            DrawTitle();
+
+            text.DisplayedString = "Are you Sure you want to reset?";
+            text.Position = new Vector2f(2 * 20 - 19, 5 * 40);
+            window.Draw(text);
+            text.DisplayedString = "This operation cannot be undone.";
+            text.Position = new Vector2f(2 * 20 - 19, 6 * 40);
+            window.Draw(text);
+
+            if(active == 0)
+                text.FillColor = new Color(0, 149, 179);
+
+            text.DisplayedString = "Yes";
+            text.Position = new Vector2f(720 / 2 - 21, 9 * 40);
+            window.Draw(text);
+            text.FillColor = Color.Black;
+
+            if (active == 1)
+                text.FillColor = new Color(0, 149, 179);
+
+            text.DisplayedString = "No";
+            text.Position = new Vector2f(720 / 2 - 17, 10 * 40);
+            window.Draw(text);
+            text.FillColor = Color.Black;
+
+        }
+
+        public void DrawCompleteMenu()
+        {
+            DrawBackground();
+            DrawTitle();
+
+            text.DisplayedString = "Operation Compelte";
+            text.Position = new Vector2f(9 * 20, 6 * 40);
+            window.Draw(text);
+
+            text.FillColor = new Color(0, 149, 179);
+
+            text.DisplayedString = "Back to menu";
+            text.Position = new Vector2f(720 / 2 - 137, 10 * 40);
+            window.Draw(text);
+            text.FillColor = Color.Black;
+        }
+
+
+        public void DrawNoSaveInfo()
+        {
+            DrawBackground();
+            DrawTitle();
+
+            text.DisplayedString = "Couldn't load save file";
+            text.Position = new Vector2f(9 * 20, 6 * 40);
+            window.Draw(text);
+            text.DisplayedString = "Start new level";
+            text.Position = new Vector2f(9 * 20, 7 * 40);
+            window.Draw(text);
+
+            text.FillColor = new Color(0, 149, 179);
+
+            text.DisplayedString = "Back to menu";
+            text.Position = new Vector2f(720 / 2 - 137, 10 * 40);
+            window.Draw(text);
+            text.FillColor = Color.Black;
+        }
+
         public void DrawPauseMenu(int active)
         {
+            List<string> gui = new List<string>() { "Resume", "Restart", "Save and Exit", "Exit" };
+            
+
+            DrawBackground();
+            DrawTitle();
+
+            for (int i = 0; i < gui.Count; ++i)
+            {
+                if (active == i)
+                    text.FillColor = new Color(0, 149, 179);
+
+                text.DisplayedString = gui[i];
+                text.Position = new Vector2f(720 / 2, 7 * 20 + i * 40);
+                window.Draw(text);
+                text.FillColor = Color.Black;
+            }
 
         }
 
@@ -203,6 +287,9 @@ namespace Sarcina.Managers
             {
                 for(int j = 0; j<height; ++j)
                 {
+                    sprites[0].Position = new Vector2f(i * 40, j * 40);
+                    window.Draw(sprites[0]);
+
                     List<int> idList = map.getSpritesId(i, j);
                     foreach (var id in idList)
                     {
@@ -216,7 +303,14 @@ namespace Sarcina.Managers
 
         public void DrawScore(int score, int level)
         {
+            level = 10;
 
+            text.DisplayedString = "Moves: " + score;
+            text.Position = new Vector2f(5, 11 * 40 - 15);
+            window.Draw(text);
+            text.DisplayedString = "Level: " + level;
+            text.Position = new Vector2f(14 * 40 + ((level >= 10) ? -30 : -10), 11 * 40 - 15);
+            window.Draw(text);
         }
 
         public void AttachWindow(RenderWindow window)
