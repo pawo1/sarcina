@@ -25,10 +25,14 @@ namespace Sarcina.Managers
         private Dictionary<string, GameObjectProps> dictBuffer;
         private GraphicManager graphicManager;
         private RenderWindow window;
+
         private EventHandler<KeyEventArgs> keyLevelHandler;
         private EventHandler<KeyEventArgs> keyMenuHandler;
 
         private PlayerInfo playerInfo;
+        
+        private int menuOption;
+        private int maxOption;
 
         private List<Keyboard.Key> secretCodes;
         private Clock secretClock;
@@ -72,6 +76,8 @@ namespace Sarcina.Managers
 
 
             State = gameState.MainMenu;
+            menuOption = 0;
+            maxOption = 4;
             window.KeyPressed += keyMenuHandler;
         }
 
@@ -89,14 +95,20 @@ namespace Sarcina.Managers
                 switch(State)
                 {
                     case gameState.MainMenu:
-                        graphicManager.DrawMainMenu(0);
+                        graphicManager.DrawMainMenu(menuOption);
                         break;
 
                     case gameState.About:
                         graphicManager.DrawAbout();
                         break;
 
+                    case gameState.Progress:
+                        graphicManager.DrawProgressMenu(menuOption, playerInfo.Score, playerInfo.CurrentLevel, playerInfo.TotalLevels);
+                        break;
 
+                    case gameState.Pause:
+                        graphicManager.DrawPauseMenu(menuOption);
+                        break;
 
                     case gameState.LoadLevel:
                         if (playerInfo.CurrentLevel > playerInfo.TotalLevels)
@@ -138,9 +150,104 @@ namespace Sarcina.Managers
 
         public void OnKeyPressedMenu(object sender, KeyEventArgs e)
         {
-
+            if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
+            {
+                switch (e.Code)
+                {
+                    case Keyboard.Key.Up:
+                    case Keyboard.Key.W:
+                        menuOption = (menuOption > 0 ? menuOption-1 : 0);
+                        break;
+                    case Keyboard.Key.Down:
+                    case Keyboard.Key.S:
+                        menuOption = (menuOption < maxOption ? menuOption+1 : maxOption);
+                        break;
+                    case Keyboard.Key.Enter:
+                        switch(State)
+                        {
+                            case gameState.MainMenu:
+                                OnConfirmMainMenu();
+                                break;
+                            case gameState.About:
+                                State = gameState.MainMenu;
+                                maxOption = 4;
+                                break;
+                            case gameState.Progress:
+                                OnConfirmProgress();
+                                break;
+                            case gameState.Pause:
+                                OnConfirmPause();
+                                break;
+                        }
+                        break;
+                }
+                keyClock.Restart();
+            }
         }
 
+        public void OnConfirmMainMenu()
+        {
+
+
+            switch(menuOption)
+            {
+                case 0: // play
+                    State = gameState.LoadLevel;
+                    ConnectLevel();
+                    break;
+                case 1: // continue
+                    State = gameState.Continue;
+                    ConnectLevel();
+                    break;
+                case 2: // about
+                    State = gameState.About;
+                    maxOption = 0;
+                    menuOption = 0;
+                    break;
+                case 3: // progress
+                    State = gameState.Progress;
+                    menuOption = 1;
+                    maxOption = 1;
+                    break;
+                case 4: // exit
+                    window.Close();
+                    break;
+            }
+        }
+        
+        public void OnConfirmAbout()
+        {
+
+        }
+        public void OnConfirmProgress()
+        {
+            switch(menuOption)
+            {
+                case 0: //reset
+                    break;
+                case 1:
+                    State = gameState.MainMenu;
+                    menuOption = 0;
+                    maxOption = 4;
+                    break;
+            }
+        }
+        public void OnConfirmPause()
+        {
+
+        }
+        
+        private void ConnectLevel()
+        {
+            window.KeyPressed += keyLevelHandler;
+            window.KeyPressed -= keyMenuHandler;
+        }
+
+        private void ConnectMenu()
+        {
+            window.KeyPressed -= keyLevelHandler;
+            window.KeyPressed += keyMenuHandler;
+        }
 
         public void OnKeyPressedLevel(object sender, KeyEventArgs e)
         {
@@ -150,8 +257,6 @@ namespace Sarcina.Managers
 
             if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
             {
-                
-                Console.WriteLine(e.Code);
                 switch (e.Code)
                 {
                     case Keyboard.Key.Escape:
