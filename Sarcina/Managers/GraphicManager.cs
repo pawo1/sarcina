@@ -41,30 +41,42 @@ namespace Sarcina.Managers
 
         }
 
+        enum textures
+        {
+            background = 0,
+            wallA = 1,
+            wallB = 2,
+            grass = 3,
+            objective = 4,
+            buttonOff = 5,
+            buttonOn = 6,
+            boxInvalid = 7,
+            boxValid = 8,
+            boxNamed = 9,
+            boxSarcina = 10,
+            portalA = 11,
+            portalB = 12,
+            portalC = 13,
+            portalD = 14,
+            portalE = 15,
+            portalF = 16,
+            terminal = 17,
+            playerDown = 18,
+            playerLeft = 19,
+            playerRight = 20,
+            playerUp = 21
+        }
+
         public void Demo()
         {
-
-            float test = VideoMode.DesktopMode.Height / 40;
-            CircleShape cs = new CircleShape(test * 2);
-            cs.FillColor = Color.Green;
-            window.SetActive();
-            window.Closed += new EventHandler(OnClose);
-            while (window.IsOpen)
-            {
-
-                window.DispatchEvents();
-
-                window.Clear();
                 int k = 0;
                 for (int i = 0; i < 18; ++i)
                     for (int j = 0; j < 12; ++j)
                     {
-                        sprites[k % sprites.Count].Position = new Vector2f(40 * j, 40 * i);
+                        sprites[k % sprites.Count].Position = new Vector2f(40 * i, 40 * j);
                         window.Draw(sprites[k % sprites.Count]);
                         k++;
                     }
-                window.Display();
-            }
         }
 
 
@@ -290,13 +302,26 @@ namespace Sarcina.Managers
             {
                 for(int j = 0; j<height; ++j)
                 {
-                    sprites[0].Position = new Vector2f(i * 40, j * 40);
+                    sprites[(int)textures.background].Position = new Vector2f(i * 40, j * 40);
                     window.Draw(sprites[0]);
 
                     List<int> idList = map.getSpritesId(i, j);
+
+                    if( idList.Contains((int)textures.objective) && idList.Contains((int)textures.boxInvalid))
+                    {
+                        idList.Remove((int)textures.objective);
+                        idList.Remove((int)textures.boxInvalid);
+
+                        idList.Add((int)textures.boxValid);
+                    }
+
+
+
+
                     foreach (var id in idList)
                     {
-                        int _id = (id < sprites.Count ? id : 0);
+                        int _id = (id < sprites.Count ? (id >= 0 ? id : 0) : 0);
+                       
                         sprites[_id].Position = new Vector2f(i * 40, j * 40);
                         window.Draw(sprites[_id]);
                     }

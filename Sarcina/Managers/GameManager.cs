@@ -30,7 +30,7 @@ namespace Sarcina.Managers
         private EventHandler<KeyEventArgs> keyMenuHandler;
 
         private PlayerInfo playerInfo;
-        
+        private Player prototype;
         private int menuOption;
         private int maxOption;
 
@@ -53,7 +53,16 @@ namespace Sarcina.Managers
             Level,
             NextLevel,
             Restart,
+            Demo,
             Exit
+        }
+
+        enum playerTexture
+        {
+            playerDown = 18,
+            playerLeft = 19,
+            playerRight = 20,
+            playerUp = 21
         }
 
         gameState State;
@@ -76,7 +85,7 @@ namespace Sarcina.Managers
             graphicManager = new GraphicManager(window);
 
             LoadPlayerInfo();
-
+            prototype = new Player();
 
             State = gameState.MainMenu;
             menuOption = 0;
@@ -99,6 +108,10 @@ namespace Sarcina.Managers
                 {
                     case gameState.MainMenu:
                         graphicManager.DrawMainMenu(menuOption);
+                        break;
+
+                    case gameState.Demo:
+                        graphicManager.Demo();
                         break;
 
                     case gameState.About:
@@ -182,10 +195,11 @@ namespace Sarcina.Managers
            //     SaveMap("continue.json");
         }
 
-        public void OnKeyPressedMenu(object sender, KeyEventArgs e)
+        private void OnKeyPressedMenu(object sender, KeyEventArgs e)
         {
             if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
             {
+                secretCodes.Add(e.Code);
                 switch (e.Code)
                 {
                     case Keyboard.Key.Up:
@@ -205,6 +219,7 @@ namespace Sarcina.Managers
                             case gameState.Complete:
                             case gameState.About:
                             case gameState.NoSave:
+                            case gameState.Demo:
                                 State = gameState.MainMenu;
                                 maxOption = 4;
                                 break;
@@ -219,16 +234,164 @@ namespace Sarcina.Managers
                                 break;
                         }
                         break;
+                    case Keyboard.Key.Escape:
+                        if(State == gameState.Demo)
+                        {
+                            State = gameState.MainMenu;
+                            maxOption = 4;
+                        }
+                        break;
+
+                    // secret section 
+                    case Keyboard.Key.Num2:
+                        if (secretClock.ElapsedTime > Time.FromSeconds(1))
+                        {
+                            secretClock.Restart();
+                            secretCodes.Clear();
+                            secretCodes.Add(Keyboard.Key.Num2);
+                        }
+                        break;
+                    case Keyboard.Key.Num6:
+                        if (secretClock.ElapsedTime <= Time.FromSeconds(5))
+                        {
+                            CheckSecretLevel(new List<Keyboard.Key>(secretCodes.TakeLast(3)));
+                        }
+                        break;
                 }
                 keyClock.Restart();
             }
         }
 
-        public void OnConfirmMainMenu()
+        private void OnKeyPressedLevel(object sender, KeyEventArgs e)
+        {
+            RenderWindow window = (RenderWindow)sender;
+            VectorObject vector = new VectorObject(0, 0);
+            int moves;
+
+            
+
+            if (keyClock.ElapsedTime >= Time.FromMilliseconds(70))
+            {
+                secretCodes.Add(e.Code);
+                switch (e.Code)
+                {
+                    case Keyboard.Key.Escape:
+                        State = gameState.Pause;
+                        maxOption = 3;
+                        menuOption = 0;
+                        ConnectMenu();
+                        break;
+
+                    case Keyboard.Key.Up:
+                        
+
+
+                        // stuff for secrets
+                        if(secretClock.ElapsedTime > Time.FromSeconds(3))
+                        {
+                            secretClock.Restart();
+                            secretCodes.Clear();
+                            secretCodes.Add(Keyboard.Key.Up);
+                        }
+                        
+
+                        // move stuff
+                        vector.X = 0;
+                        vector.Y = 1;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
+                        prototype.SpriteId = (int)playerTexture.playerUp;
+
+                        break;
+                    case Keyboard.Key.Down:
+
+                        // move stuff
+                        vector.X = 0;
+                        vector.Y = -1;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
+                        prototype.SpriteId = (int)playerTexture.playerDown;
+
+                        break;
+                    case Keyboard.Key.Left:
+                        // move stuff
+                        vector.X = -1;
+                        vector.Y = 0;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if (map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
+                        prototype.SpriteId = (int)playerTexture.playerLeft;
+
+                        break;
+                    case Keyboard.Key.Right:
+
+                        // move stuff
+                        vector.X = 1;
+                        vector.Y = 0;
+                        moves = map.Update(vector);
+                        if (moves > 0)
+                        {
+                            playerInfo.AddMove(moves);
+                            if(map.IsWon())
+                            {
+                                State = gameState.NextLevel;
+                            }
+                        }
+
+                        prototype.SpriteId = (int)playerTexture.playerRight;
+
+                        break;
+
+                    case Keyboard.Key.R:
+                        secretCodes.Clear();
+                        secretClock.Restart();
+                        State = gameState.Restart;
+                        break;
+
+
+                    case Keyboard.Key.A:
+                        if(secretClock.ElapsedTime <= Time.FromSeconds(6))
+                        {
+                            CheckKonami(new List<Keyboard.Key>(secretCodes.TakeLast(10)));
+                        }
+                        break;
+
+                }
+
+                keyClock.Restart();
+            }
+
+               
+        }
+
+        private void OnConfirmMainMenu()
         {
 
 
-            switch(menuOption)
+            switch (menuOption)
             {
                 case 0: // play
                     playerInfo.ResetLevel();
@@ -255,10 +418,10 @@ namespace Sarcina.Managers
                     break;
             }
         }
-        
-        public void OnConfirmProgress()
+
+        private void OnConfirmProgress()
         {
-            switch(menuOption)
+            switch (menuOption)
             {
                 case 0: //reset
                     State = gameState.HardReset;
@@ -273,12 +436,13 @@ namespace Sarcina.Managers
             }
         }
 
-        public void OnConfirmHardReset()
+        private void OnConfirmHardReset()
         {
             switch (menuOption)
             {
                 case 0: // yes
                     playerInfo.HardReset();
+                    SavePlayerInfo();
                     State = gameState.Complete;
                     menuOption = 0;
                     maxOption = 0;
@@ -291,7 +455,7 @@ namespace Sarcina.Managers
             }
         }
 
-        public void OnConfirmPause()
+        private void OnConfirmPause()
         {
             switch (menuOption)
             {
@@ -319,7 +483,7 @@ namespace Sarcina.Managers
                     break;
             }
         }
-        
+
         private void ConnectLevel()
         {
             window.KeyPressed += keyLevelHandler;
@@ -332,122 +496,6 @@ namespace Sarcina.Managers
             window.KeyPressed += keyMenuHandler;
         }
 
-        public void OnKeyPressedLevel(object sender, KeyEventArgs e)
-        {
-            RenderWindow window = (RenderWindow)sender;
-            VectorObject vector = new VectorObject(0, 0);
-            int moves;
-
-            if (keyClock.ElapsedTime >= Time.FromMilliseconds(70))
-            {
-                switch (e.Code)
-                {
-                    case Keyboard.Key.Escape:
-                        State = gameState.Pause;
-                        maxOption = 3;
-                        menuOption = 0;
-                        ConnectMenu();
-                        break;
-
-                    case Keyboard.Key.Up:
-                        
-
-
-                        // stuff for secrets
-                        if(secretClock.ElapsedTime > Time.FromSeconds(3))
-                        {
-                            secretClock.Restart();
-                            secretCodes.Clear();
-                        }
-                        secretCodes.Add(Keyboard.Key.Up);
-
-                        // move stuff
-                        vector.X = 0;
-                        vector.Y = 1;
-                        moves = map.Update(vector);
-                        if (moves > 0)
-                        {
-                            playerInfo.AddMove(moves);
-                            if (map.IsWon())
-                            {
-                                State = gameState.NextLevel;
-                            }
-                        }
-
-                        break;
-                    case Keyboard.Key.Down:
-                        secretCodes.Add(Keyboard.Key.Down);
-
-                        // move stuff
-                        vector.X = 0;
-                        vector.Y = -1;
-                        moves = map.Update(vector);
-                        if (moves > 0)
-                        {
-                            playerInfo.AddMove(moves);
-                            if (map.IsWon())
-                            {
-                                State = gameState.NextLevel;
-                            }
-                        }
-                        break;
-                    case Keyboard.Key.Left:
-                        secretCodes.Add(Keyboard.Key.Left);
-
-                        // move stuff
-                        vector.X = -1;
-                        vector.Y = 0;
-                        moves = map.Update(vector);
-                        if (moves > 0)
-                        {
-                            playerInfo.AddMove(moves);
-                            if (map.IsWon())
-                            {
-                                State = gameState.NextLevel;
-                            }
-                        }
-
-                        break;
-                    case Keyboard.Key.Right:
-                        secretCodes.Add(Keyboard.Key.Right);
-
-                        // move stuff
-                        vector.X = 1;
-                        vector.Y = 0;
-                        moves = map.Update(vector);
-                        if (moves > 0)
-                        {
-                            playerInfo.AddMove(moves);
-                            if(map.IsWon())
-                            {
-                                State = gameState.NextLevel;
-                            }
-                        }
-                        break;
-
-                    case Keyboard.Key.R:
-                        secretCodes.Clear(); // key not from secret
-                        State = gameState.Restart;
-                        break;
-
-                    case Keyboard.Key.B:
-                        secretCodes.Add(Keyboard.Key.B);
-                        break;
-
-                    case Keyboard.Key.A:
-                        secretCodes.Add(Keyboard.Key.A);
-                        if(secretClock.ElapsedTime <= Time.FromSeconds(6))
-                        {
-                            CheckKonami(new List<Keyboard.Key>(secretCodes.TakeLast(10)));
-                        }
-                        break;
-                }
-
-                keyClock.Restart();
-            }
-
-               
-        }
 
         public void LoadMap(string path)
         {
@@ -461,6 +509,13 @@ namespace Sarcina.Managers
             map = JsonSerializer.Deserialize<Map>(json, settings);
             mapRestorationBuffer = CopyMap(map);
             dictBuffer = CopyDict(GameObject.GetDictionary());
+
+            Box box = new Box();
+            Random rnd = new Random();
+            if(rnd.Next(0, 2) == 1)
+            {
+                box.SpriteId = 10; // secret texture
+            }
         }
 
         public void SaveMap(string path)
@@ -505,6 +560,16 @@ namespace Sarcina.Managers
                 secretCodes[8] == Keyboard.Key.B && secretCodes[9] == Keyboard.Key.A)
             {
                 Console.WriteLine("You activated my trap CARD!");
+            }
+        }
+
+        private void CheckSecretLevel(List<Keyboard.Key> secretCodes)
+        {
+            if(secretCodes[0] == Keyboard.Key.Num2 && secretCodes[1] == Keyboard.Key.Num5 && secretCodes[2] == Keyboard.Key.Num6)
+            {
+                menuOption = 0;
+                maxOption = 0;
+                State = gameState.Demo;
             }
         }
 

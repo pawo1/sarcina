@@ -112,6 +112,44 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
+            dict.Clear();
+            o = new NamedBox();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            dict.Clear();
+            o = new Sarcina.Objects.Button();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            o = new Portal();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
+            o = new Terminal();
+            dict.Add(o.GetType().Name,
+                new GameObjectProps()
+                {
+                    IsControlledByPlayer = o.IsControlledByPlayer,
+                    IsMoveable = o.IsMoveable,
+                    IsWall = o.IsWall,
+                    SpriteId = o.SpriteId
+                });
 
             cbObj.Items.Clear();
             foreach (var kv in dict)
