@@ -89,7 +89,7 @@ namespace Sarcina.Managers
                 switch(State)
                 {
                     case gameState.MainMenu:
-                        graphicManager.DrawMainMenu();
+                        graphicManager.DrawMainMenu(0);
                         break;
 
                     case gameState.About:
