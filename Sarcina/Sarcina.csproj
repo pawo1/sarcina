@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="levels\" />
     <Folder Include="resources\" />
   </ItemGroup>
 

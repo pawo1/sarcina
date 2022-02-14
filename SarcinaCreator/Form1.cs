@@ -19,18 +19,24 @@ namespace SarcinaCreator
     public partial class Form1 : Form
     {
         Dictionary<string, GameObjectProps> dict = new Dictionary<string, GameObjectProps>();
-        Dictionary<string, GameObject> dictGo = new Dictionary<string, GameObject>();
 
         Map map;
+        Map Map { 
+            set
+            {
+                map = value;
+                OnMapChanged();
+            }
+            get => map; }
 
         List<Portal> portals = new List<Portal>();
-        List<Vector2> portalsStr = new List<Vector2>();
+        List<VectorObject> portalsStr = new List<VectorObject>();
 
         List<Sarcina.Objects.Button> buttons = new List<Sarcina.Objects.Button>();
-        List<Vector2> buttonsStr = new List<Vector2>();
+        List<VectorObject> buttonsStr = new List<VectorObject>();
 
         List<Terminal> terminals = new List<Terminal>();
-        List<Vector2> terminalsStr = new List<Vector2>();
+        List<VectorObject> terminalsStr = new List<VectorObject>();
 
         public Form1()
         {
@@ -38,6 +44,28 @@ namespace SarcinaCreator
 
             tbPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\map.json";
 
+            ClearDict();
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GameObject.UpdateDictionary(dict);
+                string json = Map.GetJson();
+                File.WriteAllText(tbPath.Text, json);
+
+                MessageBox.Show("Zapisano!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ClearDict()
+        {
+            dict.Clear();
             GameObject o = new Player();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -47,7 +75,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dictGo.Add(o.GetType().Name, o);
             o = new Wall();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -57,7 +84,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dictGo.Add(o.GetType().Name, o);
             o = new Box();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -67,7 +93,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dictGo.Add(o.GetType().Name, o);
             o = new Grass();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -77,7 +102,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dictGo.Add(o.GetType().Name, o);
 
             o = new Objective();
             dict.Add(o.GetType().Name,
@@ -89,6 +113,7 @@ namespace SarcinaCreator
                     SpriteId = o.SpriteId
                 });
 
+            cbObj.Items.Clear();
             foreach (var kv in dict)
             {
                 cbObj.Items.Add(kv.Key);
@@ -96,29 +121,8 @@ namespace SarcinaCreator
 
             cbObj.SelectedIndex = 0;
         }
-
-        private void BtnStart_Click(object sender, EventArgs e)
+        private void OnMapChanged()
         {
-            try
-            {
-                GameObject.UpdateDictionary(dict);
-                string json = map.GetJson();
-                File.WriteAllText(tbPath.Text, json);
-
-                MessageBox.Show("Zapisano!");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-        private void BtnPreview_Click(object sender, EventArgs e)
-        {
-            rtbPreview.Clear();
-            map = GenerateMap();
-
             portals.Clear();
             portalsStr.Clear();
             terminals.Clear();
@@ -129,43 +133,43 @@ namespace SarcinaCreator
             cbPortal.Items.Clear();
             cbPortalConn.Items.Clear();
             cbPortalConn.Items.Add("--- (-1,-1)");
-            portalsStr.Add(new Vector2(-1, -1));
+            portalsStr.Add(new VectorObject(-1, -1));
 
             cbButton.Items.Clear();
             cbTerminal.Items.Clear();
             cbTerminal.Items.Add("--- (-1,-1)");
-            terminalsStr.Add(new Vector2(-1, -1));
+            terminalsStr.Add(new VectorObject(-1, -1));
 
-            if (map != null)
+            if (Map != null)
             {
-                rtbPreview.AppendText(map.GetDisplay());
+                rtbPreview.AppendText(Map.GetDisplay());
 
-                for (int i = 0; i < map.Height; ++i)
+                for (int i = 0; i < Map.Height; ++i)
                 {
-                    for (int j = 0; j < map.Width; ++j)
+                    for (int j = 0; j < Map.Width; ++j)
                     {
-                        Portal p = map.Grid[i][j].GetPortal();
+                        Portal p = Map.Grid[i][j].GetPortal();
                         if (p != null)
                         {
                             portals.Add(p);
-                            portalsStr.Add(new Vector2(j, i));
+                            portalsStr.Add(new VectorObject(j, i));
                             cbPortal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                             cbPortalConn.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Terminal t = map.Grid[i][j].GetTerminal();
+                        Terminal t = Map.Grid[i][j].GetTerminal();
                         if (t != null)
                         {
                             terminals.Add(t);
-                            terminalsStr.Add(new Vector2(j, i));
+                            terminalsStr.Add(new VectorObject(j, i));
                             cbTerminal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Sarcina.Objects.Button b = map.Grid[i][j].GetButton();
+                        Sarcina.Objects.Button b = Map.Grid[i][j].GetButton();
                         if (b != null)
                         {
                             buttons.Add(b);
-                            buttonsStr.Add(new Vector2(j, i));
+                            buttonsStr.Add(new VectorObject(j, i));
                             cbButton.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
                     }
@@ -173,8 +177,38 @@ namespace SarcinaCreator
             }
             if (cbPortal.Items.Count > 0)
                 cbPortal.SelectedIndex = 0;
+            else
+            {
+                cbPortal.Text = "";
+                cbPortal.SelectedIndex = -1;
+            }
+            if (cbPortalConn.Items.Count <= 1)
+            {
+                cbPortalConn.Text = "";
+                cbPortalConn.SelectedIndex = -1;
+            }
+
             if (cbButton.Items.Count > 0)
                 cbButton.SelectedIndex = 0;
+            else
+            {
+                cbButton.Text = "";
+                cbButton.SelectedIndex = -1;
+            }
+            if (cbTerminal.Items.Count <= 1)
+            {
+                cbTerminal.Text = "";
+                cbTerminal.SelectedIndex = -1;
+            }
+
+            cbObj.SelectedIndex = 0;
+            cbObj_SelectedIndexChanged(null, null);
+        }
+
+        private void BtnPreview_Click(object sender, EventArgs e)
+        {
+            rtbPreview.Clear();
+            Map = GenerateMap();
         }
 
         private Map GenerateMap()
@@ -239,6 +273,8 @@ namespace SarcinaCreator
                     }
                     i++;
                 }
+
+                GameObject.UpdateDictionary(CopyDict(dict));
             }
             catch (Exception e)
             {
@@ -267,6 +303,7 @@ namespace SarcinaCreator
             dict[key].IsWall = cbIsWall.Checked;
             dict[key].SpriteId = (int)nuSpriteId.Value;
 
+            GameObject.UpdateDictionary(CopyDict(dict));
         }
 
         private void cbPortal_SelectedIndexChanged(object sender, EventArgs e)
@@ -275,7 +312,7 @@ namespace SarcinaCreator
 
             Portal p = portals[index];
 
-            Vector2 connp = p.ConnectedPortal;
+            VectorObject connp = p.ConnectedPortal;
 
             int connix = portalsStr.FindIndex(e => e.X == connp.X && e.Y == connp.Y);
 
@@ -291,7 +328,7 @@ namespace SarcinaCreator
                 int connix = cbPortalConn.SelectedIndex;
 
                 Portal p = portals[ix];
-                Vector2 vec = portalsStr[connix];
+                VectorObject vec = portalsStr[connix];
                 p.ConnectedPortal = vec;
             }
             catch (Exception ex)
@@ -306,7 +343,7 @@ namespace SarcinaCreator
 
             Sarcina.Objects.Button b = buttons[index];
 
-            Vector2 connp = b.ConnectedTerminal;
+            VectorObject connp = b.ConnectedTerminal;
 
             int connix = terminalsStr.FindIndex(e => e.X == connp.X && e.Y == connp.Y);
 
@@ -321,7 +358,7 @@ namespace SarcinaCreator
                 int connix = cbTerminal.SelectedIndex;
 
                 Sarcina.Objects.Button b = buttons[ix];
-                Vector2 vec = terminalsStr[connix];
+                VectorObject vec = terminalsStr[connix];
                 b.ConnectedTerminal = vec;
             }
             catch (Exception ex)
@@ -341,6 +378,55 @@ namespace SarcinaCreator
                     tbPath.Text = fbd.SelectedPath + "\\map.json";
                 }
             }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                ofd.Filter = "json files (*.json)|";
+                ofd.Multiselect = false;
+                DialogResult result = ofd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(ofd.FileName))
+                {
+                    tbPath.Text = ofd.FileName;
+
+                    string json = File.ReadAllText(ofd.FileName);
+                    Map = Map.GetFromJson(json);
+                    dict.Clear();
+                    dict = CopyDict(GameObject.GetDictionary());
+                    nuHeight.Value = map.Height;
+                    nuWidth.Value = map.Width;
+                    rtbMap.Clear();
+                    rtbMap.Text = Map.GetDisplay();
+
+                    cbObj.SelectedIndex = 0;
+                }
+            }
+        }
+
+        private Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
+        {
+            Dictionary<string, GameObjectProps> copy = new Dictionary<string, GameObjectProps>();
+            copy = original.ToDictionary(entry => entry.Key, entry => (GameObjectProps)entry.Value.Clone()); // deep copy
+            return copy;
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                    "Player    \t\tP\n"+
+                    "Portal    \t\tX\n" +
+                    "NamedBox\t\tN\n" +
+                    "Box       \t\tB\n" +
+                    "Wall      \t\tW\n" +
+                    "Grass     \t\tG\n" +
+                    "Objective \t\tO\n" +
+                    "Terminal  \t\tT\n" +
+                    "Button    \t\t_\n"
+                );
         }
     }
 }

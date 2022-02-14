@@ -30,14 +30,12 @@ namespace SarcinaCreator
         private void InitializeComponent()
         {
             this.rtbMap = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.nuWidth = new System.Windows.Forms.NumericUpDown();
             this.nuHeight = new System.Windows.Forms.NumericUpDown();
             this.rtbPreview = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnPreview = new System.Windows.Forms.Button();
             this.cbObj = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,32 +57,42 @@ namespace SarcinaCreator
             this.btnSaveButton = new System.Windows.Forms.Button();
             this.tbPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tabMap = new System.Windows.Forms.TabControl();
+            this.tabPageMap = new System.Windows.Forms.TabPage();
+            this.tabPagePreview = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.nuWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuSpriteId)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabMap.SuspendLayout();
+            this.tabPageMap.SuspendLayout();
+            this.tabPagePreview.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtbMap
             // 
-            this.rtbMap.Location = new System.Drawing.Point(12, 32);
+            this.rtbMap.Location = new System.Drawing.Point(6, 6);
             this.rtbMap.Name = "rtbMap";
-            this.rtbMap.Size = new System.Drawing.Size(449, 229);
+            this.rtbMap.Size = new System.Drawing.Size(1051, 549);
             this.rtbMap.TabIndex = 0;
             this.rtbMap.Text = "";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Map";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(489, 9);
+            this.label2.Location = new System.Drawing.Point(6, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 20);
             this.label2.TabIndex = 2;
@@ -93,7 +101,7 @@ namespace SarcinaCreator
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(489, 42);
+            this.label3.Location = new System.Drawing.Point(6, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 4;
@@ -101,9 +109,9 @@ namespace SarcinaCreator
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(567, 420);
+            this.btnStart.Location = new System.Drawing.Point(826, 787);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(94, 29);
+            this.btnStart.Size = new System.Drawing.Size(124, 90);
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -111,14 +119,14 @@ namespace SarcinaCreator
             // 
             // nuWidth
             // 
-            this.nuWidth.Location = new System.Drawing.Point(547, 7);
+            this.nuWidth.Location = new System.Drawing.Point(64, 21);
             this.nuWidth.Name = "nuWidth";
             this.nuWidth.Size = new System.Drawing.Size(150, 27);
             this.nuWidth.TabIndex = 7;
             // 
             // nuHeight
             // 
-            this.nuHeight.Location = new System.Drawing.Point(547, 40);
+            this.nuHeight.Location = new System.Drawing.Point(64, 54);
             this.nuHeight.Name = "nuHeight";
             this.nuHeight.Size = new System.Drawing.Size(150, 27);
             this.nuHeight.TabIndex = 8;
@@ -126,24 +134,15 @@ namespace SarcinaCreator
             // rtbPreview
             // 
             this.rtbPreview.Enabled = false;
-            this.rtbPreview.Location = new System.Drawing.Point(12, 308);
+            this.rtbPreview.Location = new System.Drawing.Point(3, 6);
             this.rtbPreview.Name = "rtbPreview";
-            this.rtbPreview.Size = new System.Drawing.Size(449, 229);
+            this.rtbPreview.Size = new System.Drawing.Size(1054, 549);
             this.rtbPreview.TabIndex = 9;
             this.rtbPreview.Text = "";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 285);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Preview";
-            // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(467, 420);
+            this.btnPreview.Location = new System.Drawing.Point(6, 87);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(94, 29);
             this.btnPreview.TabIndex = 11;
@@ -154,7 +153,7 @@ namespace SarcinaCreator
             // cbObj
             // 
             this.cbObj.FormattingEnabled = true;
-            this.cbObj.Location = new System.Drawing.Point(526, 129);
+            this.cbObj.Location = new System.Drawing.Point(80, 15);
             this.cbObj.Name = "cbObj";
             this.cbObj.Size = new System.Drawing.Size(151, 28);
             this.cbObj.TabIndex = 12;
@@ -163,16 +162,16 @@ namespace SarcinaCreator
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(467, 132);
+            this.label5.Location = new System.Drawing.Point(6, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 20);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Obiekt";
+            this.label5.Text = "Object";
             // 
             // cbIsPlayer
             // 
             this.cbIsPlayer.AutoSize = true;
-            this.cbIsPlayer.Location = new System.Drawing.Point(467, 172);
+            this.cbIsPlayer.Location = new System.Drawing.Point(13, 87);
             this.cbIsPlayer.Name = "cbIsPlayer";
             this.cbIsPlayer.Size = new System.Drawing.Size(81, 24);
             this.cbIsPlayer.TabIndex = 14;
@@ -182,7 +181,7 @@ namespace SarcinaCreator
             // cbIsWall
             // 
             this.cbIsWall.AutoSize = true;
-            this.cbIsWall.Location = new System.Drawing.Point(467, 202);
+            this.cbIsWall.Location = new System.Drawing.Point(13, 117);
             this.cbIsWall.Name = "cbIsWall";
             this.cbIsWall.Size = new System.Drawing.Size(70, 24);
             this.cbIsWall.TabIndex = 15;
@@ -192,7 +191,7 @@ namespace SarcinaCreator
             // cbMoveable
             // 
             this.cbMoveable.AutoSize = true;
-            this.cbMoveable.Location = new System.Drawing.Point(467, 232);
+            this.cbMoveable.Location = new System.Drawing.Point(100, 87);
             this.cbMoveable.Name = "cbMoveable";
             this.cbMoveable.Size = new System.Drawing.Size(107, 24);
             this.cbMoveable.TabIndex = 16;
@@ -202,7 +201,7 @@ namespace SarcinaCreator
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(467, 271);
+            this.label6.Location = new System.Drawing.Point(6, 56);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 20);
             this.label6.TabIndex = 17;
@@ -210,7 +209,7 @@ namespace SarcinaCreator
             // 
             // nuSpriteId
             // 
-            this.nuSpriteId.Location = new System.Drawing.Point(534, 269);
+            this.nuSpriteId.Location = new System.Drawing.Point(80, 54);
             this.nuSpriteId.Minimum = new decimal(new int[] {
             100,
             0,
@@ -222,7 +221,7 @@ namespace SarcinaCreator
             // 
             // btnSaveProps
             // 
-            this.btnSaveProps.Location = new System.Drawing.Point(526, 302);
+            this.btnSaveProps.Location = new System.Drawing.Point(100, 112);
             this.btnSaveProps.Name = "btnSaveProps";
             this.btnSaveProps.Size = new System.Drawing.Size(94, 29);
             this.btnSaveProps.TabIndex = 19;
@@ -233,7 +232,7 @@ namespace SarcinaCreator
             // cbPortal
             // 
             this.cbPortal.FormattingEnabled = true;
-            this.cbPortal.Location = new System.Drawing.Point(778, 22);
+            this.cbPortal.Location = new System.Drawing.Point(63, 20);
             this.cbPortal.Name = "cbPortal";
             this.cbPortal.Size = new System.Drawing.Size(151, 28);
             this.cbPortal.TabIndex = 20;
@@ -242,7 +241,7 @@ namespace SarcinaCreator
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(723, 30);
+            this.label7.Location = new System.Drawing.Point(8, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 20);
             this.label7.TabIndex = 21;
@@ -251,7 +250,7 @@ namespace SarcinaCreator
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(723, 53);
+            this.label8.Location = new System.Drawing.Point(8, 51);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(124, 20);
             this.label8.TabIndex = 22;
@@ -260,14 +259,14 @@ namespace SarcinaCreator
             // cbPortalConn
             // 
             this.cbPortalConn.FormattingEnabled = true;
-            this.cbPortalConn.Location = new System.Drawing.Point(778, 76);
+            this.cbPortalConn.Location = new System.Drawing.Point(63, 74);
             this.cbPortalConn.Name = "cbPortalConn";
             this.cbPortalConn.Size = new System.Drawing.Size(151, 28);
             this.cbPortalConn.TabIndex = 23;
             // 
             // btnPortalSave
             // 
-            this.btnPortalSave.Location = new System.Drawing.Point(835, 110);
+            this.btnPortalSave.Location = new System.Drawing.Point(120, 108);
             this.btnPortalSave.Name = "btnPortalSave";
             this.btnPortalSave.Size = new System.Drawing.Size(94, 29);
             this.btnPortalSave.TabIndex = 19;
@@ -278,7 +277,7 @@ namespace SarcinaCreator
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(739, 190);
+            this.label9.Location = new System.Drawing.Point(6, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 20);
             this.label9.TabIndex = 24;
@@ -287,7 +286,7 @@ namespace SarcinaCreator
             // cbButton
             // 
             this.cbButton.FormattingEnabled = true;
-            this.cbButton.Location = new System.Drawing.Point(798, 187);
+            this.cbButton.Location = new System.Drawing.Point(65, 20);
             this.cbButton.Name = "cbButton";
             this.cbButton.Size = new System.Drawing.Size(151, 28);
             this.cbButton.TabIndex = 25;
@@ -296,7 +295,7 @@ namespace SarcinaCreator
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(739, 218);
+            this.label10.Location = new System.Drawing.Point(6, 51);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(137, 20);
             this.label10.TabIndex = 26;
@@ -305,14 +304,14 @@ namespace SarcinaCreator
             // cbTerminal
             // 
             this.cbTerminal.FormattingEnabled = true;
-            this.cbTerminal.Location = new System.Drawing.Point(798, 241);
+            this.cbTerminal.Location = new System.Drawing.Point(65, 74);
             this.cbTerminal.Name = "cbTerminal";
             this.cbTerminal.Size = new System.Drawing.Size(151, 28);
             this.cbTerminal.TabIndex = 27;
             // 
             // btnSaveButton
             // 
-            this.btnSaveButton.Location = new System.Drawing.Point(835, 276);
+            this.btnSaveButton.Location = new System.Drawing.Point(122, 108);
             this.btnSaveButton.Name = "btnSaveButton";
             this.btnSaveButton.Size = new System.Drawing.Size(94, 29);
             this.btnSaveButton.TabIndex = 28;
@@ -322,77 +321,198 @@ namespace SarcinaCreator
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(467, 455);
+            this.tbPath.Location = new System.Drawing.Point(6, 60);
             this.tbPath.Name = "tbPath";
-            this.tbPath.Size = new System.Drawing.Size(409, 27);
+            this.tbPath.Size = new System.Drawing.Size(790, 27);
             this.tbPath.TabIndex = 29;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(881, 455);
+            this.btnBrowse.Location = new System.Drawing.Point(702, 25);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(94, 29);
             this.btnBrowse.TabIndex = 30;
-            this.btnBrowse.Text = "browse";
+            this.btnBrowse.Text = "Browse...";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(602, 25);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(94, 29);
+            this.btnLoad.TabIndex = 31;
+            this.btnLoad.Text = "Load...";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(989, 848);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(94, 29);
+            this.btnHelp.TabIndex = 32;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnPortalSave);
+            this.groupBox1.Controls.Add(this.cbPortalConn);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.cbPortal);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(552, 616);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(262, 154);
+            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Portals";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.cbButton);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.cbTerminal);
+            this.groupBox2.Controls.Add(this.btnSaveButton);
+            this.groupBox2.Location = new System.Drawing.Point(820, 616);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(263, 154);
+            this.groupBox2.TabIndex = 35;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Button-Terminal";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.cbObj);
+            this.groupBox3.Controls.Add(this.cbIsPlayer);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.nuSpriteId);
+            this.groupBox3.Controls.Add(this.cbIsWall);
+            this.groupBox3.Controls.Add(this.cbMoveable);
+            this.groupBox3.Controls.Add(this.btnSaveProps);
+            this.groupBox3.Location = new System.Drawing.Point(282, 616);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(264, 154);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Objects";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.nuWidth);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.nuHeight);
+            this.groupBox4.Controls.Add(this.btnPreview);
+            this.groupBox4.Location = new System.Drawing.Point(12, 612);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(264, 158);
+            this.groupBox4.TabIndex = 37;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Map";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 20);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Saving path:";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.tbPath);
+            this.groupBox5.Controls.Add(this.btnLoad);
+            this.groupBox5.Controls.Add(this.btnBrowse);
+            this.groupBox5.Location = new System.Drawing.Point(12, 776);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(802, 103);
+            this.groupBox5.TabIndex = 39;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Files";
+            // 
+            // tabMap
+            // 
+            this.tabMap.Controls.Add(this.tabPageMap);
+            this.tabMap.Controls.Add(this.tabPagePreview);
+            this.tabMap.Location = new System.Drawing.Point(12, 12);
+            this.tabMap.Name = "tabMap";
+            this.tabMap.SelectedIndex = 0;
+            this.tabMap.Size = new System.Drawing.Size(1071, 594);
+            this.tabMap.TabIndex = 40;
+            // 
+            // tabPageMap
+            // 
+            this.tabPageMap.Controls.Add(this.rtbMap);
+            this.tabPageMap.Location = new System.Drawing.Point(4, 29);
+            this.tabPageMap.Name = "tabPageMap";
+            this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMap.Size = new System.Drawing.Size(1063, 561);
+            this.tabPageMap.TabIndex = 0;
+            this.tabPageMap.Text = "Map";
+            this.tabPageMap.UseVisualStyleBackColor = true;
+            // 
+            // tabPagePreview
+            // 
+            this.tabPagePreview.Controls.Add(this.rtbPreview);
+            this.tabPagePreview.Location = new System.Drawing.Point(4, 29);
+            this.tabPagePreview.Name = "tabPagePreview";
+            this.tabPagePreview.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePreview.Size = new System.Drawing.Size(1063, 561);
+            this.tabPagePreview.TabIndex = 1;
+            this.tabPagePreview.Text = "Preview";
+            this.tabPagePreview.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 546);
-            this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.tbPath);
-            this.Controls.Add(this.btnSaveButton);
-            this.Controls.Add(this.cbTerminal);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.cbButton);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.cbPortalConn);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.cbPortal);
-            this.Controls.Add(this.btnPortalSave);
-            this.Controls.Add(this.btnSaveProps);
-            this.Controls.Add(this.nuSpriteId);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.cbMoveable);
-            this.Controls.Add(this.cbIsWall);
-            this.Controls.Add(this.cbIsPlayer);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cbObj);
-            this.Controls.Add(this.btnPreview);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.rtbPreview);
-            this.Controls.Add(this.nuHeight);
-            this.Controls.Add(this.nuWidth);
+            this.ClientSize = new System.Drawing.Size(1096, 889);
+            this.Controls.Add(this.tabMap);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.rtbMap);
             this.Name = "Form1";
             this.Text = "Designer";
             ((System.ComponentModel.ISupportInitialize)(this.nuWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuSpriteId)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.tabMap.ResumeLayout(false);
+            this.tabPageMap.ResumeLayout(false);
+            this.tabPagePreview.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.RichTextBox rtbMap;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.NumericUpDown nuWidth;
         private System.Windows.Forms.NumericUpDown nuHeight;
         private System.Windows.Forms.RichTextBox rtbPreview;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.ComboBox cbObj;
         private System.Windows.Forms.Label label5;
@@ -414,6 +534,17 @@ namespace SarcinaCreator
         private System.Windows.Forms.Button btnSaveButton;
         private System.Windows.Forms.TextBox tbPath;
         private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TabControl tabMap;
+        private System.Windows.Forms.TabPage tabPageMap;
+        private System.Windows.Forms.TabPage tabPagePreview;
     }
 }
 

@@ -178,6 +178,34 @@ namespace SarcinaTest
         }
 
         [TestMethod]
+        public void MovePortalBoxPushPassobjective()
+        {
+            Map map = new Map(4, 4);
+
+            Player p = new Player();
+            map.Grid[1][1].Add(p);
+
+            Box b = new Box();
+            map.Grid[1][2].Add(b);
+
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
+            map.Grid[1][2].Add(x1);
+            map.Grid[3][1].Add(x2);
+
+            Objective o = new Objective();
+            map.Grid[1][3].Add(o);
+
+            map.Display();
+            map.Update(new VectorObject(1, 0));
+            map.Display();
+
+            Assert.AreEqual(map.Grid[3][1].GameObjects[1], p);
+            Assert.AreEqual(map.Grid[1][3].GameObjects[1], b);
+            Assert.AreEqual(true, map.IsWon());
+        }
+
+        [TestMethod]
         public void MovePortalWallOnPortalEntrance()
         {
             Map map = new Map(4, 4);

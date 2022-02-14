@@ -13,7 +13,7 @@ namespace Sarcina.Objects
         public Grass(int spriteId) : base(spriteId)
         {
             IsControlledByPlayer = false;
-            IsWall = false;
+            IsWall = true;
             IsMoveable = false;
         }
 
