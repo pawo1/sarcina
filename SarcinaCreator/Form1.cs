@@ -21,7 +21,7 @@ namespace SarcinaCreator
         Dictionary<string, GameObjectProps> dict = new Dictionary<string, GameObjectProps>();
 
         Map map;
-        Map Map { 
+        private Map Map { 
             set
             {
                 map = value;
@@ -44,26 +44,9 @@ namespace SarcinaCreator
 
             tbPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\map.json";
 
-            ClearDict();
+            ResetDict();
         }
-
-        private void BtnStart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GameObject.UpdateDictionary(dict);
-                string json = Map.GetJson();
-                File.WriteAllText(tbPath.Text, json);
-
-                MessageBox.Show("Zapisano!");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void ClearDict()
+        private void ResetDict()
         {
             dict.Clear();
             GameObject o = new Player();
@@ -176,15 +159,15 @@ namespace SarcinaCreator
             cbTerminal.Items.Add("--- (-1,-1)");
             terminalsStr.Add(new VectorObject(-1, -1));
 
-            if (Map != null)
+            if (map != null)
             {
-                rtbPreview.AppendText(Map.GetDisplay());
+                rtbPreview.AppendText(map.GetDisplay());
 
-                for (int i = 0; i < Map.Height; ++i)
+                for (int i = 0; i < map.Height; ++i)
                 {
-                    for (int j = 0; j < Map.Width; ++j)
+                    for (int j = 0; j < map.Width; ++j)
                     {
-                        Portal p = Map.Grid[i][j].GetPortal();
+                        Portal p = map.Grid[i][j].GetPortal();
                         if (p != null)
                         {
                             portals.Add(p);
@@ -193,7 +176,7 @@ namespace SarcinaCreator
                             cbPortalConn.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Terminal t = Map.Grid[i][j].GetTerminal();
+                        Terminal t = map.Grid[i][j].GetTerminal();
                         if (t != null)
                         {
                             terminals.Add(t);
@@ -201,7 +184,7 @@ namespace SarcinaCreator
                             cbTerminal.Items.Add(String.Format("(x:{0}, y:{1})", j, i));
                         }
 
-                        Sarcina.Objects.Button b = Map.Grid[i][j].GetButton();
+                        Sarcina.Objects.Button b = map.Grid[i][j].GetButton();
                         if (b != null)
                         {
                             buttons.Add(b);
@@ -241,12 +224,6 @@ namespace SarcinaCreator
             cbObj_SelectedIndexChanged(null, null);
         }
 
-        private void BtnPreview_Click(object sender, EventArgs e)
-        {
-            rtbPreview.Clear();
-            Map = GenerateMap();
-        }
-
         private Map GenerateMap()
         {
             Map map = null;
@@ -258,61 +235,69 @@ namespace SarcinaCreator
                 map = new Map(height, width);
 
                 int i = 0;
-                int j = 0;
+                int j = 0, maxj = 0;
 
                 foreach (var line in rtbMap.Lines)
                 {
                     string str = line;
-                    j = 0;
+                    
                     str = str.Trim();
                     str = Regex.Replace(line, @"\s+", " ");
-                    foreach (char c in str)
+                    if (!String.IsNullOrWhiteSpace(str))
                     {
-                        GameObject go;
-
-                        switch (c)
+                        j = 0;
+                        foreach (char c in str)
                         {
-                            case 'P':
-                                go = new Player();
-                                break;
-                            case 'X':
-                                go = new Portal();
-                                break;
-                            case 'N':
-                                go = new NamedBox();
-                                break;
-                            case 'B':
-                                go = new Box();
-                                break;
-                            case 'W':
-                                go = new Wall();
-                                break;
-                            case 'G':
-                                go = new Grass();
-                                break;
-                            case 'O':
-                                go = new Objective();
-                                break;
-                            case 'T':
-                                go = new Terminal();
-                                break;
-                            case '_':
-                                go = new Sarcina.Objects.Button();
-                                break;
+                            GameObject go;
 
-                            case ' ':
-                                j++;
-                                continue;
-                            default:
-                                go = null;
-                                break;
+                            switch (c)
+                            {
+                                case 'P':
+                                    go = new Player();
+                                    break;
+                                case 'X':
+                                    go = new Portal();
+                                    break;
+                                case 'N':
+                                    go = new NamedBox();
+                                    break;
+                                case 'B':
+                                    go = new Box();
+                                    break;
+                                case 'W':
+                                    go = new Wall();
+                                    break;
+                                case 'G':
+                                    go = new Grass();
+                                    break;
+                                case 'O':
+                                    go = new Objective();
+                                    break;
+                                case 'T':
+                                    go = new Terminal();
+                                    break;
+                                case '_':
+                                    go = new Sarcina.Objects.Button();
+                                    break;
+
+                                case ' ':
+                                    ++j;
+                                    continue;
+                                default:
+                                    go = null;
+                                    break;
+                            }
+                            if (go != null)
+                                map.Grid[i][j].Add(go);
                         }
-                        if (go != null)
-                            map.Grid[i][j].Add(go);
+                        if (!Regex.IsMatch(str, @"\s$")) ++j;
+                        if (j > maxj) maxj = j;
+                        i++;
                     }
-                    i++;
                 }
 
+                nuHeight.Value = i;
+                nuWidth.Value = maxj;
                 GameObject.UpdateDictionary(CopyDict(dict));
             }
             catch (Exception e)
@@ -323,6 +308,57 @@ namespace SarcinaCreator
             return map;
         }
 
+        private void SetMapFromJson(string json)
+        {
+            Map = null;
+            Map = Map.GetFromJson(json);
+            nuHeight.Value = map.Height;
+            nuWidth.Value = map.Width;
+
+            rtbPreview.Text = rtbMap.Text = Map.GetDisplay();
+
+            dict.Clear();
+            dict = CopyDict(GameObject.GetDictionary());
+
+            OnMapChanged();
+
+            cbObj.SelectedIndex = 0;
+        }
+
+        private Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
+        {
+            Dictionary<string, GameObjectProps> copy = new Dictionary<string, GameObjectProps>();
+            copy = original.ToDictionary(entry => entry.Key, entry => (GameObjectProps)entry.Value.Clone()); // deep copy
+            return copy;
+        }
+
+        /// ================   EVENTS
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                rtbPreview.Clear();
+                Map = GenerateMap();
+                GameObject.UpdateDictionary(dict);
+                string json = Map.GetJson();
+                File.WriteAllText(tbPath.Text, json);
+
+                MessageBox.Show("Zapisano!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        private void OnMapChanged(object sender, EventArgs e)
+        {
+            rtbPreview.Clear();
+            Map = GenerateMap();
+            rtbMap.Text = Map.GetDisplay();
+        }
+       
         private void cbObj_SelectedIndexChanged(object sender, EventArgs e)
         {
             string key = (string)cbObj.SelectedItem;
@@ -334,7 +370,7 @@ namespace SarcinaCreator
 
         }
 
-        private void btnSaveProps_Click(object sender, EventArgs e)
+        private void OnObjectPropertyChanged(object sender, EventArgs e)
         {
             string key = (string)cbObj.SelectedItem;
             dict[key].IsControlledByPlayer = cbIsPlayer.Checked;
@@ -359,7 +395,7 @@ namespace SarcinaCreator
 
         }
 
-        private void btnSavePortal_Click(object sender, EventArgs e)
+        private void OnConnectedPortalChanged(object sender, EventArgs e)
         {
             try
             {
@@ -389,7 +425,7 @@ namespace SarcinaCreator
             cbTerminal.SelectedIndex = connix;
         }
 
-        private void btnSaveButton_Click(object sender, EventArgs e)
+        private void OnConnectedTerminalChanged(object sender, EventArgs e)
         {
             try
             {
@@ -433,26 +469,11 @@ namespace SarcinaCreator
                     tbPath.Text = ofd.FileName;
 
                     string json = File.ReadAllText(ofd.FileName);
-                    Map = Map.GetFromJson(json);
-                    dict.Clear();
-                    dict = CopyDict(GameObject.GetDictionary());
-                    nuHeight.Value = map.Height;
-                    nuWidth.Value = map.Width;
-                    rtbMap.Clear();
-                    rtbMap.Text = Map.GetDisplay();
-
-                    cbObj.SelectedIndex = 0;
+                    SetMapFromJson(json);
                 }
             }
         }
-
-        private Dictionary<string, GameObjectProps> CopyDict(Dictionary<string, GameObjectProps> original)
-        {
-            Dictionary<string, GameObjectProps> copy = new Dictionary<string, GameObjectProps>();
-            copy = original.ToDictionary(entry => entry.Key, entry => (GameObjectProps)entry.Value.Clone()); // deep copy
-            return copy;
-        }
-
+       
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -466,6 +487,13 @@ namespace SarcinaCreator
                     "Terminal  \t\tT\n" +
                     "Button    \t\t_\n"
                 );
+        }
+
+        private void rtbMap_TextChanged(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Debug.WriteLine(sender.ToString());
+            rtbPreview.Clear();
+            Map = GenerateMap();
         }
     }
 }

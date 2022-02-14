@@ -44,17 +44,14 @@ namespace SarcinaCreator
             this.cbMoveable = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.nuSpriteId = new System.Windows.Forms.NumericUpDown();
-            this.btnSaveProps = new System.Windows.Forms.Button();
             this.cbPortal = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbPortalConn = new System.Windows.Forms.ComboBox();
-            this.btnPortalSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.cbButton = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cbTerminal = new System.Windows.Forms.ComboBox();
-            this.btnSaveButton = new System.Windows.Forms.Button();
             this.tbPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -83,11 +80,15 @@ namespace SarcinaCreator
             // 
             // rtbMap
             // 
+            this.rtbMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbMap.Location = new System.Drawing.Point(6, 6);
             this.rtbMap.Name = "rtbMap";
-            this.rtbMap.Size = new System.Drawing.Size(1051, 549);
+            this.rtbMap.Size = new System.Drawing.Size(1336, 549);
             this.rtbMap.TabIndex = 0;
             this.rtbMap.Text = "";
+            this.rtbMap.TextChanged += new System.EventHandler(this.rtbMap_TextChanged);
             // 
             // label2
             // 
@@ -109,6 +110,7 @@ namespace SarcinaCreator
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnStart.Location = new System.Drawing.Point(826, 787);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(124, 90);
@@ -133,10 +135,12 @@ namespace SarcinaCreator
             // 
             // rtbPreview
             // 
+            this.rtbPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtbPreview.Enabled = false;
             this.rtbPreview.Location = new System.Drawing.Point(3, 6);
             this.rtbPreview.Name = "rtbPreview";
-            this.rtbPreview.Size = new System.Drawing.Size(1054, 549);
+            this.rtbPreview.Size = new System.Drawing.Size(1339, 549);
             this.rtbPreview.TabIndex = 9;
             this.rtbPreview.Text = "";
             // 
@@ -148,7 +152,7 @@ namespace SarcinaCreator
             this.btnPreview.TabIndex = 11;
             this.btnPreview.Text = "Preview";
             this.btnPreview.UseVisualStyleBackColor = true;
-            this.btnPreview.Click += new System.EventHandler(this.BtnPreview_Click);
+            this.btnPreview.Click += new System.EventHandler(this.OnMapChanged);
             // 
             // cbObj
             // 
@@ -177,6 +181,7 @@ namespace SarcinaCreator
             this.cbIsPlayer.TabIndex = 14;
             this.cbIsPlayer.Text = "isPlayer";
             this.cbIsPlayer.UseVisualStyleBackColor = true;
+            this.cbIsPlayer.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // cbIsWall
             // 
@@ -187,6 +192,7 @@ namespace SarcinaCreator
             this.cbIsWall.TabIndex = 15;
             this.cbIsWall.Text = "isWall";
             this.cbIsWall.UseVisualStyleBackColor = true;
+            this.cbIsWall.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // cbMoveable
             // 
@@ -197,6 +203,7 @@ namespace SarcinaCreator
             this.cbMoveable.TabIndex = 16;
             this.cbMoveable.Text = "isMoveable";
             this.cbMoveable.UseVisualStyleBackColor = true;
+            this.cbMoveable.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // label6
             // 
@@ -218,16 +225,7 @@ namespace SarcinaCreator
             this.nuSpriteId.Name = "nuSpriteId";
             this.nuSpriteId.Size = new System.Drawing.Size(150, 27);
             this.nuSpriteId.TabIndex = 18;
-            // 
-            // btnSaveProps
-            // 
-            this.btnSaveProps.Location = new System.Drawing.Point(100, 112);
-            this.btnSaveProps.Name = "btnSaveProps";
-            this.btnSaveProps.Size = new System.Drawing.Size(94, 29);
-            this.btnSaveProps.TabIndex = 19;
-            this.btnSaveProps.Text = "Save";
-            this.btnSaveProps.UseVisualStyleBackColor = true;
-            this.btnSaveProps.Click += new System.EventHandler(this.btnSaveProps_Click);
+            this.nuSpriteId.ValueChanged += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // cbPortal
             // 
@@ -263,16 +261,7 @@ namespace SarcinaCreator
             this.cbPortalConn.Name = "cbPortalConn";
             this.cbPortalConn.Size = new System.Drawing.Size(151, 28);
             this.cbPortalConn.TabIndex = 23;
-            // 
-            // btnPortalSave
-            // 
-            this.btnPortalSave.Location = new System.Drawing.Point(120, 108);
-            this.btnPortalSave.Name = "btnPortalSave";
-            this.btnPortalSave.Size = new System.Drawing.Size(94, 29);
-            this.btnPortalSave.TabIndex = 19;
-            this.btnPortalSave.Text = "Save";
-            this.btnPortalSave.UseVisualStyleBackColor = true;
-            this.btnPortalSave.Click += new System.EventHandler(this.btnSavePortal_Click);
+            this.cbPortalConn.SelectedIndexChanged += new System.EventHandler(this.OnConnectedPortalChanged);
             // 
             // label9
             // 
@@ -308,16 +297,7 @@ namespace SarcinaCreator
             this.cbTerminal.Name = "cbTerminal";
             this.cbTerminal.Size = new System.Drawing.Size(151, 28);
             this.cbTerminal.TabIndex = 27;
-            // 
-            // btnSaveButton
-            // 
-            this.btnSaveButton.Location = new System.Drawing.Point(122, 108);
-            this.btnSaveButton.Name = "btnSaveButton";
-            this.btnSaveButton.Size = new System.Drawing.Size(94, 29);
-            this.btnSaveButton.TabIndex = 28;
-            this.btnSaveButton.Text = "Save";
-            this.btnSaveButton.UseVisualStyleBackColor = true;
-            this.btnSaveButton.Click += new System.EventHandler(this.btnSaveButton_Click);
+            this.cbTerminal.SelectedIndexChanged += new System.EventHandler(this.OnConnectedTerminalChanged);
             // 
             // tbPath
             // 
@@ -348,6 +328,7 @@ namespace SarcinaCreator
             // 
             // btnHelp
             // 
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHelp.Location = new System.Drawing.Point(989, 848);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(94, 29);
@@ -358,7 +339,7 @@ namespace SarcinaCreator
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnPortalSave);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.cbPortalConn);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cbPortal);
@@ -372,11 +353,11 @@ namespace SarcinaCreator
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.cbButton);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.cbTerminal);
-            this.groupBox2.Controls.Add(this.btnSaveButton);
             this.groupBox2.Location = new System.Drawing.Point(820, 616);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(263, 154);
@@ -386,6 +367,7 @@ namespace SarcinaCreator
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.cbObj);
             this.groupBox3.Controls.Add(this.cbIsPlayer);
@@ -393,7 +375,6 @@ namespace SarcinaCreator
             this.groupBox3.Controls.Add(this.nuSpriteId);
             this.groupBox3.Controls.Add(this.cbIsWall);
             this.groupBox3.Controls.Add(this.cbMoveable);
-            this.groupBox3.Controls.Add(this.btnSaveProps);
             this.groupBox3.Location = new System.Drawing.Point(282, 616);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(264, 154);
@@ -403,6 +384,7 @@ namespace SarcinaCreator
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.nuWidth);
             this.groupBox4.Controls.Add(this.label3);
@@ -426,6 +408,7 @@ namespace SarcinaCreator
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.tbPath);
             this.groupBox5.Controls.Add(this.btnLoad);
@@ -439,12 +422,15 @@ namespace SarcinaCreator
             // 
             // tabMap
             // 
+            this.tabMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabMap.Controls.Add(this.tabPageMap);
             this.tabMap.Controls.Add(this.tabPagePreview);
             this.tabMap.Location = new System.Drawing.Point(12, 12);
             this.tabMap.Name = "tabMap";
             this.tabMap.SelectedIndex = 0;
-            this.tabMap.Size = new System.Drawing.Size(1071, 594);
+            this.tabMap.Size = new System.Drawing.Size(1356, 594);
             this.tabMap.TabIndex = 40;
             // 
             // tabPageMap
@@ -453,7 +439,7 @@ namespace SarcinaCreator
             this.tabPageMap.Location = new System.Drawing.Point(4, 29);
             this.tabPageMap.Name = "tabPageMap";
             this.tabPageMap.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMap.Size = new System.Drawing.Size(1063, 561);
+            this.tabPageMap.Size = new System.Drawing.Size(1348, 561);
             this.tabPageMap.TabIndex = 0;
             this.tabPageMap.Text = "Map";
             this.tabPageMap.UseVisualStyleBackColor = true;
@@ -464,7 +450,7 @@ namespace SarcinaCreator
             this.tabPagePreview.Location = new System.Drawing.Point(4, 29);
             this.tabPagePreview.Name = "tabPagePreview";
             this.tabPagePreview.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePreview.Size = new System.Drawing.Size(1063, 561);
+            this.tabPagePreview.Size = new System.Drawing.Size(1348, 561);
             this.tabPagePreview.TabIndex = 1;
             this.tabPagePreview.Text = "Preview";
             this.tabPagePreview.UseVisualStyleBackColor = true;
@@ -473,7 +459,7 @@ namespace SarcinaCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 889);
+            this.ClientSize = new System.Drawing.Size(1381, 889);
             this.Controls.Add(this.tabMap);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -521,17 +507,14 @@ namespace SarcinaCreator
         private System.Windows.Forms.CheckBox cbMoveable;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nuSpriteId;
-        private System.Windows.Forms.Button btnSaveProps;
         private System.Windows.Forms.ComboBox cbPortal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbPortalConn;
-        private System.Windows.Forms.Button btnPortalSave;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbButton;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbTerminal;
-        private System.Windows.Forms.Button btnSaveButton;
         private System.Windows.Forms.TextBox tbPath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnLoad;
