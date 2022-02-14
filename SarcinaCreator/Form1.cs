@@ -339,7 +339,7 @@ namespace SarcinaCreator
             try
             {
                 rtbPreview.Clear();
-                Map = GenerateMap();
+                //Map = GenerateMap(); // removed since forgets all connections
                 GameObject.UpdateDictionary(dict);
                 string json = Map.GetJson();
                 File.WriteAllText(tbPath.Text, json);
