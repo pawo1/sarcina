@@ -188,8 +188,8 @@ namespace SarcinaTest
             Box b = new Box();
             map.Grid[1][2].Add(b);
 
-            Portal x1 = new Portal(new Vector2(1, 3));
-            Portal x2 = new Portal(new Vector2(2, 1));
+            Portal x1 = new Portal(new VectorObject(1, 3));
+            Portal x2 = new Portal(new VectorObject(2, 1));
             map.Grid[1][2].Add(x1);
             map.Grid[3][1].Add(x2);
 
@@ -197,7 +197,7 @@ namespace SarcinaTest
             map.Grid[1][3].Add(o);
 
             map.Display();
-            map.Update(new Vector2(1, 0));
+            map.Update(new VectorObject(1, 0));
             map.Display();
 
             Assert.AreEqual(map.Grid[3][1].GameObjects[1], p);
