@@ -96,7 +96,7 @@ namespace Sarcina.Objects
             }
         }
 
-        public GameObject(int spriteId = -1)
+        public GameObject(int spriteId = 0)
         {
             SpriteId = spriteId;
         }

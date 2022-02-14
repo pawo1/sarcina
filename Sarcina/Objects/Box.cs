@@ -8,7 +8,7 @@ namespace Sarcina.Objects
 {
     public class Box : GameObject, ICloneable
     {
-        public Box() : this(-1) { }
+        public Box() : this(7) { }
 
         public Box(int spriteId) : base(spriteId)
         {

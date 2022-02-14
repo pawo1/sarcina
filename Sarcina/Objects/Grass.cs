@@ -8,7 +8,7 @@ namespace Sarcina.Objects
 {
     public class Grass : GameObject
     {
-        public Grass() : this(-1) { }
+        public Grass() : this(3) { }
 
         public Grass(int spriteId) : base(spriteId)
         {

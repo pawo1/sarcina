@@ -242,11 +242,11 @@ namespace Sarcina.Managers
             DrawBackground();
             DrawTitle();
 
-            text.DisplayedString = "Couldn't load save file";
-            text.Position = new Vector2f(9 * 20, 6 * 40);
+            text.DisplayedString = "Couldn't load your save";
+            text.Position = new Vector2f(8 * 20 - 5, 4 * 40);
             window.Draw(text);
-            text.DisplayedString = "Start new level";
-            text.Position = new Vector2f(9 * 20, 7 * 40);
+            text.DisplayedString = "Please start new level";
+            text.Position = new Vector2f(8 * 20 - 5, 5 * 40);
             window.Draw(text);
 
             text.FillColor = new Color(0, 149, 179);
@@ -331,6 +331,7 @@ namespace Sarcina.Managers
                 "button_on.png",
                 "box_invalid.png",
                 "box_valid.png",
+                "box_named.png",
                 "box_sarcina.png",
                 "portal_a.png",
                 "portal_b.png",

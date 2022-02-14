@@ -172,8 +172,8 @@ namespace Sarcina.Managers
                 window.Display();
             }
             SavePlayerInfo();
-            if(map is not null)
-                SaveMap("continue.json");
+           // if(map is not null)
+           //     SaveMap("continue.json");
         }
 
         public void OnKeyPressedMenu(object sender, KeyEventArgs e)
@@ -307,7 +307,7 @@ namespace Sarcina.Managers
                 case 3: // exit
                     State = gameState.MainMenu;
                     RestoreMap();
-                    playerInfo.ResetLevel();
+                    LoadPlayerInfo();
                     menuOption = 0;
                     maxOption = 4;
                     break;

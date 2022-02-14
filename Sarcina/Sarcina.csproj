@@ -31,6 +31,9 @@
     <None Update="resources\box_invalid.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\box_named.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\box_sarcina.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

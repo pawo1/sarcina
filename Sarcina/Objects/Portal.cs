@@ -11,9 +11,9 @@ namespace Sarcina.Objects
     {
         public VectorObject ConnectedPortal { get; set; } = new VectorObject(-1, -1);
 
-        public Portal() : this(-1) { }
+        public Portal() : this(12) { }
 
-        public Portal(VectorObject connectedPortal) : this(-1)
+        public Portal(VectorObject connectedPortal) : this(12)
         {
             ConnectedPortal = connectedPortal;
         }

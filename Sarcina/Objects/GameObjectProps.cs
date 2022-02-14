@@ -8,7 +8,7 @@ namespace Sarcina.Objects
 {
     public class GameObjectProps : ICloneable
     {
-        public int SpriteId { set; get; } = -1;
+        public int SpriteId { set; get; } = 0;
 
         public bool IsControlledByPlayer { set; get; } = false;
 

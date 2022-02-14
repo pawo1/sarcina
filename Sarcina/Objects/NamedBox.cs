@@ -8,7 +8,7 @@ namespace Sarcina.Objects
 {
     public class NamedBox : Box
     {
-        public NamedBox() : this(-1) { }
+        public NamedBox() : this(9) { }
 
         public NamedBox(int spriteId) : base(spriteId)
         { }
