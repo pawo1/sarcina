@@ -10,9 +10,9 @@ namespace Sarcina.Objects
     {
         public VectorObject ConnectedTerminal { get; set; } = new VectorObject(-1, -1);
 
-        public Button() : this(5) { }
+        public Button() : this(6) { }
 
-        public Button(VectorObject connectedTerminal) : this(5) 
+        public Button(VectorObject connectedTerminal) : this(6) 
         {
             ConnectedTerminal = connectedTerminal;
         }

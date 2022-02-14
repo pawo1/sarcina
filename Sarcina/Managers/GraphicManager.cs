@@ -44,27 +44,28 @@ namespace Sarcina.Managers
         enum textures
         {
             background = 0,
-            wallA = 1,
-            wallB = 2,
-            grass = 3,
-            objective = 4,
-            buttonOff = 5,
-            buttonOn = 6,
-            portalA = 7,
-            portalB = 8,
-            portalC = 9,
-            portalD = 10,
-            portalE = 11,
-            portalF = 12,
-            terminal = 13,
-            boxInvalid = 14,
-            boxValid = 15,
-            boxNamed = 16,
-            boxSarcina = 17,
-            playerDown = 18,
-            playerLeft = 19,
-            playerRight = 20,
-            playerUp = 21
+            background2 = 1,
+            wallA = 2,
+            wallB = 3,
+            grass = 4,
+            objective = 5,
+            buttonOff = 6,
+            buttonOn = 7,
+            portalA = 8,
+            portalB = 9,
+            portalC = 10,
+            portalD = 11,
+            portalE = 12,
+            portalF = 13,
+            terminal = 14,
+            boxInvalid = 15,
+            boxValid = 16,
+            boxNamed = 17,
+            boxSarcina = 18,
+            playerDown = 19,
+            playerLeft = 20,
+            playerRight = 21,
+            playerUp = 22
         }
 
         public void Demo()
@@ -96,25 +97,76 @@ namespace Sarcina.Managers
             {
                 for (int j = 0; j < 12; ++j)
                 {
-                    sprites[2].Position = new Vector2f(i * 40, j * 40);
-                    window.Draw(sprites[2]);
+                    sprites[(int)textures.wallB].Position = new Vector2f(i * 40, j * 40);
+                    window.Draw(sprites[(int)textures.wallB]);
                 }
             }
         }
 
         public void DrawHint(int level)
         {
-            switch(level)
+            text.FillColor = new Color(47, 79, 79);
+            switch (level)
             {
                 case 1:
-                    text.DisplayedString = "Move All boxes to marked positions";
+                    text.DisplayedString = "Welcome";
+                    text.Position = new Vector2f(20 * 20, 3 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "in tutorial";
+                    text.Position = new Vector2f(20 * 20, 4 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "Move All boxes";
+                    text.Position = new Vector2f(12 * 20, 7 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "to marked positions";
+                    text.Position = new Vector2f(12 * 20, 8 * 40);
+                    window.Draw(text);
                     break;
                 case 2:
-                    text.DisplayedString = "There is ";
+                    text.DisplayedString = "WOAH Portals?!";
+                    text.Position = new Vector2f(15 * 20, 3 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "Let's check what";
+                    text.Position = new Vector2f(15 * 20, 4 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "happens with box";
+                    text.Position = new Vector2f(15 * 20, 5 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "inside it";
+                    text.Position = new Vector2f(15 * 20, 6 * 40);
+                    window.Draw(text);
                     break;
                 case 3:
+                    text.DisplayedString = "This grass looks";
+                    text.Position = new Vector2f(15 * 20, 0 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "solid. Maybe this";
+                    text.Position = new Vector2f(15 * 20, 1 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "funny terminal will";
+                    text.Position = new Vector2f(15 * 20, 2 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "change it?";
+                    text.Position = new Vector2f(15 * 20, 3 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "G on Box just like..";
+                    text.Position = new Vector2f(15 * 20, 4 * 40);
+                    window.Draw(text);
+                   /* text.DisplayedString = "(G)rass...";
+                    text.Position = new Vector2f(15 * 20, 5 * 40);
+                    window.Draw(text); */
+                    text.DisplayedString = "Button must be";
+                    text.Position = new Vector2f(15 * 20, 7 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "connected to the";
+                    text.Position = new Vector2f(15 * 20, 8 * 40);
+                    window.Draw(text);
+                    text.DisplayedString = "terminal";
+                    text.Position = new Vector2f(15 * 20, 9 * 40);
+                    window.Draw(text);
                     break;
             }
+            text.FillColor = Color.Black;
         }
 
         public void DrawMainMenu(int active)
@@ -266,6 +318,28 @@ namespace Sarcina.Managers
             text.FillColor = Color.Black;
         }
 
+        public void DrawCompleteTutorial()
+        {
+            DrawBackground();
+            DrawTitle();
+
+            text.DisplayedString = "Congratulation!";
+            text.Position = new Vector2f(1 * 20, 4 * 40);
+            window.Draw(text);
+            text.DisplayedString = "Now try real levels in main menu";
+            text.Position = new Vector2f(1 * 20, 5 * 40);
+            window.Draw(text);
+
+
+            text.FillColor = new Color(0, 149, 179);
+
+            text.DisplayedString = "Back to menu";
+            text.Position = new Vector2f(720 / 2 - 137, 10 * 40);
+            window.Draw(text);
+            text.FillColor = Color.Black;
+        }
+
+
 
         public void DrawNoSaveInfo()
         {
@@ -289,7 +363,7 @@ namespace Sarcina.Managers
 
         public void DrawPauseMenu(int active)
         {
-            List<string> gui = new List<string>() { "Resume", "Restart", "Save and Exit", "Exit" };
+            List<string> gui = new List<string>() { "Resume", "Restart", "Save and Menu", "Back to Menu" };
             
 
             DrawBackground();
@@ -346,7 +420,6 @@ namespace Sarcina.Managers
 
         public void DrawScore(int score, int level, bool cheater)
         {
-            level = 10;
 
             text.DisplayedString = "Moves: " + score;
             text.Position = new Vector2f(5, 11 * 40 - 15);
@@ -372,6 +445,7 @@ namespace Sarcina.Managers
             List<string> resources = new List<string>()
             {
                 "background.png",
+                "background2.png",
                 "wall_a.png",
                 "wall_b.png",
                 "grass.png",

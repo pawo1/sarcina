@@ -53,6 +53,7 @@ namespace Sarcina.Managers
             LoadTutorial,
             Tutorial,
             NextTutorial,
+            RestartTutorial,
             CompleteTutorial,
             LoadLevel,
             Level,
@@ -77,10 +78,10 @@ namespace Sarcina.Managers
 
         enum PlayerTexture
         {
-            playerDown = 18,
-            playerLeft = 19,
-            playerRight = 20,
-            playerUp = 21
+            playerDown = 19,
+            playerLeft = 20,
+            playerRight = 21,
+            playerUp = 22
         }
 
         GameState State;
@@ -168,6 +169,10 @@ namespace Sarcina.Managers
                         graphicManager.DrawNoSaveInfo();
                         break;
 
+                    case GameState.CompleteTutorial:
+                        graphicManager.DrawCompleteTutorial();
+                        break;
+
                     case GameState.LoadTutorial:
                         if( tutorialInfo.CurrentLevel > tutorialInfo.TotalLevels)
                         {
@@ -221,6 +226,13 @@ namespace Sarcina.Managers
                         RestoreMap();
                         playerInfo.ResetLevel();
                         State = GameState.Level;
+                        cheater = false;
+                        break;
+
+                    case GameState.RestartTutorial:
+                        RestoreMap();
+                        tutorialInfo.ResetLevel();
+                        State = GameState.Tutorial;
                         cheater = false;
                         break;
 
@@ -290,6 +302,7 @@ namespace Sarcina.Managers
                             case GameState.Demo:
                             case GameState.CompleteTutorial:
                                 State = GameState.MainMenu;
+                                tutorialInfo = new PlayerInfo(true);
                                 break;
                             case GameState.Progress:
                                 OnConfirmProgress();
@@ -343,7 +356,10 @@ namespace Sarcina.Managers
                 switch (e.Code)
                 {
                     case Keyboard.Key.Escape:
-                        State = GameState.Pause;
+                        if (State == GameState.Tutorial)
+                            State = GameState.MainMenu;
+                        else
+                            State = GameState.Pause;
                         menuOption = 0;
                         ConnectMenu();
                         break;
@@ -367,7 +383,10 @@ namespace Sarcina.Managers
                         moves = map.Update(vector);
                         if (moves > 0)
                         {
-                            playerInfo.AddMove(moves);
+                            if (State == GameState.Tutorial)
+                                tutorialInfo.AddMove(moves);
+                            else
+                                playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
                                 if (State == GameState.Tutorial)
@@ -388,7 +407,10 @@ namespace Sarcina.Managers
                         moves = map.Update(vector);
                         if (moves > 0)
                         {
-                            playerInfo.AddMove(moves);
+                            if (State == GameState.Tutorial)
+                                tutorialInfo.AddMove(moves);
+                            else
+                                playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
                                 if (State == GameState.Tutorial)
@@ -408,7 +430,10 @@ namespace Sarcina.Managers
                         moves = map.Update(vector);
                         if (moves > 0)
                         {
-                            playerInfo.AddMove(moves);
+                            if (State == GameState.Tutorial)
+                                tutorialInfo.AddMove(moves);
+                            else
+                                playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
                                 if (State == GameState.Tutorial)
@@ -429,8 +454,11 @@ namespace Sarcina.Managers
                         moves = map.Update(vector);
                         if (moves > 0)
                         {
-                            playerInfo.AddMove(moves);
-                            if(map.IsWon())
+                            if (State == GameState.Tutorial)
+                                tutorialInfo.AddMove(moves);
+                            else
+                                playerInfo.AddMove(moves);
+                            if (map.IsWon())
                             {
                                 if (State == GameState.Tutorial)
                                     State = GameState.NextTutorial;
@@ -446,7 +474,10 @@ namespace Sarcina.Managers
                     case Keyboard.Key.R:
                         secretCodes.Clear();
                         secretClock.Restart();
-                        State = GameState.Restart;
+                        if (State == GameState.Tutorial)
+                            State = GameState.RestartTutorial;
+                        else
+                            State = GameState.Restart;
                         break;
 
 
@@ -587,7 +618,7 @@ namespace Sarcina.Managers
             Random rnd = new Random();
             if(rnd.Next(0, 2) == 1)
             {
-                box.SpriteId = 10; // secret texture
+                box.SpriteId = 18; // secret texture
             }
         }
 

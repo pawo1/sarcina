@@ -8,7 +8,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -22,7 +22,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -36,7 +36,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -50,7 +50,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -64,7 +64,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -78,7 +78,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -92,7 +92,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -106,7 +106,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -120,7 +120,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -134,7 +134,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -148,7 +148,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -162,7 +162,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -176,7 +176,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -190,7 +190,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -204,7 +204,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -218,7 +218,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -232,7 +232,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -246,7 +246,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -262,7 +262,45 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -276,7 +314,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -290,7 +328,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -304,7 +342,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -318,7 +356,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -332,7 +370,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -346,7 +384,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -360,7 +398,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -374,7 +412,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -388,7 +426,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -402,105 +440,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -516,7 +456,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -530,7 +470,7 @@
           {
             "TypeDiscriminator": 5,
             "TypeValue": {
-              "SpriteId": 18,
+              "SpriteId": 19,
               "IsControlledByPlayer": true,
               "IsWall": false,
               "IsMoveable": false
@@ -556,11 +496,15 @@
         "Count": 0
       },
       {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
         "GameObjects": [
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -574,7 +518,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -588,7 +532,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -602,7 +546,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -616,7 +560,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -630,7 +574,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -644,7 +588,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -658,7 +602,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -672,7 +616,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -686,7 +630,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -700,21 +644,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -730,7 +660,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -752,8 +682,18 @@
         "Count": 0
       },
       {
-        "GameObjects": [],
-        "Count": 0
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 3,
+            "TypeValue": {
+              "SpriteId": 17,
+              "IsControlledByPlayer": false,
+              "IsWall": false,
+              "IsMoveable": true
+            }
+          }
+        ],
+        "Count": 1
       },
       {
         "GameObjects": [
@@ -762,7 +702,7 @@
             "TypeValue": {
               "SavedBoxes": [],
               "Count": 0,
-              "SpriteId": 17,
+              "SpriteId": 14,
               "IsControlledByPlayer": false,
               "IsWall": false,
               "IsMoveable": false
@@ -772,11 +712,15 @@
         "Count": 1
       },
       {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
         "GameObjects": [
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -790,7 +734,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -804,7 +748,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -818,7 +762,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -832,7 +776,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -846,7 +790,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -860,7 +804,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -874,7 +818,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -888,7 +832,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -902,7 +846,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -916,21 +860,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -946,7 +876,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -964,7 +894,7 @@
                 "X": 5,
                 "Y": 3
               },
-              "SpriteId": 5,
+              "SpriteId": 6,
               "IsControlledByPlayer": false,
               "IsWall": false,
               "IsMoveable": false
@@ -1000,235 +930,13 @@
         "Count": 0
       },
       {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
+        "GameObjects": [],
+        "Count": 0
       },
       {
         "GameObjects": [
           {
             "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      }
-    ],
-    [
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 2,
-            "TypeValue": {
-              "SpriteId": 3,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 2,
             "TypeValue": {
               "SpriteId": 3,
               "IsControlledByPlayer": false,
@@ -1244,232 +952,6 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      }
-    ],
-    [
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 2,
-            "TypeValue": {
               "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
@@ -1482,7 +964,7 @@
       {
         "GameObjects": [
           {
-            "TypeDiscriminator": 2,
+            "TypeDiscriminator": 7,
             "TypeValue": {
               "SpriteId": 3,
               "IsControlledByPlayer": false,
@@ -1498,7 +980,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1512,7 +994,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1526,7 +1008,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1540,7 +1022,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1554,7 +1036,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1568,7 +1050,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1582,7 +1064,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1596,77 +1078,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1682,37 +1094,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1726,7 +1108,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1740,7 +1122,35 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 2,
+            "TypeValue": {
+              "SpriteId": 4,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 2,
+            "TypeValue": {
+              "SpriteId": 4,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1754,7 +1164,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1768,7 +1178,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1782,7 +1192,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1796,7 +1206,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1810,7 +1220,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1824,7 +1234,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1838,7 +1248,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1852,7 +1262,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1866,7 +1276,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1876,8 +1286,60 @@
         "Count": 1
       },
       {
-        "GameObjects": [],
-        "Count": 0
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
       }
     ],
     [
@@ -1886,37 +1348,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [],
-        "Count": 0
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1930,7 +1362,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1944,7 +1376,35 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 2,
+            "TypeValue": {
+              "SpriteId": 4,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 2,
+            "TypeValue": {
+              "SpriteId": 4,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1958,7 +1418,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1972,7 +1432,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -1986,7 +1446,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2000,7 +1460,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2014,7 +1474,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2028,7 +1488,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2042,7 +1502,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2056,7 +1516,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2070,7 +1530,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2080,8 +1540,60 @@
         "Count": 1
       },
       {
-        "GameObjects": [],
-        "Count": 0
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
       }
     ],
     [
@@ -2090,7 +1602,395 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      }
+    ],
+    [
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      },
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
+              "IsControlledByPlayer": false,
+              "IsWall": true,
+              "IsMoveable": false
+            }
+          }
+        ],
+        "Count": 1
+      }
+    ],
+    [
+      {
+        "GameObjects": [
+          {
+            "TypeDiscriminator": 7,
+            "TypeValue": {
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2108,7 +2008,7 @@
           {
             "TypeDiscriminator": 4,
             "TypeValue": {
-              "SpriteId": 4,
+              "SpriteId": 5,
               "IsControlledByPlayer": false,
               "IsWall": false,
               "IsMoveable": false
@@ -2130,11 +2030,15 @@
         "Count": 0
       },
       {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
         "GameObjects": [
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2148,7 +2052,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2162,7 +2066,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2176,7 +2080,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2190,7 +2094,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2204,7 +2108,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2218,7 +2122,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2232,7 +2136,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2246,7 +2150,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2260,7 +2164,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2274,21 +2178,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2304,7 +2194,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2334,11 +2224,15 @@
         "Count": 0
       },
       {
+        "GameObjects": [],
+        "Count": 0
+      },
+      {
         "GameObjects": [
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2352,7 +2246,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2366,7 +2260,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2380,7 +2274,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2394,7 +2288,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2408,7 +2302,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2422,7 +2316,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2436,7 +2330,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2450,7 +2344,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2464,7 +2358,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2478,21 +2372,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
-              "IsControlledByPlayer": false,
-              "IsWall": true,
-              "IsMoveable": false
-            }
-          }
-        ],
-        "Count": 1
-      },
-      {
-        "GameObjects": [
-          {
-            "TypeDiscriminator": 7,
-            "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2508,7 +2388,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2522,7 +2402,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2536,7 +2416,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2550,7 +2430,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2564,7 +2444,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2578,7 +2458,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2592,7 +2472,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2606,7 +2486,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2620,7 +2500,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2634,7 +2514,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2648,7 +2528,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2662,7 +2542,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2676,7 +2556,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2690,7 +2570,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2704,7 +2584,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2718,7 +2598,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2732,7 +2612,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false
@@ -2746,7 +2626,7 @@
           {
             "TypeDiscriminator": 7,
             "TypeValue": {
-              "SpriteId": 2,
+              "SpriteId": 3,
               "IsControlledByPlayer": false,
               "IsWall": true,
               "IsMoveable": false

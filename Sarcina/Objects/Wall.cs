@@ -8,7 +8,7 @@ namespace Sarcina.Objects
 {
     public class Wall : GameObject 
     {
-        public Wall() : this(2) { }
+        public Wall() : this(3) { }
 
         public Wall(int spriteId) : base(spriteId)
         {

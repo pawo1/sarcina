@@ -16,7 +16,7 @@ namespace Sarcina.Objects
         [JsonInclude]
         public int Count { get => SavedBoxes.Count; }
 
-        public Terminal() : this(13) { }
+        public Terminal() : this(14) { }
 
         public Terminal(int spriteId) : base(spriteId)
         {
