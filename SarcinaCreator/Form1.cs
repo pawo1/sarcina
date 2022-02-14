@@ -112,7 +112,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dict.Clear();
             o = new NamedBox();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -122,7 +121,6 @@ namespace SarcinaCreator
                     IsWall = o.IsWall,
                     SpriteId = o.SpriteId
                 });
-            dict.Clear();
             o = new Sarcina.Objects.Button();
             dict.Add(o.GetType().Name,
                 new GameObjectProps()
@@ -279,6 +277,9 @@ namespace SarcinaCreator
                                 break;
                             case 'X':
                                 go = new Portal();
+                                break;
+                            case 'N':
+                                go = new NamedBox();
                                 break;
                             case 'B':
                                 go = new Box();
