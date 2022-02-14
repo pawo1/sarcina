@@ -50,17 +50,17 @@ namespace Sarcina.Managers
             objective = 4,
             buttonOff = 5,
             buttonOn = 6,
-            boxInvalid = 7,
-            boxValid = 8,
-            boxNamed = 9,
-            boxSarcina = 10,
-            portalA = 11,
-            portalB = 12,
-            portalC = 13,
-            portalD = 14,
-            portalE = 15,
-            portalF = 16,
-            terminal = 17,
+            portalA = 7,
+            portalB = 8,
+            portalC = 9,
+            portalD = 10,
+            portalE = 11,
+            portalF = 12,
+            terminal = 13,
+            boxInvalid = 14,
+            boxValid = 15,
+            boxNamed = 16,
+            boxSarcina = 17,
             playerDown = 18,
             playerLeft = 19,
             playerRight = 20,
@@ -102,10 +102,25 @@ namespace Sarcina.Managers
             }
         }
 
+        public void DrawHint(int level)
+        {
+            switch(level)
+            {
+                case 1:
+                    text.DisplayedString = "Move All boxes to marked positions";
+                    break;
+                case 2:
+                    text.DisplayedString = "There is ";
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
         public void DrawMainMenu(int active)
         {
 
-            List<string> gui = new List<string>() { "Play", "Continue", "About", "Progress", "Exit" };
+            List<string> gui = new List<string>() { "Play", "Continue", "Tutorial", "About", "Progress", "Exit" };
             List<string> help = new List<string>() { "ESC - pasue game", "Enter - accept option", "R - restart level", "WSAD, Arrows - move", "Controls:" };
 
             DrawBackground();
@@ -309,7 +324,7 @@ namespace Sarcina.Managers
 
                     if( idList.Contains((int)textures.objective) && idList.Contains((int)textures.boxInvalid))
                     {
-                        idList.Remove((int)textures.objective);
+                        //idList.Remove((int)textures.objective);
                         idList.Remove((int)textures.boxInvalid);
 
                         idList.Add((int)textures.boxValid);
@@ -329,7 +344,7 @@ namespace Sarcina.Managers
             }
         }
 
-        public void DrawScore(int score, int level)
+        public void DrawScore(int score, int level, bool cheater)
         {
             level = 10;
 
@@ -339,6 +354,12 @@ namespace Sarcina.Managers
             text.DisplayedString = "Level: " + level;
             text.Position = new Vector2f(14 * 40 + ((level >= 10) ? -30 : -10), 11 * 40 - 15);
             window.Draw(text);
+            if (cheater)
+            {
+                text.DisplayedString = "Cheater!";
+                text.Position = new Vector2f(720 / 2 - 70, 11 * 40 - 15);
+                window.Draw(text);
+            }
         }
 
         public void AttachWindow(RenderWindow window)
@@ -357,10 +378,6 @@ namespace Sarcina.Managers
                 "objective.png",
                 "button_off.png",
                 "button_on.png",
-                "box_invalid.png",
-                "box_valid.png",
-                "box_named.png",
-                "box_sarcina.png",
                 "portal_a.png",
                 "portal_b.png",
                 "portal_c.png",
@@ -368,6 +385,10 @@ namespace Sarcina.Managers
                 "portal_e.png",
                 "portal_f.png",
                 "terminal.png",
+                "box_invalid.png",
+                "box_valid.png",
+                "box_named.png",
+                "box_sarcina.png",
                 "player_down.png",
                 "player_left.png",
                 "player_right.png",

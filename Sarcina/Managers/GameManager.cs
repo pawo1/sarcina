@@ -30,15 +30,16 @@ namespace Sarcina.Managers
         private EventHandler<KeyEventArgs> keyMenuHandler;
 
         private PlayerInfo playerInfo;
+        private PlayerInfo tutorialInfo;
         private Player prototype;
         private int menuOption;
-        private int maxOption;
+        private bool cheater = false;
 
         private List<Keyboard.Key> secretCodes;
         private Clock secretClock;
         private Clock keyClock;
 
-        enum gameState
+        enum GameState
         {
             MainMenu = 1,
             About,
@@ -49,6 +50,10 @@ namespace Sarcina.Managers
             Pause,
             Continue,
             NoSave,
+            LoadTutorial,
+            Tutorial,
+            NextTutorial,
+            CompleteTutorial,
             LoadLevel,
             Level,
             NextLevel,
@@ -57,7 +62,20 @@ namespace Sarcina.Managers
             Exit
         }
 
-        enum playerTexture
+        
+        enum MaxOption
+        {
+            MainMenu = 5,
+            About = 0,
+            Complete = 0,
+            NoSave = 0,
+            Progress = 1,
+            HardReset = 1,
+            Pause = 3
+
+        }
+
+        enum PlayerTexture
         {
             playerDown = 18,
             playerLeft = 19,
@@ -65,7 +83,7 @@ namespace Sarcina.Managers
             playerUp = 21
         }
 
-        gameState State;
+        GameState State;
 
 
         public GameManager()
@@ -87,9 +105,8 @@ namespace Sarcina.Managers
             LoadPlayerInfo();
             prototype = new Player();
 
-            State = gameState.MainMenu;
+            State = GameState.MainMenu;
             menuOption = 0;
-            maxOption = 4;
             window.KeyPressed += keyMenuHandler;
         }
 
@@ -106,85 +123,109 @@ namespace Sarcina.Managers
                 window.Clear();
                 switch (State)
                 {
-                    case gameState.MainMenu:
+                    case GameState.MainMenu:
                         graphicManager.DrawMainMenu(menuOption);
                         break;
 
-                    case gameState.Demo:
+                    case GameState.Demo:
                         graphicManager.Demo();
                         break;
 
-                    case gameState.About:
+                    case GameState.About:
                         graphicManager.DrawAbout();
                         break;
 
-                    case gameState.Progress:
+                    case GameState.Progress:
                         graphicManager.DrawProgressMenu(menuOption, playerInfo.TotalScore, playerInfo.CurrentLevel, playerInfo.TotalLevels);
                         break;
 
-                    case gameState.HardReset:
+                    case GameState.HardReset:
                         graphicManager.DrawHardResetMenu(menuOption);
                         break;
 
-                    case gameState.Complete:
+                    case GameState.Complete:
                         graphicManager.DrawCompleteMenu();
                         break;
 
-                    case gameState.Pause:
+                    case GameState.Pause:
                         graphicManager.DrawPauseMenu(menuOption);
                         break;
 
-                    case gameState.Continue:
+                    case GameState.Continue:
                         try
                         {
                             LoadMap("continue.json");
-                            State = gameState.Level;
+                            State = GameState.Level;
                             ConnectLevel();
                         }
                         catch (Exception)
                         {
-                            State = gameState.NoSave;
+                            State = GameState.NoSave;
                         }
                         break;
 
-                    case gameState.NoSave:
+                    case GameState.NoSave:
                         graphicManager.DrawNoSaveInfo();
                         break;
 
-                    case gameState.LoadLevel:
-                        if (playerInfo.CurrentLevel > playerInfo.TotalLevels) 
+                    case GameState.LoadTutorial:
+                        if( tutorialInfo.CurrentLevel > tutorialInfo.TotalLevels)
                         {
-                            State = gameState.Progress;
+                            State = GameState.CompleteTutorial;
+                            ConnectMenu();
+                            menuOption = 0;
+                        }
+                        else
+                        {
+                            LoadMap("levels/tutorial" + tutorialInfo.CurrentLevel + ".json");
+                            State = GameState.Tutorial;
+                        }
+                        break;
+
+                    case GameState.LoadLevel:
+                        if (playerInfo.CurrentLevel > playerInfo.TotalLevels)
+                        {
+                            State = GameState.Progress;
                             ConnectMenu();
                             menuOption = 1;
-                            maxOption = 1;
                         }
-
                         else
                         {
                             LoadMap("levels/level" + playerInfo.CurrentLevel + ".json");
-                            State = gameState.Level;
+                            State = GameState.Level;
                         }
                         break;
 
-                    case gameState.Level:
+                    case GameState.Level:
+                       graphicManager.DrawMap(map);
+                       graphicManager.DrawScore(playerInfo.Score, playerInfo.CurrentLevel, cheater);
+                        break;
+
+                    case GameState.Tutorial:
                         graphicManager.DrawMap(map);
-                       graphicManager.DrawScore(playerInfo.Score, playerInfo.CurrentLevel);
+                        graphicManager.DrawScore(tutorialInfo.Score, tutorialInfo.CurrentLevel, cheater);
+                        graphicManager.DrawHint(tutorialInfo.CurrentLevel);
                         break;
 
-                    case gameState.NextLevel:
+                    case GameState.NextLevel:
                         playerInfo.NextLevel();
-                        State = gameState.LoadLevel;
+                        State = GameState.LoadLevel;
                         break;
 
-                    case gameState.Restart:
+                    case GameState.NextTutorial:
+                        tutorialInfo.NextLevel();
+                        State = GameState.LoadTutorial;
+                        break;
+
+                    case GameState.Restart:
                         RestoreMap();
                         playerInfo.ResetLevel();
-                        State = gameState.Level;
+                        State = GameState.Level;
+                        cheater = false;
                         break;
 
 
-                    case gameState.Exit:
+                    case GameState.Exit:
                         window.Close();
                         break;
                 }
@@ -197,6 +238,33 @@ namespace Sarcina.Managers
 
         private void OnKeyPressedMenu(object sender, KeyEventArgs e)
         {
+            int max=0;
+            switch(State)
+            {
+                case GameState.MainMenu:
+                    max = (int)MaxOption.MainMenu;
+                    break;
+                case GameState.Complete:
+                    max = (int)MaxOption.Complete;
+                    break;
+                case GameState.About:
+                    max = (int)MaxOption.About;
+                    break;
+                case GameState.NoSave:
+                    max = (int)MaxOption.NoSave;
+                    break;
+                case GameState.Progress:
+                    max = (int)MaxOption.Progress;
+                    break;
+                case GameState.HardReset:
+                    max = (int)MaxOption.HardReset;
+                    break;
+                case GameState.Pause:
+                    max = (int)MaxOption.Pause;
+                    break;
+            }
+
+
             if (keyClock.ElapsedTime >= Time.FromMilliseconds(100))
             {
                 secretCodes.Add(e.Code);
@@ -208,37 +276,36 @@ namespace Sarcina.Managers
                         break;
                     case Keyboard.Key.Down:
                     case Keyboard.Key.S:
-                        menuOption = (menuOption < maxOption ? menuOption+1 : maxOption);
+                        menuOption = (menuOption < max ? menuOption+1 : max);
                         break;
                     case Keyboard.Key.Enter:
                         switch(State)
                         {
-                            case gameState.MainMenu:
+                            case GameState.MainMenu:
                                 OnConfirmMainMenu();
                                 break;
-                            case gameState.Complete:
-                            case gameState.About:
-                            case gameState.NoSave:
-                            case gameState.Demo:
-                                State = gameState.MainMenu;
-                                maxOption = 4;
+                            case GameState.Complete:
+                            case GameState.About:
+                            case GameState.NoSave:
+                            case GameState.Demo:
+                            case GameState.CompleteTutorial:
+                                State = GameState.MainMenu;
                                 break;
-                            case gameState.Progress:
+                            case GameState.Progress:
                                 OnConfirmProgress();
                                 break;
-                            case gameState.Pause:
+                            case GameState.Pause:
                                 OnConfirmPause();
                                 break;
-                            case gameState.HardReset:
+                            case GameState.HardReset:
                                 OnConfirmHardReset();
                                 break;
                         }
                         break;
                     case Keyboard.Key.Escape:
-                        if(State == gameState.Demo)
+                        if(State == GameState.Demo)
                         {
-                            State = gameState.MainMenu;
-                            maxOption = 4;
+                            State = GameState.MainMenu;
                         }
                         break;
 
@@ -276,8 +343,7 @@ namespace Sarcina.Managers
                 switch (e.Code)
                 {
                     case Keyboard.Key.Escape:
-                        State = gameState.Pause;
-                        maxOption = 3;
+                        State = GameState.Pause;
                         menuOption = 0;
                         ConnectMenu();
                         break;
@@ -304,11 +370,14 @@ namespace Sarcina.Managers
                             playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
-                                State = gameState.NextLevel;
+                                if (State == GameState.Tutorial)
+                                    State = GameState.NextTutorial;
+                                else
+                                State = GameState.NextLevel;
                             }
                         }
 
-                        prototype.SpriteId = (int)playerTexture.playerUp;
+                        prototype.SpriteId = (int)PlayerTexture.playerUp;
 
                         break;
                     case Keyboard.Key.Down:
@@ -322,11 +391,14 @@ namespace Sarcina.Managers
                             playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
-                                State = gameState.NextLevel;
+                                if (State == GameState.Tutorial)
+                                    State = GameState.NextTutorial;
+                                else
+                                    State = GameState.NextLevel;
                             }
                         }
 
-                        prototype.SpriteId = (int)playerTexture.playerDown;
+                        prototype.SpriteId = (int)PlayerTexture.playerDown;
 
                         break;
                     case Keyboard.Key.Left:
@@ -339,11 +411,14 @@ namespace Sarcina.Managers
                             playerInfo.AddMove(moves);
                             if (map.IsWon())
                             {
-                                State = gameState.NextLevel;
+                                if (State == GameState.Tutorial)
+                                    State = GameState.NextTutorial;
+                                else
+                                    State = GameState.NextLevel;
                             }
                         }
 
-                        prototype.SpriteId = (int)playerTexture.playerLeft;
+                        prototype.SpriteId = (int)PlayerTexture.playerLeft;
 
                         break;
                     case Keyboard.Key.Right:
@@ -357,18 +432,21 @@ namespace Sarcina.Managers
                             playerInfo.AddMove(moves);
                             if(map.IsWon())
                             {
-                                State = gameState.NextLevel;
+                                if (State == GameState.Tutorial)
+                                    State = GameState.NextTutorial;
+                                else
+                                    State = GameState.NextLevel;
                             }
                         }
 
-                        prototype.SpriteId = (int)playerTexture.playerRight;
+                        prototype.SpriteId = (int)PlayerTexture.playerRight;
 
                         break;
 
                     case Keyboard.Key.R:
                         secretCodes.Clear();
                         secretClock.Restart();
-                        State = gameState.Restart;
+                        State = GameState.Restart;
                         break;
 
 
@@ -395,25 +473,26 @@ namespace Sarcina.Managers
             {
                 case 0: // play
                     playerInfo.ResetLevel();
-                    State = gameState.LoadLevel;
+                    State = GameState.LoadLevel;
                     ConnectLevel();
                     break;
                 case 1: // continue
-                    State = gameState.Continue;
-                    maxOption = 0;
+                    State = GameState.Continue;
                     menuOption = 0;
                     break;
-                case 2: // about
-                    State = gameState.About;
-                    maxOption = 0;
+                case 2: // tutorial 
+                    State = GameState.LoadTutorial;
+                    ConnectLevel();
+                    break;
+                case 3: // about
+                    State = GameState.About;
                     menuOption = 0;
                     break;
-                case 3: // progress
-                    State = gameState.Progress;
+                case 4: // progress
+                    State = GameState.Progress;
                     menuOption = 1;
-                    maxOption = 1;
                     break;
-                case 4: // exit
+                case 5: // exit
                     window.Close();
                     break;
             }
@@ -424,14 +503,12 @@ namespace Sarcina.Managers
             switch (menuOption)
             {
                 case 0: //reset
-                    State = gameState.HardReset;
+                    State = GameState.HardReset;
                     menuOption = 1;
-                    maxOption = 1;
                     break;
                 case 1:
-                    State = gameState.MainMenu;
+                    State = GameState.MainMenu;
                     menuOption = 0;
-                    maxOption = 4;
                     break;
             }
         }
@@ -443,14 +520,12 @@ namespace Sarcina.Managers
                 case 0: // yes
                     playerInfo.HardReset();
                     SavePlayerInfo();
-                    State = gameState.Complete;
+                    State = GameState.Complete;
                     menuOption = 0;
-                    maxOption = 0;
                     break;
                 case 1:
-                    State = gameState.MainMenu;
+                    State = GameState.MainMenu;
                     menuOption = 0;
-                    maxOption = 4;
                     break;
             }
         }
@@ -460,26 +535,24 @@ namespace Sarcina.Managers
             switch (menuOption)
             {
                 case 0: // resume
-                    State = gameState.Level;
+                    State = GameState.Level;
                     ConnectLevel();
                     break;
                 case 1: // restart
-                    State = gameState.Restart;
+                    State = GameState.Restart;
                     ConnectLevel();
                     break;
                 case 2: // save and exit
                     SaveMap("continue.json");
                     SavePlayerInfo();
-                    State = gameState.Complete;
-                    maxOption = 0;
+                    State = GameState.Complete;
                     menuOption = 0;
                     break;
                 case 3: // exit
-                    State = gameState.MainMenu;
+                    State = GameState.MainMenu;
                     RestoreMap();
                     LoadPlayerInfo();
                     menuOption = 0;
-                    maxOption = 4;
                     break;
             }
         }
@@ -541,7 +614,7 @@ namespace Sarcina.Managers
             {
                 playerInfo = new PlayerInfo();
             }
-
+            tutorialInfo = new PlayerInfo(true);
         }
 
         private void SavePlayerInfo()
@@ -559,7 +632,9 @@ namespace Sarcina.Managers
                 secretCodes[6] == Keyboard.Key.Left && secretCodes[7] == Keyboard.Key.Right &&
                 secretCodes[8] == Keyboard.Key.B && secretCodes[9] == Keyboard.Key.A)
             {
-                Console.WriteLine("You activated my trap CARD!");
+                Wall hack = new Wall();
+                hack.IsWall = false;
+                cheater = true;
             }
         }
 
@@ -568,8 +643,7 @@ namespace Sarcina.Managers
             if(secretCodes[0] == Keyboard.Key.Num2 && secretCodes[1] == Keyboard.Key.Num5 && secretCodes[2] == Keyboard.Key.Num6)
             {
                 menuOption = 0;
-                maxOption = 0;
-                State = gameState.Demo;
+                State = GameState.Demo;
             }
         }
 

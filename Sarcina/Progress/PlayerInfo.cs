@@ -25,6 +25,23 @@ namespace Sarcina.Progress
             Score = 0;
         }
 
+        public PlayerInfo(bool tutorial)
+        {
+            if(tutorial == true)
+            {
+                TotalLevels = 3;
+            }
+            else
+            {
+                TotalLevels = 2;
+            }
+
+            CurrentLevel = 1;
+            TotalScore = 0;
+            Score = 0;
+
+        }
+
         [JsonConstructorAttribute]
         public PlayerInfo(int totalLevels, int currentLevel, int totalScore, int score)
         {

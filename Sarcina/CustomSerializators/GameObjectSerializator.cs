@@ -204,39 +204,6 @@ namespace Sarcina.CustomSerializators
 
             return gameObject;
 
-
-            /* while (reader.Read())
-             {
-                 if (reader.TokenType == JsonTokenType.EndObject)
-                 {
-                     return gameObject;
-                 }
-
-                 if (reader.TokenType == JsonTokenType.PropertyName)
-                 {
-                     propertyName = reader.GetString();
-                     reader.Read();
-                     switch (propertyName)
-                     {
-                         case "connectedPortal":
-                             int x = reader.GetInt32();
-                             int y = reader.GetInt32();
-                             Vector2 connectedPortal = new Vector2(x, y);
-
-                             ((Customer)person).CreditLimit = creditLimit;
-                             break;
-                         case "OfficeNumber":
-                             string? officeNumber = reader.GetString();
-                             ((Employee)person).OfficeNumber = officeNumber;
-                             break;
-                         case "Name":
-                             string? name = reader.GetString();
-                             person.Name = name;
-                             break;
-                     }
-                 }
-             } */
-
             throw new JsonException();
         }
 
