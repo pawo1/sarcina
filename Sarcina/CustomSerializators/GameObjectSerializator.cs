@@ -212,7 +212,13 @@ namespace Sarcina.CustomSerializators
         {
             writer.WriteStartObject();
 
-            if (gameObject is Box box)
+            if(gameObject is NamedBox nBox)
+            {
+                writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.NamedBox);
+                writer.WritePropertyName("TypeValue");
+                JsonSerializer.Serialize(writer, nBox);
+            }
+            else if (gameObject is Box box)
             {
                 writer.WriteNumber("TypeDiscriminator", (int)TypeDiscriminator.Box);
                 writer.WritePropertyName("TypeValue");

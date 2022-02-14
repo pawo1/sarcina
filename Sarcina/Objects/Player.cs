@@ -9,7 +9,7 @@ namespace Sarcina.Objects
     public class Player : GameObject
     {
 
-        public Player() : this(18) { }
+        public Player() : this(19) { }
 
         public Player(int spriteId) : base(spriteId)
         {
