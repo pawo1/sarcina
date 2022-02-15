@@ -356,7 +356,7 @@ namespace SarcinaCreator
         {
             rtbPreview.Clear();
             Map = GenerateMap();
-            rtbMap.Text = Map.GetDisplay();
+            rtbPreview.Text = rtbMap.Text = Map.GetDisplay();
         }
        
         private void cbObj_SelectedIndexChanged(object sender, EventArgs e)
@@ -370,16 +370,7 @@ namespace SarcinaCreator
 
         }
 
-        private void OnObjectPropertyChanged(object sender, EventArgs e)
-        {
-            string key = (string)cbObj.SelectedItem;
-            dict[key].IsControlledByPlayer = cbIsPlayer.Checked;
-            dict[key].IsMoveable = cbMoveable.Checked;
-            dict[key].IsWall = cbIsWall.Checked;
-            dict[key].SpriteId = (int)nuSpriteId.Value;
 
-            GameObject.UpdateDictionary(CopyDict(dict));
-        }
 
         private void cbPortal_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -493,7 +484,32 @@ namespace SarcinaCreator
         {
             //System.Diagnostics.Debug.WriteLine(sender.ToString());
             rtbPreview.Clear();
-            Map = GenerateMap();
+            //Map = GenerateMap();
         }
+
+        // => saving object properties
+        private void btnSaveObjects_Click(object sender, EventArgs e)
+        {
+            UpdateObjectProperties();
+        }
+        private void OnObjectPropertyChanged(object sender, EventArgs e)
+        {
+            UpdateObjectProperties();
+        }
+        private void OnObjectPropertyChanged(object sender, KeyPressEventArgs e)
+        {
+            UpdateObjectProperties();
+        }
+        private void UpdateObjectProperties()
+        {
+            string key = (string)cbObj.SelectedItem;
+            dict[key].IsControlledByPlayer = cbIsPlayer.Checked;
+            dict[key].IsMoveable = cbMoveable.Checked;
+            dict[key].IsWall = cbIsWall.Checked;
+            dict[key].SpriteId = (int)nuSpriteId.Value;
+
+            GameObject.UpdateDictionary(CopyDict(dict));
+        }
+        // <= saving object properties
     }
 }
