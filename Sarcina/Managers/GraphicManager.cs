@@ -404,9 +404,16 @@ namespace Sarcina.Managers
                         idList.Add((int)textures.boxValid);
                     }
 
+                    if (idList.Contains((int)textures.buttonOff) && (idList.Contains((int)textures.playerDown) ||
+                                                                     idList.Contains((int)textures.playerUp) ||
+                                                                     idList.Contains((int)textures.playerLeft) ||
+                                                                     idList.Contains((int)textures.playerRight)))
+                    {
+                        idList.Remove((int)textures.buttonOff);
+                        idList.Add((int)textures.buttonOn);
+                    }
 
-
-
+                    idList.Sort();
                     foreach (var id in idList)
                     {
                         int _id = (id < sprites.Count ? (id >= 0 ? id : 0) : 0);
