@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sarcina.Program">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.CustomSerializators.GameObjectSerializator">
+    <Position X="20" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Sarcina.CustomSerializators.GameObjectSerializator.TypeDiscriminator">
+        <TypeIdentifier>
+          <NewMemberFileName>CustomSerializators\GameObjectSerializator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEACAA=</HashCode>
+      <FileName>CustomSerializators\GameObjectSerializator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Managers.GameManager">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Sarcina.Managers.GameManager.GameState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Sarcina.Managers.GameManager.MaxOption" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Sarcina.Managers.GameManager.PlayerTexture" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAIAEQDAFYIQAAEAAAAAAKkABgABAxQIAEAABAGAAEI=</HashCode>
+      <FileName>Managers\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="graphicManager" />
+      <Field Name="playerInfo" />
+      <Field Name="map" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Sarcina.Managers.GraphicManager">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Sarcina.Managers.GraphicManager.textures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Managers\GraphicManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIABAAACQAAASAAAAAAEABAAAAAAIA4AIIEAACBAgo=</HashCode>
+      <FileName>Managers\GraphicManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Maps.Field">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAICAEAAAAAJAFAAEABAQAIEQAAAAAIAAAAAAEQAA=</HashCode>
+      <FileName>Maps\Field.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GameObjects" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Sarcina.Maps.Map">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAiAABCAAAAAAAAgAAUARAQIgAAAAABAIAAEEAAE=</HashCode>
+      <FileName>Maps\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.Box" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Objects\Box.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sarcina.Objects.Button">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <AssociationLine Name="ConnectedTerminal" Type="Sarcina.Objects.VectorObject" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="5.375" />
+        <Point X="10.875" Y="5.375" />
+        <Point X="10.875" Y="6.812" />
+        <Point X="10.5" Y="6.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.501" Y="0.373" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Objects\Button.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConnectedTerminal" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Sarcina.Objects.GameObject">
+    <Position X="13.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAEAAAAAAAAAAACAAAAAAAAgAAAAACCABAAAAA=</HashCode>
+      <FileName>Objects\GameObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="propDict" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Sarcina.Objects.GameObjectProps" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAACAAAAAAAAgAAAAAACAAAAABA=</HashCode>
+      <FileName>Objects\GameObjectProps.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sarcina.Objects.Grass">
+    <Position X="18.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Grass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.NamedBox">
+    <Position X="13.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\NamedBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.Objective">
+    <Position X="14.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Objective.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.Player">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.Portal">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <InheritanceLine Type="Sarcina.Objects.GameObject" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.5" Y="3.459" />
+        <Point X="14.5" Y="4.13" />
+        <Point X="13.3" Y="4.13" />
+        <Point X="13.3" Y="6.45" />
+        <Point X="12.5" Y="6.45" />
+        <Point X="12.5" Y="6.75" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="ConnectedPortal" Type="Sarcina.Objects.VectorObject" FixedFromPoint="true">
+      <Path>
+        <Point X="12" Y="7.25" />
+        <Point X="10.5" Y="7.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.094" Y="-0.359" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQAAA=</HashCode>
+      <FileName>Objects\Portal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConnectedPortal" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Sarcina.Objects.Terminal">
+    <Position X="17.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAQAAAIAAAAAAAAQABAAAAA=</HashCode>
+      <FileName>Objects\Terminal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.VectorObject">
+    <Position X="9" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Objects\VectorObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Objects.Wall">
+    <Position X="16.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Wall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sarcina.Progress.PlayerInfo">
+    <Position X="6.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEAAAAAAgBAAAAAAAAAAAEAAAAAEAACIAAAAA=</HashCode>
+      <FileName>Progress\PlayerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

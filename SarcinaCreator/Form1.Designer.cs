@@ -65,6 +65,7 @@ namespace SarcinaCreator
             this.tabMap = new System.Windows.Forms.TabControl();
             this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabPagePreview = new System.Windows.Forms.TabPage();
+            this.btnSaveObjects = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nuWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuSpriteId)).BeginInit();
@@ -181,7 +182,7 @@ namespace SarcinaCreator
             this.cbIsPlayer.TabIndex = 14;
             this.cbIsPlayer.Text = "isPlayer";
             this.cbIsPlayer.UseVisualStyleBackColor = true;
-            this.cbIsPlayer.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
+            this.cbIsPlayer.Click += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // cbIsWall
             // 
@@ -192,7 +193,7 @@ namespace SarcinaCreator
             this.cbIsWall.TabIndex = 15;
             this.cbIsWall.Text = "isWall";
             this.cbIsWall.UseVisualStyleBackColor = true;
-            this.cbIsWall.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
+            this.cbIsWall.Click += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // cbMoveable
             // 
@@ -203,7 +204,7 @@ namespace SarcinaCreator
             this.cbMoveable.TabIndex = 16;
             this.cbMoveable.Text = "isMoveable";
             this.cbMoveable.UseVisualStyleBackColor = true;
-            this.cbMoveable.CheckedChanged += new System.EventHandler(this.OnObjectPropertyChanged);
+            this.cbMoveable.Click += new System.EventHandler(this.OnObjectPropertyChanged);
             // 
             // label6
             // 
@@ -225,7 +226,8 @@ namespace SarcinaCreator
             this.nuSpriteId.Name = "nuSpriteId";
             this.nuSpriteId.Size = new System.Drawing.Size(150, 27);
             this.nuSpriteId.TabIndex = 18;
-            this.nuSpriteId.ValueChanged += new System.EventHandler(this.OnObjectPropertyChanged);
+            this.nuSpriteId.Click += new System.EventHandler(this.OnObjectPropertyChanged);
+            this.nuSpriteId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnObjectPropertyChanged);
             // 
             // cbPortal
             // 
@@ -368,6 +370,7 @@ namespace SarcinaCreator
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox3.Controls.Add(this.btnSaveObjects);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.cbObj);
             this.groupBox3.Controls.Add(this.cbIsPlayer);
@@ -455,6 +458,16 @@ namespace SarcinaCreator
             this.tabPagePreview.Text = "Preview";
             this.tabPagePreview.UseVisualStyleBackColor = true;
             // 
+            // btnSaveObjects
+            // 
+            this.btnSaveObjects.Location = new System.Drawing.Point(100, 112);
+            this.btnSaveObjects.Name = "btnSaveObjects";
+            this.btnSaveObjects.Size = new System.Drawing.Size(94, 29);
+            this.btnSaveObjects.TabIndex = 19;
+            this.btnSaveObjects.Text = "Save";
+            this.btnSaveObjects.UseVisualStyleBackColor = true;
+            this.btnSaveObjects.Click += new System.EventHandler(this.btnSaveObjects_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -528,6 +541,7 @@ namespace SarcinaCreator
         private System.Windows.Forms.TabControl tabMap;
         private System.Windows.Forms.TabPage tabPageMap;
         private System.Windows.Forms.TabPage tabPagePreview;
+        private System.Windows.Forms.Button btnSaveObjects;
     }
 }
 
