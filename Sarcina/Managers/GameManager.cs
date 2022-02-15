@@ -611,15 +611,18 @@ namespace Sarcina.Managers
 
             string json = File.ReadAllText(path);
             map = JsonSerializer.Deserialize<Map>(json, settings);
-            mapRestorationBuffer = CopyMap(map);
-            dictBuffer = CopyDict(GameObject.GetDictionary());
 
             Box box = new Box();
             Random rnd = new Random();
-            if(rnd.Next(0, 2) == 1)
+            if (rnd.Next(0, 2) == 1)
             {
                 box.SpriteId = 18; // secret texture
             }
+
+            mapRestorationBuffer = CopyMap(map);
+            dictBuffer = CopyDict(GameObject.GetDictionary());
+
+
         }
 
         public void SaveMap(string path)
