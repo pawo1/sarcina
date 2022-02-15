@@ -202,12 +202,12 @@ namespace Sarcina.Managers
                         break;
 
                     case GameState.Level:
-                       graphicManager.DrawMap(map);
+                       graphicManager.DrawMap(map, playerInfo.CurrentLevel);
                        graphicManager.DrawScore(playerInfo.Score, playerInfo.CurrentLevel, cheater);
                         break;
 
                     case GameState.Tutorial:
-                        graphicManager.DrawMap(map);
+                        graphicManager.DrawMap(map, playerInfo.CurrentLevel);
                         graphicManager.DrawScore(tutorialInfo.Score, tutorialInfo.CurrentLevel, cheater);
                         graphicManager.DrawHint(tutorialInfo.CurrentLevel);
                         break;

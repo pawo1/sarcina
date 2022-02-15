@@ -382,17 +382,19 @@ namespace Sarcina.Managers
 
         }
 
-        public void DrawMap(Map map)
+        public void DrawMap(Map map, int lvl)
         {
             int height = map.Height;
             int width = map.Width;
+
+            int backgroundTexture = (lvl > 5 ? (int)textures.background2 : (int)textures.background);
 
             for(int i = 0; i<width; ++i)
             {
                 for(int j = 0; j<height; ++j)
                 {
-                    sprites[(int)textures.background].Position = new Vector2f(i * 40, j * 40);
-                    window.Draw(sprites[0]);
+                    sprites[backgroundTexture].Position = new Vector2f(i * 40, j * 40);
+                    window.Draw(sprites[backgroundTexture]);
 
                     List<int> idList = map.getSpritesId(i, j);
 
@@ -428,6 +430,10 @@ namespace Sarcina.Managers
         public void DrawScore(int score, int level, bool cheater)
         {
 
+            if (level > 5)
+                text.FillColor = Color.White;
+            
+
             text.DisplayedString = "Moves: " + score;
             text.Position = new Vector2f(5, 11 * 40 - 15);
             window.Draw(text);
@@ -440,6 +446,7 @@ namespace Sarcina.Managers
                 text.Position = new Vector2f(720 / 2 - 70, 11 * 40 - 15);
                 window.Draw(text);
             }
+            text.FillColor = Color.Black;
         }
 
         public void AttachWindow(RenderWindow window)
