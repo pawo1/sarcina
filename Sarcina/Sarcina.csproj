@@ -25,6 +25,9 @@
     <None Update="levels\level4.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="levels\level5.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="levels\tutorial1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
