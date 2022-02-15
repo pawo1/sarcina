@@ -214,6 +214,7 @@ namespace Sarcina.Managers
 
                     case GameState.NextLevel:
                         playerInfo.NextLevel();
+                        SavePlayerInfo();
                         State = GameState.LoadLevel;
                         break;
 

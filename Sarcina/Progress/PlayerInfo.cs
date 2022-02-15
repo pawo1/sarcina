@@ -19,7 +19,7 @@ namespace Sarcina.Progress
 
         public PlayerInfo()
         {
-            TotalLevels = 2;
+            TotalLevels = 4;
             CurrentLevel = 1;
             TotalScore = 0;
             Score = 0;
